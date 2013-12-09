@@ -60,16 +60,16 @@
 
             </p>
             <!--List the questions-->
-            <ul>
-            <?php foreach($question_list AS $current_question) { ?>
-                    <li><a href="#tab-question-<?php echo $current_question["question_id"]; ?>">
-                            <?php echo siteutils::Truncate($current_question['question_text'], 20,true);?>
-                        </a>
-                    </li>
-            <?php } ?>
+            <ul id="ul-question-tabs">
+                <?php foreach($question_list AS $current_question) { ?>
+                        <li><a href="#tab-question-<?php echo $current_question["question_id"]; ?>">
+                                <?php echo siteutils::Truncate($current_question['question_text'], 20,true);?>
+                            </a>
+                        </li>
+                <?php } ?>
             </ul>
             <?php foreach($question_list AS $current_question) { ?>
-                <div id='tab-question-<?php echo $current_question["question_id"] ?>' >
+                <div id='tab-question-<?php echo $current_question["question_id"] ?>' question_id='<?php echo $current_question["question_id"]; ?>' class='question' >
                     <?php echo $current_question["question_text"] ?>
                 </div>
             <?php } ?>
@@ -80,25 +80,34 @@
 <script>
     $(function() {
         $( "#tabs" ).tabs();
-    });
-
-    $(function() {
         var tabs = $( "#tab-questions" ).tabs();
-        tabs.find( ".ui-tabs-nav" ).sortable({
-            axis: "x",
-            stop: function() {
-                tabs.tabs( "refresh" );
-            }
-        });
+
+        /*
+         tabs.find( ".ui-tabs-nav" ).sortable({
+         axis: "x",
+         stop: function() {
+         tabs.tabs( "refresh" );
+         }
+         });
+         */
         tabs.addClass( "ui-tabs-vertical ui-helper-clearfix" );
-        //$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+        tabs.removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+
     });
 
-</script>
 
-<script>
-    $(function() {
-        //$( "#tab-questions" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
-        //$( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+
+    $(document).ready(function()
+    {
+        <?php
+        //can't use a class selector for these because it always picks the top one and then $(this) does not work like it should
+        //so we are forced to loop here in the PHP
+        foreach($question_list AS $current_question) {
+            echo "$('#tab-question-".$current_question["question_id"]."').question();";
+        }
+        ?>
+
     });
+
+
 </script>

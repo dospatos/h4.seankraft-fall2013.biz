@@ -14,6 +14,7 @@
     <script type="text/javascript" src="/js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="/js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="/js/jquery.ui.timer.js"></script>
+    <script type="text/javascript" src="/js/jquery.ui.question.js"></script>
 
 </head>
 
