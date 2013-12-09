@@ -10,25 +10,14 @@ class users_controller extends base_controller {
     }
 
     /*-------------------------------------------------------------------------------------------------
-    Accessed via http://localhost/index/index/
+    Accessed via http://localhost/users/index/
     -------------------------------------------------------------------------------------------------*/
     public function index() {
 
-        # Any method that loads a view will commonly start with this
-        # First, set the content of the template with a view file
         $this->template->content = View::instance('v_users_index');
 
         # Now set the <title> tag
         $this->template->title = "Users";
-
-        //if a user is active get a list of all the users
-        if (isset($this->user)) {
-            $q = "SELECT U.user_id, U.first_name, U.last_name, U.email, U.avatar, UF.user_id AS following_user_id
-            FROM users U LEFT JOIN users_users UF ON UF.user_id_followed = U.user_id AND UF.user_id = ".$this->user->user_id." WHERE U.user_id <> ".$this->user->user_id;
-
-            $users = DB::instance(DB_NAME)->select_rows($q);
-            $this->template->content->users_list = $users;
-        }
 
         # Render the view
         echo $this->template;
@@ -36,17 +25,25 @@ class users_controller extends base_controller {
     } # End of method
 
     public function profileedit($id = null) {
-        siteutils::redirectnonloggedinuser($this->user);
-        if ((isset($id)) && ($this->user->user_id == $id)) { //users can only edit their own profile
-            $id = DB::instance(DB_NAME)->sanitize($id);
-        } else {
-            $id = $this->user->user_id;
-        }
 
+        siteutils::redirectnonloggedinuser($this->user);
+        /* users can edit
+        1. themselves
+        2. any user within their account, provided they are an admin
+        */
+        $id = DB::instance(DB_NAME)->sanitize($id);
+        if ($this->user->user_id != $id) { //if we're trying to edit another user we need to know if that's OK
+            $q = "SELECT U2.user_id FROM users U1 INNER JOIN users U2 ON U2.user_id = ".$id." AND U2.account_id = U1.account_id WHERE U1.user_id = ".$this->user->user_id." AND U1.is_admin = 1";
+            $id = DB::instance(DB_NAME)->select_field($q);
+            if (!$id) { //someone is trying to edit a user they don't have access to - let them edit their own user and log the situation
+                $id = $this->user->user_id;
+            }
+        }
         $currentuser = siteutils::getuserprofile($id);
 
         $this->template->content = View::instance('v_users_profile');
         $this->template->content->currentuser = $currentuser;
+
         echo $this->template;
 
     }
@@ -98,15 +95,11 @@ class users_controller extends base_controller {
         siteutils::redirectnonloggedinuser($this->user);
         if ((isset($id))) { //if ID is null show the user their own profile
             $id = DB::instance(DB_NAME)->sanitize($id);
-        } else {
-            router::redirect("/users/profileedit");
         }
 
         $currentuser = siteutils::getuserprofile($id);
         $this->template->content = View::instance('v_profile_view');
         $this->template->content->currentuser = $currentuser;
-
-        $this->template->content->following = siteutils::isuserbeingfollowed($id, $this->user->user_id);
 
         echo $this->template;
 
@@ -180,6 +173,7 @@ class users_controller extends base_controller {
         $this->template->content->first_name = "";
         $this->template->content->last_name = "";
         $this->template->content->email = "";
+        $this->template->content->company = "";
 
         # Render template
         echo $this->template;
@@ -187,45 +181,83 @@ class users_controller extends base_controller {
 
     public function p_signup() {
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
-
+        $errors = array();
+        $data = ob_get_clean();
         //Find out if the email is already taken because this is the username
-        $q = "SELECT user_id FROM users WHERE email = '".str_replace(" ","", $_POST["email"])."'";
+        $email = str_replace(" ","", $_POST["email"]);
+        $q = "SELECT user_id FROM users WHERE email = '".$email."'";
         $existing_user_id = DB::instance(DB_NAME)->select_field($q);
 
-        if (!$existing_user_id) {
+        if ($existing_user_id) {$errors[] = "The username, ".$_POST["email"].", already exists";}
+        //validate the passwords
+        $password_match = strlen($_POST['password01']) >= 6;
+        if (!$password_match) {$errors[] = "Password must be at least 6 characters";}
+        else {
+            $password_match = ($_POST['password01'] == $_POST['password02']);
+            if (!$password_match) {$errors[] = "The passwords do not match.";}
+        }
+
+        //we must have a unique company name
+        $company = $_POST["company"];
+        $q = "SELECT account_id FROM accounts WHERE account_name = '".$_POST["company"]."'";
+        $existing_account_id = DB::instance(DB_NAME)->select_field($q);
+        if ($existing_account_id) {$errors[] = "The company/account, ".$_POST["company"].", already exists - please use another name";}
+
+        if (count($errors)==0) {//no errors - go ahead
+            //first add the account
+            $account_data = array();
+            $account_data["account_name"] = $_POST["company"];
+            $account_id = DB::instance(DB_NAME)->insert('accounts', $account_data);
+
+            //then add a default job for the user
+            $job_data = array();
+            $job_data['account_id'] =$account_id;
+            $job_data['department_name'] ='Administration';
+            $job_data['job_title'] ='Test Administrator';
+            $job_id = DB::instance(DB_NAME)->insert('jobs', $job_data);
+
+            $user_data = array();
             # More data we want stored with the user
-            $_POST['created']  = Time::now();
-            $_POST['modified'] = Time::now();
+            $user_data['created']  = Time::now();
+            $user_data['modified'] = Time::now();
+            $user_data['account_id'] = $account_id;
+            $user_data['is_admin'] = true;
+            $user_data['job_id'] = $job_id;
+            $user_data['email'] = $_POST['email'];
+            $user_data['first_name'] = $_POST['first_name'];
+            $user_data['last_name'] = $_POST['last_name'];
 
             # Encrypt the password
-            $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+            $user_data['password'] = sha1(PASSWORD_SALT.$_POST['password01']);
 
             # Create an encrypted token via their email address and a random string
             $token = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
-            $_POST['token'] = $token;
+            $user_data['token'] = $token;
 
             # Insert this user into the database
-            $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
+            $user_id = DB::instance(DB_NAME)->insert('users', $user_data);
             //Store this token in a cookie now so that they appear as logged in, also so we can create the user to create the avatar
             setcookie("token", $token, strtotime('+1 year'), '/');
 
-            //wake up the user in order to create an avatar for them
+            //wake up the user in order to log them in
             $newuser = new User();
             $newuser->authenticate();
-            $newuser->create_initial_avatar($user_id);
 
-            # For now, just confirm they've signed up -
-            # You should eventually make a proper View for this
-            Router::redirect("/users/");
-        } else {
-            $this->signup(true);
+            Router::redirect("/users");
+
+        } else {//there were errors
             $this->template->content = View::instance('v_users_signup');
             $this->template->title   = "Sign Up";
-            $this->template->content->duplicate_username = true;
+            $this->template->content->errors = $errors;
+            $this->template->content->duplicate_username = isset($existing_user_id);
+            $this->template->content->duplicate_account = isset($existing_account_id);
 
             $this->template->content->first_name = $_POST["first_name"];
             $this->template->content->last_name = $_POST["last_name"];
             $this->template->content->email = $_POST["email"];
+            $this->template->content->company = $_POST["company"];
+
+            echo $this->template;
 
         }
     }

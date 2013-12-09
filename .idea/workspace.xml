@@ -2,32 +2,55 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d14dc634-fa9e-429d-8866-b944c9b22349" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\wamp\www\h4.seankraft-fall2013.biz\h4.seankraft-fall2013.biz\views\v_posts_create.php" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/c_questions.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/c_tests.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/v_questions_edit.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/v_tests_create.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/v_tests_edit.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/v_tests_index.php" />
+      <change type="DELETED" beforePath="C:\wamp\www\h4.seankraft-fall2013.biz\h4.seankraft-fall2013.biz\js\sample-app.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/_v_template.php" afterPath="$PROJECT_DIR$/views/_v_template.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/c_users.php" afterPath="$PROJECT_DIR$/controllers/c_users.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.php" afterPath="$PROJECT_DIR$/config/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/siteutils.php" afterPath="$PROJECT_DIR$/libraries/siteutils.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_profile_view.php" afterPath="$PROJECT_DIR$/views/v_profile_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_users_index.php" afterPath="$PROJECT_DIR$/views/v_users_index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_users_login.php" afterPath="$PROJECT_DIR$/views/v_users_login.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_users_profile.php" afterPath="$PROJECT_DIR$/views/v_users_profile.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_users_signup.php" afterPath="$PROJECT_DIR$/views/v_users_signup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="h2.seankraft-fall2013.biz.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386281486642" ignored="false" />
-    <file path="/c_users.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386335314342" ignored="false" />
-    <file path="/v_users_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383569554291" ignored="false" />
+    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386346158750" ignored="false" />
+    <file path="/c_users.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386476894112" ignored="false" />
+    <file path="/v_users_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386458084193" ignored="false" />
     <file path="/c_posts.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136725374" ignored="false" />
     <file path="/v_posts_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383135561199" ignored="false" />
     <file path="/v_posts_create.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383185494264" ignored="false" />
     <file path="/v_index_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383570620915" ignored="false" />
     <file path="/v_users_login.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1381838856967" ignored="false" />
-    <file path="/_v_template.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383049874865" ignored="false" />
-    <file path="/v_users_profile.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383050018888" ignored="false" />
-    <file path="/v_profile_view.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383047506169" ignored="false" />
+    <file path="/_v_template.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386558849649" ignored="false" />
+    <file path="/v_users_profile.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386459350154" ignored="false" />
+    <file path="/v_profile_view.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386459029559" ignored="false" />
     <file path="/basic-minimal.css" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383049502016" ignored="false" />
     <file path="/imageview.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1382704002555" ignored="false" />
-    <file path="/siteutils.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383569993482" ignored="false" />
+    <file path="/siteutils.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386596048884" ignored="false" />
     <file path="/c_river.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136689591" ignored="false" />
     <file path="/v_river_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383569870805" ignored="false" />
     <file path="/a.dummy" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136716906" ignored="false" />
-    <file path="/v_users_signup.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386334336080" ignored="false" />
+    <file path="/v_users_signup.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386454166994" ignored="false" />
     <file path="$PROJECT_DIR$/../../h3.seankraft-fall2013.biz/h3.seankraft-fall2013.biz/controllers/c_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1385507673239" ignored="false" />
     <file path="/c_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1385504533976" ignored="false" />
     <file path="$PROJECT_DIR$/../../h3.seankraft-fall2013.biz/h3.seankraft-fall2013.biz/css/ui.timer.css" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1385556015850" ignored="false" />
     <file path="$PROJECT_DIR$/../../h3.seankraft-fall2013.biz/h3.seankraft-fall2013.biz/.idea/workspace.xml" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1385569910428" ignored="false" />
+    <file path="/v_tests_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386479080475" ignored="false" />
+    <file path="/c_tests.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386593159633" ignored="false" />
+    <file path="/v_tests_create.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386477939603" ignored="false" />
+    <file path="/v_tests_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386562056074" ignored="false" />
+    <file path="/c_questions.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386594173453" ignored="false" />
+    <file path="/v_questions_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386593083158" ignored="false" />
+    <file path="/v_questions_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386596505163" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,65 +70,87 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="v_users_index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/v_users_index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="176" selection-start="1229" selection-end="1229" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="siteutils.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libraries/siteutils.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="0" selection-start="3652" selection-end="3652" vertical-scroll-proportion="0.0">
+            <state line="45" column="11" selection-start="1461" selection-end="1461" vertical-scroll-proportion="-9.230769">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="v_index_index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/v_index_index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="36" selection-start="514" selection-end="514" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="c_index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/c_index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="159" selection-end="159" vertical-scroll-proportion="-3.2692308">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="c_rivers.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/c_rivers.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="17" selection-start="1781" selection-end="1819" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="c_users.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="c_users.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/c_users.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="182" column="0" selection-start="6659" selection-end="6659" vertical-scroll-proportion="0.6973948">
+            <state line="158" column="11" selection-start="5952" selection-end="5975" vertical-scroll-proportion="-11.803922">
+              <folding>
+                <marker date="1386477046687" expanded="true" signature="723:761" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="c_tests.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/c_tests.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="54" column="0" selection-start="1945" selection-end="3378" vertical-scroll-proportion="-2.2368422">
+              <folding>
+                <marker date="1386593239465" expanded="true" signature="3538:3550" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="c_questions.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/c_questions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="66" selection-start="915" selection-end="915" vertical-scroll-proportion="-7.6923075">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="v_questions_edit.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/v_questions_edit.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="62" column="15" selection-start="2614" selection-end="2614" vertical-scroll-proportion="0.16833667">
+              <folding>
+                <element signature="e#6#160#0" expanded="true" />
+                <marker date="1386596568443" expanded="true" signature="1469:1654" placeholder="..." />
+                <marker date="1386596568443" expanded="true" signature="1543:1654" placeholder="..." />
+                <marker date="1386596568443" expanded="true" signature="1751:1772" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="v_tests_edit.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="95" column="0" selection-start="3545" selection-end="3866" vertical-scroll-proportion="-15.5">
+              <folding>
+                <element signature="e#6#160#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_v_template.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/_v_template.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="47" selection-start="389" selection-end="389" vertical-scroll-proportion="-5.8846154">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="v_tests_create.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/v_tests_create.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="24" selection-start="0" selection-end="1752" vertical-scroll-proportion="-5.230769">
+              <folding>
+                <element signature="e#6#160#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -113,22 +158,20 @@
       <file leaf-file-name="v_users_signup.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/v_users_signup.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="0" selection-start="1412" selection-end="1412" vertical-scroll-proportion="-12.653846">
+            <state line="0" column="0" selection-start="0" selection-end="2378" vertical-scroll-proportion="-0.0">
               <folding>
-                <element signature="n#style#0;n#input#0;n#p#2;n#fieldset#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#p#3;n#fieldset#0;n#form#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="v_profile_view.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/v_profile_view.php">
+      <file leaf-file-name="v_tests_index.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/v_tests_index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="535" vertical-scroll-proportion="-0.0">
               <folding>
-                <marker date="1383568686794" expanded="true" signature="355:1052" placeholder="..." />
-                <marker date="1383568686794" expanded="true" signature="370:949" placeholder="..." />
-                <marker date="1383568686794" expanded="false" signature="881:905" placeholder="..." />
+                <element signature="e#6#160#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -152,22 +195,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/css/basic-minimal.css" />
-        <option value="$PROJECT_DIR$/views/_v_template.php" />
-        <option value="$PROJECT_DIR$/views/v_users_profile.php" />
-        <option value="$PROJECT_DIR$/views/v_posts_index.php" />
-        <option value="$PROJECT_DIR$/controllers/c_river.php" />
-        <option value="$PROJECT_DIR$/controllers/c_rivers.php" />
-        <option value="$PROJECT_DIR$/controllers/c_posts.php" />
-        <option value="$PROJECT_DIR$/views/v_posts_create.php" />
-        <option value="$PROJECT_DIR$/views/v_profile_view.php" />
-        <option value="$PROJECT_DIR$/views/v_users_index.php" />
-        <option value="$PROJECT_DIR$/libraries/siteutils.php" />
-        <option value="$PROJECT_DIR$/views/v_river_edit.php" />
-        <option value="$PROJECT_DIR$/views/v_index_index.php" />
-        <option value="$PROJECT_DIR$/config/config.php" />
         <option value="$PROJECT_DIR$/views/v_users_signup.php" />
+        <option value="$PROJECT_DIR$/config/config.php" />
+        <option value="$PROJECT_DIR$/views/v_profile_view.php" />
+        <option value="$PROJECT_DIR$/views/v_users_profile.php" />
+        <option value="$PROJECT_DIR$/views/v_users_login.php" />
+        <option value="$PROJECT_DIR$/views/v_users_index.php" />
         <option value="$PROJECT_DIR$/controllers/c_users.php" />
+        <option value="$PROJECT_DIR$/views/v_tests_create.php" />
+        <option value="$PROJECT_DIR$/views/v_tests_index.php" />
+        <option value="$PROJECT_DIR$/views/_v_template.php" />
+        <option value="$PROJECT_DIR$/views/v_tests_edit.php" />
+        <option value="$PROJECT_DIR$/views/v_questions_index.php" />
+        <option value="$PROJECT_DIR$/controllers/c_tests.php" />
+        <option value="$PROJECT_DIR$/controllers/c_questions.php" />
+        <option value="$PROJECT_DIR$/libraries/siteutils.php" />
+        <option value="$PROJECT_DIR$/views/v_questions_edit.php" />
       </list>
     </option>
   </component>
@@ -247,7 +290,77 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h2.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h2.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h2.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h2.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h2.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -256,24 +369,56 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../h3.seankraft-fall2013.biz/h3.seankraft-fall2013.biz" />
+    <property name="options.lastSelected" value="web.server" />
+    <property name="recentsLimit" value="5" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../h3.seankraft-fall2013.biz/h3.seankraft-fall2013.biz/index.php" />
     <property name="FullScreen" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="PublishConfig" serverName="Appache" serverId="63d49163-e071-44d4-8ded-e55f34a26130">
+    <servers>
+      <server id="63d49163-e071-44d4-8ded-e55f34a26130">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </server>
+    </servers>
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp\www\h2.seankraft-fall2013.biz\h2.seankraft-fall2013.biz\controllers" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHP Script.c_tests.php">
+    <configuration default="false" name="c_tests.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/controllers/c_tests.php">
+      <RunnerSettings RunnerId="PhpRunner" />
+      <ConfigurationWrapper RunnerId="PhpRunner" />
+      <method />
+    </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/../../h3.seankraft-fall2013.biz/h3.seankraft-fall2013.biz/index.php">
       <method />
     </configuration>
-    <list size="0" />
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="PHP Script.c_tests.php" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="PHP Script.c_tests.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="TaskManager">
@@ -330,19 +475,25 @@
       <created>1383586394561</created>
       <updated>1383586394561</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Add SQL details">
+      <created>1386346162366</created>
+      <updated>1386346162366</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3151515" sideWeight="0.89778537" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3151515" sideWeight="0.6700855" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16287878" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -351,9 +502,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -399,7 +548,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add graphics" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add SQL details" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -425,105 +574,153 @@
     <MESSAGE value="Prevent user registering with existing username" />
     <MESSAGE value="Adding some more graphics and follow/unfollow from the user's screen" />
     <MESSAGE value="Add graphics" />
+    <MESSAGE value="Add SQL details" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/controllers/c_users.php</url>
-          <line>119</line>
+          <line>112</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/controllers/c_tests.php</url>
+          <line>126</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/_v_template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="42" selection-start="664" selection-end="664" vertical-scroll-proportion="-9.307693" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/c_posts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="73" selection-start="2507" selection-end="2507" vertical-scroll-proportion="-2.6078432" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../environment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="902" selection-end="902" vertical-scroll-proportion="-9.153846" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/v_users_profile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="195" selection-end="298" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/v_profile_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1383568686794" expanded="true" signature="355:1052" placeholder="..." />
-            <marker date="1383568686794" expanded="true" signature="370:949" placeholder="..." />
-            <marker date="1383568686794" expanded="false" signature="881:905" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/v_users_index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="176" selection-start="1229" selection-end="1229" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/siteutils.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="0" selection-start="3652" selection-end="3652" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/v_index_index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="36" selection-start="514" selection-end="514" vertical-scroll-proportion="0.0">
+        <state line="17" column="68" selection-start="444" selection-end="444" vertical-scroll-proportion="-7.1923075">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/c_rivers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="17" selection-start="1781" selection-end="1819" vertical-scroll-proportion="0.0">
+        <state line="2" column="49" selection-start="39" selection-end="56" vertical-scroll-proportion="-1.3076923">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/c_index.php">
+    <entry file="file://$PROJECT_DIR$/views/v_users_login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="159" selection-end="159" vertical-scroll-proportion="-3.2692308">
+        <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="-0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/v_profile_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="167" selection-end="167" vertical-scroll-proportion="-1.9615384">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/v_users_index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="315" selection-end="315" vertical-scroll-proportion="-4.576923">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/v_users_signup.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="0" selection-start="1412" selection-end="1412" vertical-scroll-proportion="-12.653846">
+        <state line="0" column="0" selection-start="0" selection-end="2378" vertical-scroll-proportion="-0.0">
           <folding>
-            <element signature="n#style#0;n#input#0;n#p#2;n#fieldset#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#p#3;n#fieldset#0;n#form#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/v_tests_create.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="24" selection-start="0" selection-end="1752" vertical-scroll-proportion="-5.230769">
+          <folding>
+            <element signature="e#6#160#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/c_users.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="0" selection-start="6659" selection-end="6659" vertical-scroll-proportion="0.6973948">
+        <state line="158" column="11" selection-start="5952" selection-end="5975" vertical-scroll-proportion="-11.803922">
+          <folding>
+            <marker date="1386477046687" expanded="true" signature="723:761" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/jquery-1.10.2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/_v_template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="47" selection-start="389" selection-end="389" vertical-scroll-proportion="-5.8846154">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/v_tests_index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="535" vertical-scroll-proportion="-0.0">
+          <folding>
+            <element signature="e#6#160#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/c_tests.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="0" selection-start="1945" selection-end="3378" vertical-scroll-proportion="-2.2368422">
+          <folding>
+            <marker date="1386593239465" expanded="true" signature="3538:3550" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="0" selection-start="3545" selection-end="3866" vertical-scroll-proportion="-15.5">
+          <folding>
+            <element signature="e#6#160#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/c_questions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="66" selection-start="915" selection-end="915" vertical-scroll-proportion="-7.6923075">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/siteutils.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="11" selection-start="1461" selection-end="1461" vertical-scroll-proportion="-9.230769">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/v_questions_edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="15" selection-start="2614" selection-end="2614" vertical-scroll-proportion="0.16833667">
+          <folding>
+            <element signature="e#6#160#0" expanded="true" />
+            <marker date="1386596568443" expanded="true" signature="1469:1654" placeholder="..." />
+            <marker date="1386596568443" expanded="true" signature="1543:1654" placeholder="..." />
+            <marker date="1386596568443" expanded="true" signature="1751:1772" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

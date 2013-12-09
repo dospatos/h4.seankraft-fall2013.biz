@@ -8,7 +8,13 @@
 	<!-- Controller Specific JS/CSS -->
 	<?php if(isset($client_files_head)) echo $client_files_head; ?>
     <link rel="stylesheet" href="/css/basic-minimal.css" type="text/css"/>
-	
+    <link rel="stylesheet" href="/css/jquery-ui.css" type="text/css"/>
+    <script type="text/javascript" src="/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="/js/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="/js/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="/js/jquery.ui.timer.js"></script>
+
 </head>
 
 <body>
@@ -19,9 +25,9 @@
 
     <!-- Menu for users who are logged in -->
     <?php if($user): ?>
-        <a href='/posts'>Posts</a> |
-        <a href='/users/profileedit/<?php echo $user->user_id?>'>You</a> |
-        <a href="/users">Others |
+        <a href='/users/profileedit/<?php echo $user->user_id?>'>Your Account</a> |
+        <a href="/users/testtakers">Test Takers |
+        <a href="/tests">Tests |
         <a href='/users/logout'>Logout</a>
 
         <!-- Menu options for users who are not logged in -->

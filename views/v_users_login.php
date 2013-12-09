@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Sean
- * Date: 10/8/13
- * Time: 7:59 AM
- * To change this template use File | Settings | File Templates.
- */
-?>
+<?php ?>
 
 <form method='POST' action='/users/p_login'>
     <?php if(isset($new_user)) { ?>
