@@ -39,7 +39,16 @@ class questions_controller extends secure_controller {
         echo $this->template;
 
 
-    } # End of
+    } # End of edit
+
+    //Get a single question and pass it back json style
+    public function get($question_id) {
+        $q = "SELECT question_id, question_order, test_id, created_by_user_id, question_text, question_type_id, question_image
+            , created, updated, all_or_none, deleted FROM questions WHERE question_id = ".$question_id;
+
+        $question = DB::instance(DB_NAME)->select_row($q);
+        echo json_encode($question);
+    }
 
     //Add a question and refresh the page
     public function p_create($test_id) {
@@ -47,8 +56,8 @@ class questions_controller extends secure_controller {
         $errors = array();
         $data = ob_get_clean();
         //check that the question text is not blank
-        if ($_POST["question_text"] == "") {
-            $errors[] = "Question text is not filled out";
+        if (!isset($_POST["question_text"])) {
+            $errors[] = "Question text is not filled out - ";
         }
 
         if (count($errors)==0) {//no errors - go ahead
@@ -62,10 +71,10 @@ class questions_controller extends secure_controller {
 
             $question_id = DB::instance(DB_NAME)->insert('questions', $_POST);
 
-            Router::redirect("/questions/edit/".$test_id);
-
+            //send back the ID
+            echo json_encode(array($question_id));
         } else {//there were errors
-            Router::redirect("/questions/edit/".$test_id);
+            echo json_encode(null);
         }
     } //end of question/p_create
 
