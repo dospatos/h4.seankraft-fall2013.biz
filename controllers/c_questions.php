@@ -57,7 +57,6 @@ class questions_controller extends secure_controller {
         echo json_encode($question);
     }
 
-    /*
     //add a new answer for a question
     public function p_addquestion($question_id) {
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
@@ -71,7 +70,6 @@ class questions_controller extends secure_controller {
 
         echo json_encode($answer_id);
     }
-    */
 
     //remove an answer from a question
     public function p_deleteanswer($question_id) {

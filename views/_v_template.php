@@ -15,6 +15,7 @@
     <script type="text/javascript" src="/js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="/js/jquery.ui.timer.js"></script>
     <script type="text/javascript" src="/js/jquery.ui.question.js"></script>
+    <script type="text/javascript" src="/js/jquery.watermark.js"></script>
 
 </head>
 
@@ -27,7 +28,7 @@
     <!-- Menu for users who are logged in -->
     <?php if($user): ?>
         <a href='/users/profileedit/<?php echo $user->user_id?>'>Your Account</a> |
-        <a href="/users/testtakers">Test Takers |
+        <a href="/testtakers">Test Takers |
         <a href="/tests">Tests |
         <a href='/users/logout'>Logout</a>
 

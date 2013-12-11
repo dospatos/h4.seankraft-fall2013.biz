@@ -50,7 +50,7 @@
                 //On display text lost focus or when the enter key is pressed - update the question text
                 $("#" + display_text_id).bind("blur keyup", (function(e) {
                     if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
-                    $('#' + this.id).parent().parent().question("changeQuestionText", $(this).val());
+                    $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
                 }));
 
                 switch (question_type_id) {
@@ -58,12 +58,18 @@
                     case 2: {//2 - choose single correct
                         //Write out a textbox so the user can enter the next answer
                         var new_answer_id = "txt_new_answer_" + this.options.question_id;
-                        this.element.append("<input type='text' id='" + new_answer_id +  "' value='Enter a new answer'/><br/>");
+                        this.element.append("<input type='text' id='" + new_answer_id +  "' value=''/><br/>");
                         //Bind the keyup events to add a new answer
+
                         $("#" + new_answer_id).bind("keyup", (function(e) {
                             if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
-                            $('#' + this.id).parent().question("addAnswer", $(this).val());
+                            $('#' + this.id).closest(".question").question("addAnswer", $(this).val());
                         }));
+
+                        $("#" + new_answer_id).watermark('Enter a new answer', {
+                            className: 'lightText'
+                        });
+
 
                         if (this.options.display_mode == "edit"){
                             //display all the answers
@@ -100,7 +106,7 @@
                 var delete_control_id = "del_" + question_id + "_" + answer_id;
                 var rdo_control_name = "question_answer_" + question_id;
                 var answer_span_id = "answer_span_" + answer_id;
-                window.console.log(question_type_id);
+
                 switch (question_type_id) {
                     case 1://A check box, a textbox, and a delete control
                         this.element.append("<span id='" + answer_span_id + "'>"
@@ -131,16 +137,22 @@
 
                 $("#" + select_control_id).change(function(){
                     //When this is triggered, we have no answer context - we have to rely on our on attributes to survive
-                    $('#' + this.id).parent().parent().question("setAnswer", $(this).attr('answer_id'), this.checked);
+                    $('#' + this.id).closest(".question").question("setAnswer", $(this).attr('answer_id'), this.checked);
                 });
 
                 if (question_type_id == "1" || question_type_id == "2") {
                     //Allow deletes for multiple answer questions
                     $("#" + delete_control_id).click(function() {
-                        $('#' + this.id).parent().parent().question("deleteAnswer",$(this).attr('answer_id'));
+                        $('#' + this.id).closest(".question").question("deleteAnswer",$(this).attr('answer_id'));
                     });
 
                     //TODO: allow for text change updates here
+                    //reset the new answer text box
+                    var new_answer_id = "txt_new_answer_" + this.options.question_id;
+                    $("#" + new_answer_id).val("");
+                    $("#" + new_answer_id).watermark('Enter a new answer', {
+                        className: 'lightText'
+                    });
                 }
             },
             setAnswer: function(answer_id, is_correct) {

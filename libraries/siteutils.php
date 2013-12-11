@@ -59,6 +59,12 @@ class siteutils {
         return $string;
     }
 
+    //Return all the users with the given account
+    public static function getUsersWithAccount($account_id) {
+        $q = "SELECT U2.user_id, U2.created, U2.modified, U2.last_login, U2.time_zone, U2.first_name, U2.last_name, U2.email, U2.job_id, U2.account_id, U2.is_admin FROM users U1 INNER JOIN users U2 ON U2.account_id = U1.account_id WHERE U1.user_id = ".$account_id." AND U1.is_admin = 1";
+        $id = DB::instance(DB_NAME)->select_rows($q);
+    }
+
 
 }
 
