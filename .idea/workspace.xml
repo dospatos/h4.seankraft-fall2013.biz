@@ -2,20 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d14dc634-fa9e-429d-8866-b944c9b22349" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/c_testtakers.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/jquery.watermark.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/v_testtakers_index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/v_testtakers_upload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/_v_template.php" afterPath="$PROJECT_DIR$/views/_v_template.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/c_questions.php" afterPath="$PROJECT_DIR$/controllers/c_questions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/c_users.php" afterPath="$PROJECT_DIR$/controllers/c_users.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/jquery.ui.question.js" afterPath="$PROJECT_DIR$/js/jquery.ui.question.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/siteutils.php" afterPath="$PROJECT_DIR$/libraries/siteutils.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="C:\wamp\www\h4.seankraft-fall2013.biz\h4.seankraft-fall2013.biz\.idea\workspace.xml" afterPath="" />
     </list>
     <ignored path="h2.seankraft-fall2013.biz.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386770797617" ignored="false" />
+    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386780048807" ignored="false" />
     <file path="/c_users.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386775581533" ignored="false" />
     <file path="/v_users_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386458084193" ignored="false" />
     <file path="/c_posts.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136725374" ignored="false" />
@@ -106,7 +97,7 @@
       <file leaf-file-name="v_testtakers_upload.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/v_testtakers_upload.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="32" selection-start="979" selection-end="979" vertical-scroll-proportion="0.5923345">
+            <state line="20" column="32" selection-start="973" selection-end="979" vertical-scroll-proportion="0.5923345">
               <folding>
                 <element signature="e#6#161#0" expanded="true" />
                 <element signature="n#style#0;n#li#3;n#ul#0;n#!!top" expanded="true" />
@@ -441,7 +432,11 @@
       <created>1386770800320</created>
       <updated>1386770800320</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Adding test takers pages">
+      <created>1386780053234</created>
+      <updated>1386780053234</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -510,7 +505,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of git://github.com/dospatos/h4.seankraft-fall2013.biz&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding test takers pages" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -542,6 +537,7 @@
     <MESSAGE value="Created new jQuery widget" />
     <MESSAGE value="true/false mostly working" />
     <MESSAGE value="Merge branch 'master' of git://github.com/dospatos/h4.seankraft-fall2013.biz&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;" />
+    <MESSAGE value="Adding test takers pages" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -672,7 +668,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/v_testtakers_upload.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="32" selection-start="979" selection-end="979" vertical-scroll-proportion="0.5923345">
+        <state line="20" column="32" selection-start="973" selection-end="979" vertical-scroll-proportion="0.5923345">
           <folding>
             <element signature="e#6#161#0" expanded="true" />
             <element signature="n#style#0;n#li#3;n#ul#0;n#!!top" expanded="true" />
