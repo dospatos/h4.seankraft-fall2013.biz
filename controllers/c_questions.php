@@ -27,6 +27,7 @@ class questions_controller extends secure_controller {
             , created, updated, all_or_none, deleted FROM questions WHERE test_id = ".$test_id;
 
         $question_list = DB::instance(DB_NAME)->select_rows($q);
+
         $this->template->content->question_list = $question_list;
         $this->template->content->test_id = $test_id;
 
@@ -41,13 +42,41 @@ class questions_controller extends secure_controller {
 
     } # End of edit
 
-    //Get a single question and pass it back json style
+    //Get a single question with its answers and pass it back json style
     public function get($question_id) {
         $q = "SELECT question_id, question_order, test_id, created_by_user_id, question_text, question_type_id, question_image
             , created, updated, all_or_none, deleted FROM questions WHERE question_id = ".$question_id;
 
         $question = DB::instance(DB_NAME)->select_row($q);
+
+        $q = "SELECT answer_id, question_id, answer_text, answer_order, correct FROM answers WHERE question_id = ".$question_id." ORDER BY answer_order ASC";
+        $answers = DB::instance(DB_NAME)->select_rows($q);
+        $question["answers"] = $answers;
+
         echo json_encode($question);
+    }
+
+    //update the text of a question
+    public function p_set_question_text($question_id) {
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+        $question_text = trim($_POST["question_text"]);
+        //Set the question to whatever was sent in
+        $q = "UPDATE questions SET question_text = '".$question_text."' WHERE question_id = ".$question_id;
+        DB::instance(DB_NAME)->query($q);
+    }
+
+    //update the answer to a single question
+    public function p_setanswer($question_id) {
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+        $answer_id = $_POST["answer_id"];
+        $correct = $_POST["correct"];
+        //first reset the answers to not correct, unless the question type is "all correct answers
+        $q = "UPDATE answers SET correct = 0 WHERE question_id IN (SELECT question_id FROM questions WHERE question_id = ".$question_id." AND question_type_id <> 1)";
+        DB::instance(DB_NAME)->query($q);
+
+        //Set the answer to whatever was sent in
+        $q = "UPDATE answers SET correct = ".$correct." WHERE answer_id = ".$answer_id;
+        DB::instance(DB_NAME)->query($q);
     }
 
     //Add a question and refresh the page
@@ -59,6 +88,7 @@ class questions_controller extends secure_controller {
         if (!isset($_POST["question_text"])) {
             $errors[] = "Question text is not filled out - ";
         }
+        $question_type_id = $_POST["question_type_id"];
 
         if (count($errors)==0) {//no errors - go ahead
             # Insert this test into the database
@@ -70,6 +100,27 @@ class questions_controller extends secure_controller {
             $_POST["question_order"] = $question_order;
 
             $question_id = DB::instance(DB_NAME)->insert('questions', $_POST);
+
+            //If the question is true/false add the two possible answers here
+            if ($question_type_id == 3) {
+                //insert the tru
+                $default_questions = [
+                    "answer_text" => "True",
+                    "correct" => "1",
+                    "answer_order" => "0",
+                    "question_id" => $question_id
+                    ];
+                DB::instance(DB_NAME)->insert("answers", $default_questions);
+                //insert the false
+                $default_questions = [
+                    "answer_text" => "False",
+                    "correct" => "0",
+                    "answer_order" => "1",
+                    "question_id" => $question_id
+                ];
+                DB::instance(DB_NAME)->insert("answers", $default_questions);
+
+            }
 
             //send back the ID
             echo json_encode(array($question_id));
