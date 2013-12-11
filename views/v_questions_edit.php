@@ -99,10 +99,19 @@
         $('#cmdAddQuestion').click(function () {
             //Add the question at the server, get the new ID
             var question_text = $('#question_text').val();
-            var question_type_id = 3;//$('#question_type_id').val();
+            var question_type_id = $("input[name='question_type_id']:checked").val();
             var test_id = $('#test_id').val();
             var question_id = 0;
 
+            if (typeof(question_type_id) == "undefined") {
+                alert ("Please choose a question type")
+                return;
+            }
+
+            if (question_text.length < 10) {
+                alert("Please provide a question of 10 characters or more");
+                return;
+            }
             $.ajax({
                 type: "POST",
                 url: "/questions/p_create/" + test_id,

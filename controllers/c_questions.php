@@ -19,6 +19,7 @@ class questions_controller extends secure_controller {
 
     } # End of index
 
+    //probably delete this
     public function edit($test_id) {
 
         $this->template->content = View::instance('v_questions_edit');
@@ -31,7 +32,7 @@ class questions_controller extends secure_controller {
         $this->template->content->question_list = $question_list;
         $this->template->content->test_id = $test_id;
 
-        $this->template->content->question_types = $this->getQuestionTypes();
+        $this->template->content->question_types = questions_controller::getQuestionTypes();
 
         # Now set the <title> tag
         $this->template->title = "Test Questions";
@@ -54,6 +55,36 @@ class questions_controller extends secure_controller {
         $question["answers"] = $answers;
 
         echo json_encode($question);
+    }
+
+    /*
+    //add a new answer for a question
+    public function p_addquestion($question_id) {
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+        $_POST{"question_id"} = $question_id;
+        //get the next answer_order for the question
+        $answer_order = $this->getNextAnswerOrder($question_id);
+        $_POST["answer_order"] = $answer_order;
+
+        //Set the question to whatever was sent in
+        $answer_id = DB::instance(DB_NAME)->insert("answers", $_POST);
+
+        echo json_encode($answer_id);
+    }
+    */
+
+    //remove an answer from a question
+    public function p_deleteanswer($question_id) {
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+        $answer_id = $_POST["answer_id"];
+        //delete the answer
+        $q = "DELETE from answers WHERE answer_id = ".$answer_id;
+        DB::instance(DB_NAME)->query($q);
+
+        //re-order the questions
+        $q = "UPDATE answers SET ";
+
+        echo(json_encode(true));
     }
 
     //update the text of a question
@@ -122,6 +153,18 @@ class questions_controller extends secure_controller {
 
             }
 
+            //If we have an essay question add one possible answer
+            if ($question_type_id == 4) {
+                //insert the tru
+                $default_questions = [
+                    "answer_text" => "Please fill out the essay question",
+                    "correct" => "1",
+                    "answer_order" => "0",
+                    "question_id" => $question_id
+                ];
+                DB::instance(DB_NAME)->insert("answers", $default_questions);
+            }
+
             //send back the ID
             echo json_encode(array($question_id));
         } else {//there were errors
@@ -130,13 +173,18 @@ class questions_controller extends secure_controller {
     } //end of question/p_create
 
 
-    private function getQuestionTypes() {
+    public static function getQuestionTypes() {
         $q = "SELECT question_type_id,question_type_descr FROM question_types";
         return DB::instance(DB_NAME)->select_rows($q);
     }
 
     private function getNextQuestionOrder($test_id) {
         $q = "SELECT MAX(question_order) + 1 FROM questions WHERE test_id=".$test_id;
+        return DB::instance(DB_NAME)->select_field($q);
+    }
+
+    private function getNextAnswerOrder($question_id) {
+        $q = "SELECT MAX(answer_order) + 1 FROM answers WHERE question_id=".$question_id;
         return DB::instance(DB_NAME)->select_field($q);
     }
 
