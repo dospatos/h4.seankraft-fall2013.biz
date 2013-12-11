@@ -14,7 +14,6 @@ class tests_controller extends secure_controller {
     - Show the user a list of tests for the account
     -------------------------------------------------------------------------------------------------*/
     public function index() {
-
         $this->template->content = View::instance('v_tests_index');
         //Get the list of tests
         $q = "SELECT test_id,test_name,test_descr, test_category, created_on_dt, test_year FROM tests WHERE account_id = ".$this->user->account_id;
@@ -29,8 +28,8 @@ class tests_controller extends secure_controller {
 
     } # End of index
 
+    //Display enough fields to allow the user to create a test
     public function create() {
-
         $this->template->content = View::instance('v_tests_create');
         # Now set the <title> tag
         $this->template->title = "Create Test";
@@ -41,12 +40,6 @@ class tests_controller extends secure_controller {
 
         # Render the view
         echo $this->template;
-
-        /*
-         `test_id`, `account_id`, `copied_from_test_id`, `test_name`, `test_descr`, `public`,
-        `test_year`, `created_by_user_id`, `created_on_dt`, `last_updated_dt`, `minutes_to_complete`
-        , `passing_grade`, `deleted`, `deleted_date`, `test_category
-        */
 
     } # End of create
 
@@ -89,6 +82,7 @@ class tests_controller extends secure_controller {
 
     } # End of p_create
 
+    //display an editable test with its answers and materials
     public function edit($test_id) {
 
         $this->template->content = View::instance('v_tests_edit');
@@ -107,30 +101,25 @@ class tests_controller extends secure_controller {
             $this->template->content->created_on_dt =$return_row["created_on_dt"];
             $this->template->content->minutes_to_complete = $return_row["minutes_to_complete"];
 
+            $this->setupTestQuestionsForDisplay($this->template, $test_id);
         } else {
             Router::redirect("/error/generic");
         }
 
         # Render the view
         echo $this->template;
-
-        /*
-         `test_id`, `account_id`, `copied_from_test_id`, `test_name`, `test_descr`, `public`,
-        `test_year`, `created_by_user_id`, `created_on_dt`, `last_updated_dt`, `minutes_to_complete`
-        , `passing_grade`, `deleted`, `deleted_date`, `test_category
-        */
-
     } # End of edit
 
+    //Make the changes required to the test and re-direct to the edit screen again
     public function p_edit($test_id) {
-
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
         $errors = array();
         $data = ob_get_clean();
         //check if the test exists
         $test_name = trim($_POST["test_name"]);
-        $existing_test_id = $this->getExistingTestId($test_name);
-        if ($existing_test_id != $test_id) {$errors[] = "The test named, ".$test_name.", already exists";}
+        $existing_test_id = $this->getExistingTestId(trim($test_name));
+        //echo '|'.$existing_test_id.'|';
+        if (($existing_test_id != null) && ($existing_test_id != $test_id)) {$errors[] = "The test named, ".$test_name.", already exists";}
 
         if (count($errors)==0) {//no errors - go ahead
             # update the test
@@ -152,6 +141,7 @@ class tests_controller extends secure_controller {
             $this->template->content->passing_grade=$_POST["passing_grade"];
             $this->template->content->minutes_to_complete = $_POST["minutes_to_complete"];
 
+            $this->setupTestQuestionsForDisplay($this->template, $test_id);
             echo $this->template;
 
         }
@@ -173,6 +163,17 @@ class tests_controller extends secure_controller {
         test_year, created_by_user_id, created_on_dt, last_updated_dt, minutes_to_complete
         , passing_grade, deleted, deleted_date, test_category FROM tests WHERE deleted = 0 AND test_id = ".$test_id;
         return DB::instance(DB_NAME)->select_row($q);
+    }
+
+    private function setupTestQuestionsForDisplay($templete_instance, $test_id) {
+        //setup the questions
+        $q = "SELECT question_id, question_order, test_id, created_by_user_id, question_text, question_type_id, question_image
+            , created, updated, all_or_none, deleted FROM questions WHERE test_id = ".$test_id;
+
+        $question_list = DB::instance(DB_NAME)->select_rows($q);
+
+        $templete_instance->content->question_list = $question_list;
+        $templete_instance->content->question_types = questions_controller::getQuestionTypes();
     }
 
 
