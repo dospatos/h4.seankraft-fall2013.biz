@@ -25,12 +25,12 @@
 </p>
 
 <div id="testtaker-upload">
-    <form method='POST' id='frmMain' action='/testtakers/p_upload/'>
+    <form method='POST' id='frmMain' action='/testtakers/p_upload/' enctype="multipart/form-data">
         <fieldset>
             <legend>Upload test takers</legend>
             <p>
-                <label for='file_testtakers'>Choose a text file to upload</label>
-                <input type='file' name='file_testtakers' id='file_testtakers'/>
+                <label for='file'>Choose a text file to upload</label>
+                <input type='file' name='file' id='file'/>
             </p>
         </fieldset>
         <input type='submit' value='Upload'>

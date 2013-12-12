@@ -20,14 +20,6 @@
     .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: right; width: 40em;}
 </style>
 
-<?php if (isset($errors)) { ?>
-    <?php foreach($errors AS $current_error) { ?>
-        <div class='alerttext'>
-            <?php echo $current_error ?>
-        </div>
-    <?php } ?>
-<?php }?>
-
 
 <section>
     <div id="tabs">

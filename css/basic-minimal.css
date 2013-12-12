@@ -45,3 +45,4 @@ hr.clear {visibility:hidden;clear:both;}
 .alerttext {color: #ff0000; font-weight: bold;}
 .postframe {color: black;border: 1px ;border-style: solid;border-color: #000000; width: 300px;padding: 5px ;margin: 3px}
 .question_text {color:black; font-weight: bold}
+.table-header {font-weight: bold}

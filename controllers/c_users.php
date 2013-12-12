@@ -216,26 +216,10 @@ class users_controller extends base_controller {
             $job_data['job_title'] ='Test Administrator';
             $job_id = DB::instance(DB_NAME)->insert('jobs', $job_data);
 
-            $user_data = array();
-            # More data we want stored with the user
-            $user_data['created']  = Time::now();
-            $user_data['modified'] = Time::now();
-            $user_data['account_id'] = $account_id;
-            $user_data['is_admin'] = true;
-            $user_data['job_id'] = $job_id;
-            $user_data['email'] = $_POST['email'];
-            $user_data['first_name'] = $_POST['first_name'];
-            $user_data['last_name'] = $_POST['last_name'];
-
-            # Encrypt the password
-            $user_data['password'] = sha1(PASSWORD_SALT.$_POST['password01']);
-
-            # Create an encrypted token via their email address and a random string
+            # Insert this user into the database - making them an admin
             $token = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
-            $user_data['token'] = $token;
+            $user_id = siteutils::createUser($account_id,$job_id,$_POST['first_name'],$_POST['last_name'],$_POST['email'],$_POST['password01'],true, $token);
 
-            # Insert this user into the database
-            $user_id = DB::instance(DB_NAME)->insert('users', $user_data);
             //Store this token in a cookie now so that they appear as logged in, also so we can create the user to create the avatar
             setcookie("token", $token, strtotime('+1 year'), '/');
 

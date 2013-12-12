@@ -61,8 +61,52 @@ class siteutils {
 
     //Return all the users with the given account
     public static function getUsersWithAccount($account_id) {
-        $q = "SELECT U2.user_id, U2.created, U2.modified, U2.last_login, U2.time_zone, U2.first_name, U2.last_name, U2.email, U2.job_id, U2.account_id, U2.is_admin FROM users U1 INNER JOIN users U2 ON U2.account_id = U1.account_id WHERE U1.user_id = ".$account_id." AND U1.is_admin = 1";
-        $id = DB::instance(DB_NAME)->select_rows($q);
+        $q = "SELECT U1.user_id, U1.created, U1.modified, U1.last_login, U1.time_zone
+        , U1.first_name, U1.last_name, U1.email, U1.job_id, U1.account_id, U1.is_admin
+        FROM users U1 WHERE U1.account_id = ".$account_id;
+        $users_list = DB::instance(DB_NAME)->select_rows($q);
+
+        return $users_list;
+    }
+
+    //Return the job_id - adding a new title if required
+    public static function getJobId($job_title, $account_id) {
+        $q = "SELECT job_id FROM jobs WHERE job_title = '".trim($job_title)."' AND account_id = ".$account_id;
+        $job_id = DB::instance(DB_NAME)->select_field($q);
+        if(!$job_id) {//add the job
+            $job_data = array();
+            $job_data['account_id'] =$account_id;
+            $job_data['department_name'] ='';
+            $job_data['job_title'] =$job_title;
+            $job_id = DB::instance(DB_NAME)->insert('jobs', $job_data);
+        }
+        return $job_id;
+    }
+
+    public static function createUser($account_id,$job_id,$first_name,$last_name,$email,$password,$is_admin,$token=null ) {
+        $user_data = array();
+        # More data we want stored with the user
+        $user_data['created']  = Time::now();
+        $user_data['modified'] = Time::now();
+        $user_data['account_id'] = $account_id;
+        $user_data['is_admin'] = $is_admin;
+        $user_data['job_id'] = $job_id;
+        $user_data['email'] = $email;
+        $user_data['first_name'] = $first_name;
+        $user_data['last_name'] = $last_name;
+
+        # Encrypt the password
+        $user_data['password'] = sha1(PASSWORD_SALT.$password);
+
+        # Create an encrypted token via their email address and a random string
+        if ($token == null) {
+            $token = sha1(TOKEN_SALT.$email.Utils::generate_random_string());
+        }
+        $user_data['token'] = $token;
+
+        # Insert this user into the database
+        $user_id = DB::instance(DB_NAME)->insert('users', $user_data);
+
     }
 
 

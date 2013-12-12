@@ -42,7 +42,13 @@
 
 </div>
 
-<br>
+<?php if (isset($content->errors)) { ?>
+    <?php foreach($content->errors AS $current_error) { ?>
+        <div class='alerttext'>
+            Error: <?php echo $current_error ?>
+        </div>
+    <?php } ?>
+<?php }?>
 
 <?php if(isset($content)) echo $content; ?>
 

@@ -15,12 +15,12 @@
     </p>
     <!--List of test takers to follow-->
 <?php
-    if ($user_list) {
+    if (isset($user_list)) {
         foreach($user_list AS $current_user) { ?>
         <div>
             <a href="/users/profileedit/<?php echo $current_user['user_id'] ?>">
-                <?php echo $current_test['first_name']." ".$current_test['last_name']?>
+                <?php echo $current_user['first_name']." ".$current_user['last_name']?>
             </a>
-            - <?php echo $current_test['email']?>
+            - <?php echo $current_user['email']?>
         </div>
 <?php }} else {echo ("<h3>No test takers yet created</h3>");} ?>
