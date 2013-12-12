@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d14dc634-fa9e-429d-8866-b944c9b22349" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/create_tables.sql" afterPath="$PROJECT_DIR$/Data/create_tables.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_tests_edit.php" afterPath="$PROJECT_DIR$/views/v_tests_edit.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="h2.seankraft-fall2013.biz.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386856710609" ignored="false" />
+    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386857804444" ignored="false" />
     <file path="/c_users.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386823403452" ignored="false" />
     <file path="/v_users_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386458084193" ignored="false" />
     <file path="/c_posts.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136725374" ignored="false" />
@@ -32,7 +32,7 @@
     <file path="/v_tests_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386479080475" ignored="false" />
     <file path="/c_tests.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386853696367" ignored="false" />
     <file path="/v_tests_create.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386477939603" ignored="false" />
-    <file path="/v_tests_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386855245249" ignored="false" />
+    <file path="/v_tests_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386866269776" ignored="false" />
     <file path="/c_questions.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386707084101" ignored="false" />
     <file path="/v_questions_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386593083158" ignored="false" />
     <file path="/v_questions_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386609885264" ignored="false" />
@@ -63,7 +63,7 @@
       <file leaf-file-name="siteutils.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libraries/siteutils.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="85" selection-start="4319" selection-end="4333" vertical-scroll-proportion="-4.9615383">
+            <state line="112" column="85" selection-start="4319" selection-end="4333" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -72,7 +72,7 @@
       <file leaf-file-name="c_tests.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/c_tests.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="56" selection-start="4344" selection-end="4362" vertical-scroll-proportion="-9.346154">
+            <state line="107" column="56" selection-start="4344" selection-end="4362" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -81,7 +81,7 @@
       <file leaf-file-name="c_users.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/c_users.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="218" column="71" selection-start="8419" selection-end="8419" vertical-scroll-proportion="-123.53846">
+            <state line="218" column="71" selection-start="8419" selection-end="8419" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -90,10 +90,8 @@
       <file leaf-file-name="v_testtakers_upload.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/v_testtakers_upload.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="8" selection-start="1665" selection-end="1701" vertical-scroll-proportion="-19.923077">
-              <folding>
-                <element signature="e#6#161#0" expanded="true" />
-              </folding>
+            <state line="35" column="8" selection-start="1665" selection-end="1701" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -101,7 +99,7 @@
       <file leaf-file-name="c_testtakers.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/c_testtakers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="96" column="59" selection-start="4297" selection-end="4297" vertical-scroll-proportion="-11.5">
+            <state line="96" column="59" selection-start="4297" selection-end="4297" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -110,23 +108,21 @@
       <file leaf-file-name="v_testtakers_approve.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/v_testtakers_approve.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="4" selection-start="1757" selection-end="1814" vertical-scroll-proportion="-8.346154">
-              <folding>
-                <element signature="e#6#161#0" expanded="true" />
-              </folding>
+            <state line="42" column="4" selection-start="1757" selection-end="1814" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_tables.sql" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="create_tables.sql" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Data/create_tables.sql">
-          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="356" column="0" selection-start="15228" selection-end="15228" vertical-scroll-proportion="0.8802817">
+            <state line="356" column="0" selection-start="15228" selection-end="15228" vertical-scroll-proportion="-5.653333">
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
           </provider>
         </entry>
       </file>
@@ -139,12 +135,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="v_tests_edit.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="v_tests_edit.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="58" selection-start="6838" selection-end="6838" vertical-scroll-proportion="-4.576923">
+            <state line="224" column="59" selection-start="9234" selection-end="9234" vertical-scroll-proportion="0.91130435">
               <folding>
-                <marker date="1386855255479" expanded="true" signature="9335:9348" placeholder="..." />
+                <marker date="1386866275884" expanded="false" signature="10448:10461" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -153,7 +149,7 @@
       <file leaf-file-name="v_testtakers_index.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/v_testtakers_index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="38" selection-start="637" selection-end="637" vertical-scroll-proportion="-11.115385">
+            <state line="23" column="38" selection-start="637" selection-end="637" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -191,8 +187,8 @@
         <option value="$PROJECT_DIR$/controllers/c_testtakers.php" />
         <option value="$PROJECT_DIR$/libraries/siteutils.php" />
         <option value="$PROJECT_DIR$/controllers/c_tests.php" />
-        <option value="$PROJECT_DIR$/views/v_tests_edit.php" />
         <option value="$PROJECT_DIR$/Data/create_tables.sql" />
+        <option value="$PROJECT_DIR$/views/v_tests_edit.php" />
       </list>
     </option>
   </component>
@@ -200,8 +196,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -339,21 +335,15 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="web.server" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
-  <component name="PublishConfig" serverName="Appache" serverId="63d49163-e071-44d4-8ded-e55f34a26130">
-    <servers>
-      <server id="63d49163-e071-44d4-8ded-e55f34a26130">
-        <serverdata />
-      </server>
-    </servers>
-  </component>
+  <component name="PublishConfig" serverName="Appache" serverId="63d49163-e071-44d4-8ded-e55f34a26130" />
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp\www\h2.seankraft-fall2013.biz\h2.seankraft-fall2013.biz\controllers" />
@@ -491,24 +481,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32045454" sideWeight="0.71623933" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3203125" sideWeight="0.7169197" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2837607" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28308025" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2837607" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1625" sideWeight="0.71583515" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -611,37 +601,27 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/views/v_tests_index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="10" selection-start="0" selection-end="535" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="23" column="10" selection-start="0" selection-end="535" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/v_users_profile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/_v_email.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/_v_template.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="19" selection-start="1615" selection-end="1615" vertical-scroll-proportion="0.36705202">
-          <folding />
-        </state>
+        <state line="47" column="19" selection-start="1615" selection-end="1615" vertical-scroll-proportion="0.36705202" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/c_questions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="143" column="38" selection-start="5835" selection-end="5835" vertical-scroll-proportion="-19.384615">
-          <folding />
-        </state>
+        <state line="143" column="38" selection-start="5835" selection-end="5835" vertical-scroll-proportion="-19.384615" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/jquery.ui.question.js">
@@ -660,73 +640,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/c_users.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="218" column="71" selection-start="8419" selection-end="8419" vertical-scroll-proportion="-123.53846">
+        <state line="218" column="71" selection-start="8419" selection-end="8419" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/v_testtakers_upload.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="8" selection-start="1665" selection-end="1701" vertical-scroll-proportion="-19.923077">
-          <folding>
-            <element signature="e#6#161#0" expanded="true" />
-          </folding>
+        <state line="35" column="8" selection-start="1665" selection-end="1701" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/c_testtakers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="59" selection-start="4297" selection-end="4297" vertical-scroll-proportion="-11.5">
+        <state line="96" column="59" selection-start="4297" selection-end="4297" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/v_testtakers_index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="38" selection-start="637" selection-end="637" vertical-scroll-proportion="-11.115385">
+        <state line="23" column="38" selection-start="637" selection-end="637" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/c_tests.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="56" selection-start="4344" selection-end="4362" vertical-scroll-proportion="-9.346154">
+        <state line="107" column="56" selection-start="4344" selection-end="4362" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libraries/siteutils.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="85" selection-start="4319" selection-end="4333" vertical-scroll-proportion="-4.9615383">
+        <state line="112" column="85" selection-start="4319" selection-end="4333" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/v_testtakers_approve.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="4" selection-start="1757" selection-end="1814" vertical-scroll-proportion="-8.346154">
-          <folding>
-            <element signature="e#6#161#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="58" selection-start="6838" selection-end="6838" vertical-scroll-proportion="-4.576923">
-          <folding>
-            <marker date="1386855255479" expanded="true" signature="9335:9348" placeholder="..." />
-          </folding>
+        <state line="42" column="4" selection-start="1757" selection-end="1814" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Data/create_tables.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="356" column="0" selection-start="15228" selection-end="15228" vertical-scroll-proportion="-5.653333">
+          <folding />
+        </state>
+      </provider>
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="356" column="0" selection-start="15228" selection-end="15228" vertical-scroll-proportion="0.8802817">
-          <folding />
+        <state line="224" column="59" selection-start="9234" selection-end="9234" vertical-scroll-proportion="0.91130435">
+          <folding>
+            <marker date="1386866275884" expanded="false" signature="10448:10461" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
