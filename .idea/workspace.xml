@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d14dc634-fa9e-429d-8866-b944c9b22349" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/c_tests.php" afterPath="$PROJECT_DIR$/controllers/c_tests.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/c_testtakers.php" afterPath="$PROJECT_DIR$/controllers/c_testtakers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/siteutils.php" afterPath="$PROJECT_DIR$/libraries/siteutils.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_tests_edit.php" afterPath="$PROJECT_DIR$/views/v_tests_edit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_testtakers_approve.php" afterPath="$PROJECT_DIR$/views/v_testtakers_approve.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/create_tables.sql" afterPath="$PROJECT_DIR$/Data/create_tables.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="h2.seankraft-fall2013.biz.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386824080300" ignored="false" />
+    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386856710609" ignored="false" />
     <file path="/c_users.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386823403452" ignored="false" />
     <file path="/v_users_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386458084193" ignored="false" />
     <file path="/c_posts.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136725374" ignored="false" />
@@ -91,15 +87,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="c_questions.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/c_questions.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="143" column="38" selection-start="5835" selection-end="5835" vertical-scroll-proportion="-19.384615">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="v_testtakers_upload.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/v_testtakers_upload.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -131,6 +118,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="create_tables.sql" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Data/create_tables.sql">
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="356" column="0" selection-start="15228" selection-end="15228" vertical-scroll-proportion="0.8802817">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="basic-minimal.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/basic-minimal.css">
           <provider selected="true" editor-type-id="text-editor">
@@ -140,10 +139,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="v_tests_edit.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="v_tests_edit.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="58" selection-start="6838" selection-end="6838" vertical-scroll-proportion="0.35735735">
+            <state line="132" column="58" selection-start="6838" selection-end="6838" vertical-scroll-proportion="-4.576923">
               <folding>
                 <marker date="1386855255479" expanded="true" signature="9335:9348" placeholder="..." />
               </folding>
@@ -180,7 +179,6 @@
       <list>
         <option value="$PROJECT_DIR$/views/v_tests_index.php" />
         <option value="$PROJECT_DIR$/views/v_questions_index.php" />
-        <option value="$PROJECT_DIR$/Data/create_tables.sql" />
         <option value="$PROJECT_DIR$/views/v_questions_edit.php" />
         <option value="$PROJECT_DIR$/controllers/c_questions.php" />
         <option value="$PROJECT_DIR$/js/jquery.ui.question.js" />
@@ -194,6 +192,7 @@
         <option value="$PROJECT_DIR$/libraries/siteutils.php" />
         <option value="$PROJECT_DIR$/controllers/c_tests.php" />
         <option value="$PROJECT_DIR$/views/v_tests_edit.php" />
+        <option value="$PROJECT_DIR$/Data/create_tables.sql" />
       </list>
     </option>
   </component>
@@ -287,6 +286,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -470,7 +483,11 @@
       <created>1386824086493</created>
       <updated>1386824086493</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Assign users 50%">
+      <created>1386856715840</created>
+      <updated>1386856715840</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -539,7 +556,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test taker pages working - more or less" />
+    <option name="LAST_COMMIT_MESSAGE" value="Assign users 50%" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -573,6 +590,7 @@
     <MESSAGE value="Merge branch 'master' of git://github.com/dospatos/h4.seankraft-fall2013.biz&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;" />
     <MESSAGE value="Adding test takers pages" />
     <MESSAGE value="Test taker pages working - more or less" />
+    <MESSAGE value="Assign users 50%" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -591,13 +609,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/v_questions_edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="38" selection-start="4752" selection-end="4752" vertical-scroll-proportion="-78.46154">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/v_tests_index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="10" selection-start="0" selection-end="535" vertical-scroll-proportion="0.0">
@@ -702,10 +713,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="58" selection-start="6838" selection-end="6838" vertical-scroll-proportion="0.35735735">
+        <state line="132" column="58" selection-start="6838" selection-end="6838" vertical-scroll-proportion="-4.576923">
           <folding>
             <marker date="1386855255479" expanded="true" signature="9335:9348" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/create_tables.sql">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="356" column="0" selection-start="15228" selection-end="15228" vertical-scroll-proportion="0.8802817">
+          <folding />
         </state>
       </provider>
     </entry>
