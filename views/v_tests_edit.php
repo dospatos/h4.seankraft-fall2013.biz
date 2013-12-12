@@ -107,7 +107,7 @@
             <form method='POST' id='frmAssign' action='/tests/p_assign/' >
                 <table>
                     <thead class="table-header">
-                    <td><a href="#">Select All</a></td>
+                    <td><input type="checkbox" id="chkCheckAll" /></td>
                     <td>Name</td>
                     <td>Due Date (<a id="cmdAddMonth" href="#" title="Plus One month">M+</a> | <a href="#" id="cmdEOY" title="End of year">EOY</a>)</td>
                     <td>Assigned Date</td>
@@ -118,7 +118,7 @@
 
                         foreach($test_assign_status AS $current_test_assign_status) { ?>
                             <tr>
-                                <td><input type="checkbox" checked="" id="chk_<?php echo $current_test_assign_status['user_id']?>" name="chk_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $current_test_assign_status['user_id']?>"></td>
+                                <td><input class="checkbox" type="checkbox" checked="" id="chk_<?php echo $current_test_assign_status['user_id']?>" name="chk_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $current_test_assign_status['user_id']?>"></td>
                                 <td>
                                     <label for="txt_due_<?php echo $current_test_assign_status['user_id']?>">
                                     <?php echo $current_test_assign_status['first_name']?>&nbsp;<?php echo $current_test_assign_status['last_name']?>
@@ -130,7 +130,7 @@
                         <?php }} else {echo ("<h3>No test takers exist to be assigned</h3>");} ?>
                     <tbody>
                 </table>
-                <input type="submit" value="Assign Test"/>
+                <input type="submit" value="Update Assignments"/>
             </form>
         </div>
     </div>
@@ -209,6 +209,11 @@
             if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} return_date = mm+'/'+dd+'/'+yyyy;
             return return_date;
         }
+
+        $("#chkCheckAll").change(function () {
+            console.log('here');
+            $(".checkbox").prop('checked', this.checked);
+        });
 
         $("#cmdAddMonth").click(function() {
             var due_date_text = $(".due_date");

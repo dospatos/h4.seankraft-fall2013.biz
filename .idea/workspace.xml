@@ -7,7 +7,7 @@
     </list>
     <ignored path="h2.seankraft-fall2013.biz.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386857804444" ignored="false" />
+    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386866458082" ignored="false" />
     <file path="/c_users.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386823403452" ignored="false" />
     <file path="/v_users_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386458084193" ignored="false" />
     <file path="/c_posts.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136725374" ignored="false" />
@@ -32,7 +32,7 @@
     <file path="/v_tests_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386479080475" ignored="false" />
     <file path="/c_tests.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386853696367" ignored="false" />
     <file path="/v_tests_create.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386477939603" ignored="false" />
-    <file path="/v_tests_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386866269776" ignored="false" />
+    <file path="/v_tests_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386867275232" ignored="false" />
     <file path="/c_questions.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386707084101" ignored="false" />
     <file path="/v_questions_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386593083158" ignored="false" />
     <file path="/v_questions_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386609885264" ignored="false" />
@@ -138,9 +138,9 @@
       <file leaf-file-name="v_tests_edit.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="224" column="59" selection-start="9234" selection-end="9234" vertical-scroll-proportion="0.91130435">
+            <state line="132" column="62" selection-start="6921" selection-end="6921" vertical-scroll-proportion="0.67478263">
               <folding>
-                <marker date="1386866275884" expanded="false" signature="10448:10461" placeholder="..." />
+                <marker date="1386867275401" expanded="false" signature="10639:10652" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -477,13 +477,18 @@
       <created>1386856715840</created>
       <updated>1386856715840</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Due date javascript">
+      <created>1386866462059</created>
+      <updated>1386866462059</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -498,7 +503,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1625" sideWeight="0.71583515" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -546,7 +550,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Assign users 50%" />
+    <option name="LAST_COMMIT_MESSAGE" value="Due date javascript" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -581,6 +585,7 @@
     <MESSAGE value="Adding test takers pages" />
     <MESSAGE value="Test taker pages working - more or less" />
     <MESSAGE value="Assign users 50%" />
+    <MESSAGE value="Due date javascript" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -699,9 +704,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="224" column="59" selection-start="9234" selection-end="9234" vertical-scroll-proportion="0.91130435">
+        <state line="132" column="62" selection-start="6921" selection-end="6921" vertical-scroll-proportion="0.67478263">
           <folding>
-            <marker date="1386866275884" expanded="false" signature="10448:10461" placeholder="..." />
+            <marker date="1386867275401" expanded="false" signature="10639:10652" placeholder="..." />
           </folding>
         </state>
       </provider>
