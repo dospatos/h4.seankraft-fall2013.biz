@@ -108,6 +108,17 @@ class siteutils {
         $user_id = DB::instance(DB_NAME)->insert('users', $user_data);
 
     }
+    //For a given test send back the assigned status for all the users in the account
+    public static function getTestAssignStatus($test_id) {
+        $q = "SELECT U.user_id, U.first_name, U.last_name, U.email, TA.assigned_on_dt
+            , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
+            FROM users U
+            LEFT JOIN test_assign_user TA ON TA.user_id = U.user_id AND TA.test_id = ".$test_id."
+            WHERE U.account_id = (SELECT account_id FROM tests WHERE test_id = ".$test_id.")";
+        $assign_status = DB::instance(DB_NAME)->select_rows($q);
+
+        return $assign_status;
+    }
 
 
 }

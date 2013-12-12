@@ -101,7 +101,11 @@ class tests_controller extends secure_controller {
             $this->template->content->created_on_dt =$return_row["created_on_dt"];
             $this->template->content->minutes_to_complete = $return_row["minutes_to_complete"];
 
+            //setup the questions
             $this->setupTestQuestionsForDisplay($this->template, $test_id);
+
+            //setup the assignments
+            $this->template->content->test_assign_status = siteutils::getTestAssignStatus($test_id);
         } else {
             Router::redirect("/error/generic");
         }
@@ -165,16 +169,17 @@ class tests_controller extends secure_controller {
         return DB::instance(DB_NAME)->select_row($q);
     }
 
-    private function setupTestQuestionsForDisplay($templete_instance, $test_id) {
+    private function setupTestQuestionsForDisplay($template_instance, $test_id) {
         //setup the questions
         $q = "SELECT question_id, question_order, test_id, created_by_user_id, question_text, question_type_id, question_image
             , created, updated, all_or_none, deleted FROM questions WHERE test_id = ".$test_id;
 
         $question_list = DB::instance(DB_NAME)->select_rows($q);
 
-        $templete_instance->content->question_list = $question_list;
-        $templete_instance->content->question_types = questions_controller::getQuestionTypes();
+        $template_instance->content->question_list = $question_list;
+        $template_instance->content->question_types = questions_controller::getQuestionTypes();
     }
+
 
 
 } # End of class

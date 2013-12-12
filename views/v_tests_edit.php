@@ -27,6 +27,7 @@
             <li><a href="#tab-test">Test</a></li>
             <li><a href="#tab-questions">Questions</a></li>
             <li><a href="#tab-materials">Materials</a></li>
+            <li><a href="#tab-assign">Assign</a></li>
         </ul>
         <div id="tab-test">
             <form method='POST' id='frmTest' action='/tests/p_edit/<?php echo $test_id;?>'>
@@ -101,6 +102,36 @@
         </div>
         <div id="tab-materials">
             Materials here
+        </div>
+        <div id="tab-assign">
+            <form method='POST' id='frmAssign' action='/tests/p_assign/' >
+                <table>
+                    <thead class="table-header">
+                    <td><a href="#">Select All</a></td>
+                    <td>Name</td>
+                    <td>Due Date (<a href="#" title="Plus One month">M+</a> | <a href="#" title="End of year">EOY</a>)</td>
+                    <td>Assigned Date</td>
+                    </thead>
+                    <tbody>
+                    <?php
+                    if ($test_assign_status) {
+
+                        foreach($test_assign_status AS $current_test_assign_status) { ?>
+                            <tr>
+                                <td><input type="checkbox" checked="" id="chk_<?php echo $current_test_assign_status['user_id']?>" name="chk_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $current_test_assign_status['user_id']?>"></td>
+                                <td>
+                                    <label for="txt_due_<?php echo $current_test_assign_status['user_id']?>">
+                                    <?php echo $current_test_assign_status['first_name']?>&nbsp;<?php echo $current_test_assign_status['last_name']?>
+                                    </label>
+                                </td>
+                                <td><input type="text" id="txt_due_<?php echo $current_test_assign_status['user_id']?>" name="txt_due_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $current_test_assign_status['due_on_dt']?>"/></td>
+                                <td><?php echo $current_test_assign_status["assigned_on_dt"];?></td>
+                            </tr>
+                        <?php }} else {echo ("<h3>No test takers exist to be assigned</h3>");} ?>
+                    <tbody>
+                </table>
+                <input type="submit" value="Assign Test"/>
+            </form>
         </div>
     </div>
 </section>

@@ -39,6 +39,6 @@
         <?php }} else {echo ("<h3>No test takers exist for this instance</h3>");} ?>
         <tbody>
     </table>
-
+    <input type="hidden" id="testtaker_staging_id" name="testtaker_staging_id" value="<?php echo $testtaker_staging_id?>"/>
     <input type='submit' value='Approve Checked Test Takers'>
 </form>

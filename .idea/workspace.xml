@@ -2,20 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d14dc634-fa9e-429d-8866-b944c9b22349" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/v_testtakers_approve.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/_v_template.php" afterPath="$PROJECT_DIR$/views/_v_template.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/basic-minimal.css" afterPath="$PROJECT_DIR$/css/basic-minimal.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/c_tests.php" afterPath="$PROJECT_DIR$/controllers/c_tests.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/c_testtakers.php" afterPath="$PROJECT_DIR$/controllers/c_testtakers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/c_users.php" afterPath="$PROJECT_DIR$/controllers/c_users.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/siteutils.php" afterPath="$PROJECT_DIR$/libraries/siteutils.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_tests_edit.php" afterPath="$PROJECT_DIR$/views/v_tests_edit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_testtakers_index.php" afterPath="$PROJECT_DIR$/views/v_testtakers_index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_testtakers_upload.php" afterPath="$PROJECT_DIR$/views/v_testtakers_upload.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_testtakers_approve.php" afterPath="$PROJECT_DIR$/views/v_testtakers_approve.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="h2.seankraft-fall2013.biz.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386795895287" ignored="false" />
+    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386824080300" ignored="false" />
     <file path="/c_users.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386823403452" ignored="false" />
     <file path="/v_users_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386458084193" ignored="false" />
     <file path="/c_posts.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136725374" ignored="false" />
@@ -28,7 +24,7 @@
     <file path="/v_profile_view.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386459029559" ignored="false" />
     <file path="/basic-minimal.css" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383049502016" ignored="false" />
     <file path="/imageview.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1382704002555" ignored="false" />
-    <file path="/siteutils.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386823783113" ignored="false" />
+    <file path="/siteutils.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386852801158" ignored="false" />
     <file path="/c_river.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136689591" ignored="false" />
     <file path="/v_river_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383569870805" ignored="false" />
     <file path="/a.dummy" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136716906" ignored="false" />
@@ -38,17 +34,17 @@
     <file path="$PROJECT_DIR$/../../h3.seankraft-fall2013.biz/h3.seankraft-fall2013.biz/css/ui.timer.css" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1385556015850" ignored="false" />
     <file path="$PROJECT_DIR$/../../h3.seankraft-fall2013.biz/h3.seankraft-fall2013.biz/.idea/workspace.xml" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1385569910428" ignored="false" />
     <file path="/v_tests_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386479080475" ignored="false" />
-    <file path="/c_tests.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386593159633" ignored="false" />
+    <file path="/c_tests.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386853696367" ignored="false" />
     <file path="/v_tests_create.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386477939603" ignored="false" />
-    <file path="/v_tests_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386562056074" ignored="false" />
+    <file path="/v_tests_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386855245249" ignored="false" />
     <file path="/c_questions.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386707084101" ignored="false" />
     <file path="/v_questions_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386593083158" ignored="false" />
     <file path="/v_questions_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386609885264" ignored="false" />
     <file path="/jquery.ui.question.js" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386774260134" ignored="false" />
-    <file path="/c_testtakers.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386823738399" ignored="false" />
+    <file path="/c_testtakers.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386851741268" ignored="false" />
     <file path="/v_testtakers_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386823713450" ignored="false" />
     <file path="/v_testtakers_upload.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386801063681" ignored="false" />
-    <file path="/v_testtakers_approve.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386822448607" ignored="false" />
+    <file path="/v_testtakers_approve.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386851589404" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +67,7 @@
       <file leaf-file-name="siteutils.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libraries/siteutils.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="27" selection-start="2463" selection-end="2463" vertical-scroll-proportion="-18.961538">
+            <state line="112" column="85" selection-start="4319" selection-end="4333" vertical-scroll-proportion="-4.9615383">
               <folding />
             </state>
           </provider>
@@ -80,7 +76,7 @@
       <file leaf-file-name="c_tests.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/c_tests.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="8" selection-start="1785" selection-end="1803" vertical-scroll-proportion="-1.5384616">
+            <state line="107" column="56" selection-start="4344" selection-end="4362" vertical-scroll-proportion="-9.346154">
               <folding />
             </state>
           </provider>
@@ -118,7 +114,7 @@
       <file leaf-file-name="c_testtakers.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/c_testtakers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="1016" selection-end="1016" vertical-scroll-proportion="-15.038462">
+            <state line="96" column="59" selection-start="4297" selection-end="4297" vertical-scroll-proportion="-11.5">
               <folding />
             </state>
           </provider>
@@ -127,7 +123,7 @@
       <file leaf-file-name="v_testtakers_approve.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/v_testtakers_approve.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="149" selection-start="449" selection-end="449" vertical-scroll-proportion="-2.7307692">
+            <state line="42" column="4" selection-start="1757" selection-end="1814" vertical-scroll-proportion="-8.346154">
               <folding>
                 <element signature="e#6#161#0" expanded="true" />
               </folding>
@@ -144,21 +140,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="v_tests_edit.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="v_tests_edit.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="132" column="58" selection-start="6838" selection-end="6838" vertical-scroll-proportion="0.35735735">
               <folding>
-                <marker date="1386801204547" expanded="true" signature="7317:7330" placeholder="..." />
+                <marker date="1386855255479" expanded="true" signature="9335:9348" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="v_testtakers_index.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="v_testtakers_index.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/v_testtakers_index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="38" selection-start="637" selection-end="637" vertical-scroll-proportion="0.42562592">
+            <state line="23" column="38" selection-start="637" selection-end="637" vertical-scroll-proportion="-11.115385">
               <folding />
             </state>
           </provider>
@@ -184,20 +180,20 @@
       <list>
         <option value="$PROJECT_DIR$/views/v_tests_index.php" />
         <option value="$PROJECT_DIR$/views/v_questions_index.php" />
-        <option value="$PROJECT_DIR$/controllers/c_tests.php" />
         <option value="$PROJECT_DIR$/Data/create_tables.sql" />
         <option value="$PROJECT_DIR$/views/v_questions_edit.php" />
         <option value="$PROJECT_DIR$/controllers/c_questions.php" />
         <option value="$PROJECT_DIR$/js/jquery.ui.question.js" />
         <option value="$PROJECT_DIR$/views/v_testtakers_upload.php" />
-        <option value="$PROJECT_DIR$/views/v_tests_edit.php" />
         <option value="$PROJECT_DIR$/views/_v_template.php" />
         <option value="$PROJECT_DIR$/css/basic-minimal.css" />
-        <option value="$PROJECT_DIR$/views/v_testtakers_approve.php" />
         <option value="$PROJECT_DIR$/controllers/c_users.php" />
-        <option value="$PROJECT_DIR$/libraries/siteutils.php" />
-        <option value="$PROJECT_DIR$/controllers/c_testtakers.php" />
         <option value="$PROJECT_DIR$/views/v_testtakers_index.php" />
+        <option value="$PROJECT_DIR$/views/v_testtakers_approve.php" />
+        <option value="$PROJECT_DIR$/controllers/c_testtakers.php" />
+        <option value="$PROJECT_DIR$/libraries/siteutils.php" />
+        <option value="$PROJECT_DIR$/controllers/c_tests.php" />
+        <option value="$PROJECT_DIR$/views/v_tests_edit.php" />
       </list>
     </option>
   </component>
@@ -205,8 +201,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -277,20 +273,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -484,28 +466,32 @@
       <created>1386795757348</created>
       <updated>1386795757348</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Test taker pages working - more or less">
+      <created>1386824086493</created>
+      <updated>1386824086493</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22572039" sideWeight="0.81493866" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32045454" sideWeight="0.71623933" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18506132" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2837607" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2837607" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991454" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1625" sideWeight="0.71583515" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -553,7 +539,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding test takers pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test taker pages working - more or less" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -586,6 +572,7 @@
     <MESSAGE value="true/false mostly working" />
     <MESSAGE value="Merge branch 'master' of git://github.com/dospatos/h4.seankraft-fall2013.biz&#10;&#10;Conflicts:&#10;&#9;.idea/workspace.xml&#10;" />
     <MESSAGE value="Adding test takers pages" />
+    <MESSAGE value="Test taker pages working - more or less" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -596,7 +583,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/controllers/c_tests.php</url>
-          <line>115</line>
+          <line>119</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -625,25 +612,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
-          <folding>
-            <marker date="1386801204547" expanded="true" signature="7317:7330" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/_v_email.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/c_tests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="8" selection-start="1785" selection-end="1803" vertical-scroll-proportion="-1.5384616">
           <folding />
         </state>
       </provider>
@@ -669,15 +640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/v_testtakers_upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="8" selection-start="1665" selection-end="1701" vertical-scroll-proportion="-19.923077">
-          <folding>
-            <element signature="e#6#161#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/basic-minimal.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="32" selection-start="2461" selection-end="2461" vertical-scroll-proportion="0.0">
@@ -692,16 +654,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/siteutils.php">
+    <entry file="file://$PROJECT_DIR$/views/v_testtakers_upload.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="27" selection-start="2463" selection-end="2463" vertical-scroll-proportion="-18.961538">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/v_testtakers_approve.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="149" selection-start="449" selection-end="449" vertical-scroll-proportion="-2.7307692">
+        <state line="35" column="8" selection-start="1665" selection-end="1701" vertical-scroll-proportion="-19.923077">
           <folding>
             <element signature="e#6#161#0" expanded="true" />
           </folding>
@@ -710,15 +665,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/c_testtakers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="1016" selection-end="1016" vertical-scroll-proportion="-15.038462">
+        <state line="96" column="59" selection-start="4297" selection-end="4297" vertical-scroll-proportion="-11.5">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/v_testtakers_index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="38" selection-start="637" selection-end="637" vertical-scroll-proportion="0.42562592">
+        <state line="23" column="38" selection-start="637" selection-end="637" vertical-scroll-proportion="-11.115385">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/c_tests.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="56" selection-start="4344" selection-end="4362" vertical-scroll-proportion="-9.346154">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/siteutils.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="112" column="85" selection-start="4319" selection-end="4333" vertical-scroll-proportion="-4.9615383">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/v_testtakers_approve.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="4" selection-start="1757" selection-end="1814" vertical-scroll-proportion="-8.346154">
+          <folding>
+            <element signature="e#6#161#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="132" column="58" selection-start="6838" selection-end="6838" vertical-scroll-proportion="0.35735735">
+          <folding>
+            <marker date="1386855255479" expanded="true" signature="9335:9348" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

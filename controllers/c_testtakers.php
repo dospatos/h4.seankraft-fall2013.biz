@@ -50,7 +50,7 @@ class testtakers_controller extends secure_controller {
 
         $q = "SELECT testtaker_staging_row_id, first_name, last_name, email, job_title, person_id, issue_text FROM testtaker_staging_rows WHERE testtaker_staging_id = ".$testtaker_staging_id;
         $this->template->content->user_list = DB::instance(DB_NAME)->select_rows($q);
-
+        $this->template->content->testtaker_staging_id = $testtaker_staging_id;
 
         # Now set the <title> tag
         $this->template->title = "Approve Test Takers";
@@ -62,6 +62,7 @@ class testtakers_controller extends secure_controller {
     //save all the approved uploads
     public function p_approve() {
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+        $testtaker_staging_id = $_POST["testtaker_staging_id"];
         $errors = array();
         foreach($_POST as $key => $value) {
             if (strpos($key, 'chk_') === 0) {
@@ -88,7 +89,13 @@ class testtakers_controller extends secure_controller {
         }
 
         if (count($errors) == 0) {
-            //Router::redirect("/testtakers/");
+            //Finally delete the staging data
+            $q = "DELETE FROM testtaker_staging_rows WHERE testtaker_staging_id=".$testtaker_staging_id;
+            DB::instance(DB_NAME)->query($q);
+            $q = "DELETE FROM testtaker_staging WHERE testtaker_staging_id=".$testtaker_staging_id;
+            DB::instance(DB_NAME)->query($q);
+            //redirect so the user can see the new recruits
+            Router::redirect("/testtakers/");
         } else {//display the errors
 
         }
