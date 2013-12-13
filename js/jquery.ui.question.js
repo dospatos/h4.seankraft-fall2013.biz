@@ -44,14 +44,14 @@
                 var display_text = "<div id='" + display_text_id + "'>" + this.options.question_text + "</div>";
                 if (this.options.display_mode == "edit"){
                     display_text = "<p><textarea rows='4' cols='50' id='" + display_text_id + "' name='txt_" + question_id + "_question_text'>" + this.options.question_text + "</textarea></p>";
+
+                    //On display text lost focus or when the enter key is pressed - update the question text
+                    $("#" + display_text_id).bind("blur keyup", (function(e) {
+                        if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
+                        $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
+                    }));
                 }
                 this.element.append(display_text);
-
-                //On display text lost focus or when the enter key is pressed - update the question text
-                $("#" + display_text_id).bind("blur keyup", (function(e) {
-                    if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
-                    $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
-                }));
 
                 switch (question_type_id) {
                     case 1 : //1 - choose all correct
@@ -129,9 +129,18 @@
                             + "</span>");
                         break;
                     case 4://Show a text area with prompting text as a watermark
-                        this.element.append("<span id='" + answer_span_id + "'>"
-                            + "<label for='" + textbox_control_id + "'>The test taker will see the following text at a prompt</label><textarea rows='4' cols='50' id='" + textbox_control_id + "'>" + answer_text + "</textarea>"
-                            + "</span>");
+                        var display_text_area = "<span id='" + answer_span_id + "'>";
+                        if (this.options.display_mode == "edit"){
+                            display_text_area+= "<label for='" + textbox_control_id + "'>The test taker will see the following text at a prompt</label>";
+                        }
+                        display_text_area+= "<textarea rows='4' cols='50' id='" + textbox_control_id + "'></textarea>"
+                        + "</span>";
+
+                        this.element.append(display_text_area);
+                        $("#" + textbox_control_id).watermark(answer_text, {
+                            className: 'lightText'
+                        });
+
                         break;
                 }
 

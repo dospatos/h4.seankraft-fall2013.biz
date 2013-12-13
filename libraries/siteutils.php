@@ -145,7 +145,6 @@ class siteutils {
         }
         $q = $q." ORDER BY U.last_name, U.first_name";
         $assign_status = DB::instance(DB_NAME)->select_rows($q);
-
         return $assign_status;
     }
 
@@ -186,26 +185,28 @@ class siteutils {
 
             $question_id = DB::instance(DB_NAME)->select_field($q);
         }
-
-        $q = "SELECT U.user_id, U.first_name, U.last_name, U.email, TA.assigned_on_dt
-            , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
-            , S.test_assign_status_descr
-            , T.test_name, T.test_descr, T.test_category, T.minutes_to_complete
-            , COUNT(*) AS question_count
-            FROM users U
-            INNER JOIN test_assign_user TA ON TA.user_id = U.user_id
-            INNER JOIN test_assign_status S ON S.test_assign_status_id = TA.test_assign_status_id
+        $q = "SELECT
+        TI.test_instance_id,TI.start_dt,TI.finish_dt,TI.grade,TI.graded
+        ,TI.seconds_elapsed,TI.review_override_grade,TI.review_override_user_id,TI.review_override_comment
+        ,TA.test_assign_id,TA.test_id,user_id,TA.test_assign_status_id,TA.assigned_by_user_id,TA.assigned_on_dt,TA.due_on_dt
+        ,T.test_id,T.account_id,T.test_name,T.test_descr,T.minutes_to_complete,T.test_category
+        ,Q.question_id,Q.question_order,Q.question_text,Q.question_type_id,Q.question_image
+        ,Qprior.question_id AS prior_question_id,Qnext.question_id AS next_question_id
+        ,A.answer_id,A.answer_text,A.answer_order,A.correct
+        ,IA.is_selected, IA.answer_text AS instance_answer_text
+            FROM test_instance TI
+            INNER JOIN test_assign_user TA ON TA.test_assign_id = TI.test_assign_id
             INNER JOIN tests T ON T.test_id = TA.test_id
-            INNER JOIN questions Q ON Q.test_id = T.test_id
-            WHERE TA.test_assign_id =".$test_assign_id." AND T.deleted <> 1
-            GROUP BY U.user_id, U.first_name, U.last_name, U.email, TA.assigned_on_dt
-            , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
-            , S.test_assign_status_descr
-            , T.test_name, T.test_descr, T.test_category";
+            INNER JOIN questions Q ON Q.question_id = ".$question_id."
+            LEFT JOIN questions Qnext ON Qnext.test_id = Q.test_id AND Qnext.question_order = (Q.question_order + 1)
+            LEFT JOIN questions Qprior ON Qprior.test_id = Q.test_id AND Qprior.question_order = (IF(Q.question_order=0,null,Q.question_order) - 1)
+            INNER JOIN answers A ON A.question_id = Q.question_id
+            LEFT JOIN test_instance_answer IA ON IA.answer_id = A.answer_id
+            WHERE test_instance_id=".$test_instance_id;
 
-        $assign_details = DB::instance(DB_NAME)->select_row($q);
+        $question_details = DB::instance(DB_NAME)->select_rows($q);
 
-        return $assign_details;
+        return $question_details;
     }
 
 }

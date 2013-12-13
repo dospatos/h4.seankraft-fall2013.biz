@@ -30,7 +30,7 @@ if (isset($assign_details)) {
 
             </fieldset>
             <?php if ($assign_details["test_assign_status_id"] == 1) {//allow the user to take the test?>
-                <form action="/test/take/<?php echo $assign_details['test_assign_id']?>" method="post">
+                <form action="/tests/take/<?php echo $assign_details['test_assign_id']?>" method="get">
                     <input type="submit" value="Take Test"/>
                 </form>
             <?php }?>

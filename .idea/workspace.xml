@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d14dc634-fa9e-429d-8866-b944c9b22349" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/c_tests.php" afterPath="$PROJECT_DIR$/controllers/c_tests.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.php" afterPath="$PROJECT_DIR$/config/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/jquery.ui.question.js" afterPath="$PROJECT_DIR$/js/jquery.ui.question.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/siteutils.php" afterPath="$PROJECT_DIR$/libraries/siteutils.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_test_assign_details.php" afterPath="$PROJECT_DIR$/views/v_test_assign_details.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_test_take_question.php" afterPath="$PROJECT_DIR$/views/v_test_take_question.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="h2.seankraft-fall2013.biz.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386882321374" ignored="false" />
+    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386966303288" ignored="false" />
     <file path="/c_users.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386823403452" ignored="false" />
     <file path="/v_users_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386458084193" ignored="false" />
     <file path="/c_posts.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136725374" ignored="false" />
@@ -19,7 +25,7 @@
     <file path="/v_profile_view.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386459029559" ignored="false" />
     <file path="/basic-minimal.css" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383049502016" ignored="false" />
     <file path="/imageview.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1382704002555" ignored="false" />
-    <file path="/siteutils.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386852801158" ignored="false" />
+    <file path="/siteutils.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386955032507" ignored="false" />
     <file path="/c_river.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136689591" ignored="false" />
     <file path="/v_river_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383569870805" ignored="false" />
     <file path="/a.dummy" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136716906" ignored="false" />
@@ -29,17 +35,19 @@
     <file path="$PROJECT_DIR$/../../h3.seankraft-fall2013.biz/h3.seankraft-fall2013.biz/css/ui.timer.css" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1385556015850" ignored="false" />
     <file path="$PROJECT_DIR$/../../h3.seankraft-fall2013.biz/h3.seankraft-fall2013.biz/.idea/workspace.xml" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1385569910428" ignored="false" />
     <file path="/v_tests_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386479080475" ignored="false" />
-    <file path="/c_tests.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386853696367" ignored="false" />
+    <file path="/c_tests.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386962598196" ignored="false" />
     <file path="/v_tests_create.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386477939603" ignored="false" />
     <file path="/v_tests_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386867275232" ignored="false" />
     <file path="/c_questions.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386707084101" ignored="false" />
     <file path="/v_questions_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386593083158" ignored="false" />
     <file path="/v_questions_edit.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386609885264" ignored="false" />
-    <file path="/jquery.ui.question.js" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386774260134" ignored="false" />
+    <file path="/jquery.ui.question.js" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386965559681" ignored="false" />
     <file path="/c_testtakers.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386851741268" ignored="false" />
     <file path="/v_testtakers_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386823713450" ignored="false" />
     <file path="/v_testtakers_upload.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386801063681" ignored="false" />
     <file path="/v_testtakers_approve.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386851589404" ignored="false" />
+    <file path="/v_test_take_question.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386966022784" ignored="false" />
+    <file path="/v_test_assign_details.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386952361740" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +70,16 @@
       <file leaf-file-name="siteutils.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libraries/siteutils.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="85" selection-start="4319" selection-end="4333" vertical-scroll-proportion="0.0">
+            <state line="201" column="142" selection-start="9340" selection-end="9340" vertical-scroll-proportion="-18.692308">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="34" selection-start="512" selection-end="512" vertical-scroll-proportion="-2.6153846">
               <folding />
             </state>
           </provider>
@@ -71,34 +88,48 @@
       <file leaf-file-name="c_tests.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/c_tests.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="56" selection-start="4344" selection-end="4362" vertical-scroll-proportion="0.0">
+            <state line="233" column="91" selection-start="10823" selection-end="10823" vertical-scroll-proportion="-18.038462">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="c_users.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/c_users.php">
+      <file leaf-file-name="v_index_index.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/v_index_index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="218" column="71" selection-start="8419" selection-end="8419" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="6.6538463">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="v_testtakers_upload.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/v_testtakers_upload.php">
+      <file leaf-file-name="v_test_take_question.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/v_test_take_question.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="8" selection-start="1665" selection-end="1701" vertical-scroll-proportion="0.0">
+            <state line="16" column="64" selection-start="410" selection-end="410" vertical-scroll-proportion="0.37913042">
+              <folding>
+                <element signature="e#6#161#0" expanded="true" />
+                <marker date="1386966149509" expanded="true" signature="344:453" placeholder="..." />
+                <marker date="1386966149509" expanded="true" signature="683:719" placeholder="..." />
+                <marker date="1386966149509" expanded="true" signature="683:777" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery.ui.question.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/jquery.ui.question.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="139" column="73" selection-start="8099" selection-end="8099" vertical-scroll-proportion="-12.44">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="c_testtakers.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/c_testtakers.php">
+      <file leaf-file-name="v_test_assign_details.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/v_test_assign_details.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="96" column="59" selection-start="4297" selection-end="4297" vertical-scroll-proportion="0.0">
+            <state line="32" column="101" selection-start="1391" selection-end="1391" vertical-scroll-proportion="-14.769231">
               <folding />
             </state>
           </provider>
@@ -116,7 +147,7 @@
       <file leaf-file-name="create_tables.sql" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Data/create_tables.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="356" column="0" selection-start="15228" selection-end="15228" vertical-scroll-proportion="-5.653333">
+            <state line="356" column="0" selection-start="15228" selection-end="15228" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -125,31 +156,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="basic-minimal.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/basic-minimal.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="32" selection-start="2461" selection-end="2461" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="v_tests_edit.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="v_tests_edit.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="62" selection-start="6921" selection-end="6921" vertical-scroll-proportion="0.67478263">
+            <state line="288" column="3" selection-start="12601" selection-end="12605" vertical-scroll-proportion="-15.576923">
               <folding>
-                <marker date="1386867275401" expanded="false" signature="10639:10652" placeholder="..." />
+                <marker date="1386946837612" expanded="false" signature="11467:11480" placeholder="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="v_testtakers_index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/v_testtakers_index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="38" selection-start="637" selection-end="637" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -172,11 +185,7 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/views/v_tests_index.php" />
-        <option value="$PROJECT_DIR$/views/v_questions_index.php" />
-        <option value="$PROJECT_DIR$/views/v_questions_edit.php" />
         <option value="$PROJECT_DIR$/controllers/c_questions.php" />
-        <option value="$PROJECT_DIR$/js/jquery.ui.question.js" />
         <option value="$PROJECT_DIR$/views/v_testtakers_upload.php" />
         <option value="$PROJECT_DIR$/views/_v_template.php" />
         <option value="$PROJECT_DIR$/css/basic-minimal.css" />
@@ -184,10 +193,14 @@
         <option value="$PROJECT_DIR$/views/v_testtakers_index.php" />
         <option value="$PROJECT_DIR$/views/v_testtakers_approve.php" />
         <option value="$PROJECT_DIR$/controllers/c_testtakers.php" />
-        <option value="$PROJECT_DIR$/libraries/siteutils.php" />
-        <option value="$PROJECT_DIR$/controllers/c_tests.php" />
         <option value="$PROJECT_DIR$/Data/create_tables.sql" />
         <option value="$PROJECT_DIR$/views/v_tests_edit.php" />
+        <option value="$PROJECT_DIR$/config/config.php" />
+        <option value="$PROJECT_DIR$/views/v_test_assign_details.php" />
+        <option value="$PROJECT_DIR$/libraries/siteutils.php" />
+        <option value="$PROJECT_DIR$/js/jquery.ui.question.js" />
+        <option value="$PROJECT_DIR$/controllers/c_tests.php" />
+        <option value="$PROJECT_DIR$/views/v_test_take_question.php" />
       </list>
     </option>
   </component>
@@ -280,6 +293,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -326,6 +353,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="h4.seankraft-fall2013.biz" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -334,13 +375,13 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="web.server" />
     <property name="recentsLimit" value="5" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="options.lastSelected" value="web.server" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PublishConfig" serverName="Appache" serverId="63d49163-e071-44d4-8ded-e55f34a26130" />
   <component name="RecentsManager">
@@ -488,7 +529,11 @@
       <created>1386882323888</created>
       <updated>1386882323888</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="test taking is 60% done">
+      <created>1386966308832</created>
+      <updated>1386966308832</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -503,7 +548,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3203125" sideWeight="0.7169197" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28308025" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28308025" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2837607" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -557,7 +602,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Due date javascript" />
+    <option name="LAST_COMMIT_MESSAGE" value="test taking is 60% done" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -593,6 +638,7 @@
     <MESSAGE value="Test taker pages working - more or less" />
     <MESSAGE value="Assign users 50%" />
     <MESSAGE value="Due date javascript" />
+    <MESSAGE value="test taking is 60% done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -611,36 +657,9 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/v_tests_index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="10" selection-start="0" selection-end="535" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/v_users_profile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/_v_email.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/_v_template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="19" selection-start="1615" selection-end="1615" vertical-scroll-proportion="0.36705202" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/c_questions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="143" column="38" selection-start="5835" selection-end="5835" vertical-scroll-proportion="-19.384615" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/jquery.ui.question.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="76" selection-start="5045" selection-end="5052" vertical-scroll-proportion="0.098265894">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/basic-minimal.css">
@@ -678,20 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/c_tests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="56" selection-start="4344" selection-end="4362" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libraries/siteutils.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="85" selection-start="4319" selection-end="4333" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/v_testtakers_approve.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="42" column="4" selection-start="1757" selection-end="1814" vertical-scroll-proportion="0.0">
@@ -701,7 +706,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Data/create_tables.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="356" column="0" selection-start="15228" selection-end="15228" vertical-scroll-proportion="-5.653333">
+        <state line="356" column="0" selection-start="15228" selection-end="15228" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -709,11 +714,65 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="34" selection-start="512" selection-end="512" vertical-scroll-proportion="-2.6153846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/v_index_index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="6.6538463">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/v_test_assign_details.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="101" selection-start="1391" selection-end="1391" vertical-scroll-proportion="-14.769231">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libraries/siteutils.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="201" column="142" selection-start="9340" selection-end="9340" vertical-scroll-proportion="-18.692308">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/v_tests_edit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="62" selection-start="6921" selection-end="6921" vertical-scroll-proportion="0.67478263">
+        <state line="288" column="3" selection-start="12601" selection-end="12605" vertical-scroll-proportion="-15.576923">
           <folding>
-            <marker date="1386867275401" expanded="false" signature="10639:10652" placeholder="..." />
+            <marker date="1386946837612" expanded="false" signature="11467:11480" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/jquery.ui.question.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="139" column="73" selection-start="8099" selection-end="8099" vertical-scroll-proportion="-12.44">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/c_tests.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="233" column="91" selection-start="10823" selection-end="10823" vertical-scroll-proportion="-18.038462">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/v_test_take_question.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="64" selection-start="410" selection-end="410" vertical-scroll-proportion="0.37913042">
+          <folding>
+            <element signature="e#6#161#0" expanded="true" />
+            <marker date="1386966149509" expanded="true" signature="344:453" placeholder="..." />
+            <marker date="1386966149509" expanded="true" signature="683:719" placeholder="..." />
+            <marker date="1386966149509" expanded="true" signature="683:777" placeholder="..." />
           </folding>
         </state>
       </provider>
