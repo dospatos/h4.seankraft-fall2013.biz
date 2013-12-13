@@ -29,6 +29,9 @@ class index_controller extends base_controller {
 	    	$client_files_body = Array("");
 	    	$this->template->client_files_body = Utils::load_client_files($client_files_body);   
 	    	*/
+
+        //Get the logged in user's list of current assignments
+            $this->template->content->assigned_tests = siteutils::getTestsAssigedToUser($this->user->user_id, 1);
 	      					     		
 		# Render the view
 			echo $this->template;

@@ -27,21 +27,22 @@
 
     <!-- Menu for users who are logged in -->
     <?php if($user): ?>
-        <a href='/users/profileedit/<?php echo $user->user_id?>'>Your Account</a> |
-        <a href="/testtakers">Test Takers |
-        <a href="/tests">Tests |
+        <a href='/users/profileedit/<?php echo $user->user_id?>'>My Account</a> |
+        <?php if ($user->is_admin) {?>
+            <a href="/tests">Tests |
+            <a href="/testtakers">Test Takers |
+        <?php }?>
+        <a href='/tests/viewhistory'>My Tests History</a> |
         <a href='/users/logout'>Logout</a>
 
         <!-- Menu options for users who are not logged in -->
     <?php else: ?>
-
         <a href='/users/signup'>Sign up</a> |
         <a href='/users/login'>Log in</a>
-
     <?php endif; ?>
 
 </div>
-
+<br/>
 <?php if (isset($content->errors)) { ?>
     <?php foreach($content->errors AS $current_error) { ?>
         <div class='alerttext'>

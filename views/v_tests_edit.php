@@ -104,7 +104,7 @@
             Materials here
         </div>
         <div id="tab-assign">
-            <form method='POST' id='frmAssign' action='/tests/p_assign/' >
+            <form method='POST' id='frmAssign' action='/tests/p_assign/<?php echo $test_id?>' >
                 <table>
                     <thead class="table-header">
                     <td><input type="checkbox" id="chkCheckAll" /></td>
@@ -116,16 +116,26 @@
                     <?php
                     if ($test_assign_status) {
 
-                        foreach($test_assign_status AS $current_test_assign_status) { ?>
+                        foreach($test_assign_status AS $current_test_assign_status) {
+                            $check_setup = "";
+                            $disable_controls = "";
+                            $status_id = $current_test_assign_status["test_assign_status_id"];
+                            $due_on_dt = $current_test_assign_status["due_on_dt"];
+                            if ($due_on_dt != "") {$due_on_dt = date("m/d/Y", $due_on_dt);}
+                            $assigned_on_dt = $current_test_assign_status["assigned_on_dt"];
+                            if ($assigned_on_dt != ""){$assigned_on_dt = date("m/d/Y", $assigned_on_dt);}
+                            if (isset($status_id)) {$check_setup = "checked='checked'";}
+                            if ($status_id > 1){$disable_controls = "disabled='true'";}//status > 1 means test is being taken or has been taken
+                            ?>
                             <tr>
-                                <td><input class="checkbox" type="checkbox" checked="" id="chk_<?php echo $current_test_assign_status['user_id']?>" name="chk_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $current_test_assign_status['user_id']?>"></td>
+                                <td><input class="checkbox" <?php echo $check_setup." ".$disable_controls;?> type="checkbox" id="chk_<?php echo $current_test_assign_status['user_id']?>" name="chk_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $current_test_assign_status['user_id']?>"></td>
                                 <td>
                                     <label for="txt_due_<?php echo $current_test_assign_status['user_id']?>">
                                     <?php echo $current_test_assign_status['first_name']?>&nbsp;<?php echo $current_test_assign_status['last_name']?>
                                     </label>
                                 </td>
-                                <td><input class="due_date" type="text" id="txt_due_<?php echo $current_test_assign_status['user_id']?>" name="txt_due_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $current_test_assign_status['due_on_dt']?>"/></td>
-                                <td><?php echo $current_test_assign_status["assigned_on_dt"];?></td>
+                                <td><input class="due_date" type="text" id="txt_due_<?php echo $current_test_assign_status['user_id']?>" name="txt_due_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $due_on_dt?>"/></td>
+                                <td><?php echo $assigned_on_dt;?></td>
                             </tr>
                         <?php }} else {echo ("<h3>No test takers exist to be assigned</h3>");} ?>
                     <tbody>
