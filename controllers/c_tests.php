@@ -114,6 +114,101 @@ class tests_controller extends secure_controller {
         echo $this->template;
     } # End of edit
 
+    //set the assignments for a test
+    public function p_assign($test_id) {
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+        //echo var_dump($_POST);
+        $errors = array();
+        //For any assignment to this test that is in assigned state - delete it
+        $q = "DELETE FROM test_assign_user WHERE test_assign_status_id = 1 AND test_id=.".$test_id;
+        DB::instance(DB_NAME)->query($q);
+
+        //Find the passed in checkboxes (these are selected by the user)
+        foreach($_POST as $key => $value) {
+            if (strpos($key, 'chk_') === 0) {//we have a checkbox
+                if (is_numeric($value)) {//this value should be the user_id
+                    //Get the status of any existing assignment
+                    $user_assign_status = siteutils::getTestAssignStatus($test_id, $value);
+                    $test_assign_status_id = $user_assign_status[0]["test_assign_status_id"];
+
+                    if (!isset($test_assign_status_id)) {//there is no assignment
+                        //insert a new assignment
+                        $due_on_date = "txt_due_".$value;
+                        $due_on_date = $_POST[$due_on_date];
+                        $due_on_date = strtotime($due_on_date);
+                        $assign_test = ["assigned_by_user_id" => $this->user->user_id,
+                            "assigned_on_dt" => Time::now(),
+                            "due_on_dt" => $due_on_date,
+                            "test_assign_status_id" => "1",
+                            "test_id" => $test_id,
+                            "user_id" => $value
+                        ];
+
+                        $test_assign_id = DB::instance(DB_NAME)->insert('test_assign_user', $assign_test);
+                    }
+                } else {
+                    $errors[] = "Invalid values posted";
+                }
+            }
+        }
+        Router::redirect("/tests/edit/".$test_id);
+
+    }// end p_assign
+
+    //Get the assignment record with some details about the test and display it to the user
+    public function assignment($test_assign_id) {
+        $errors = array();
+        $test_assign_id =  DB::instance(DB_NAME)->sanitize($test_assign_id);
+
+        //Setup the view
+        $this->template->content = View::instance('v_test_assign_details');
+
+        if (!is_numeric($test_assign_id)) {
+            $errors[] = "Invalid assignment";
+        }
+        if (count($errors) == 0) {
+            $assign_details = siteutils::getTestAssignmentDetails($test_assign_id);
+            $this->template->content->assign_details = $assign_details;
+        }
+
+        # Now set the <title> tag
+        $this->template->title = "Test Assignment";
+        $this->template->content->errors = $errors;
+
+        # Render the view
+        echo $this->template;
+
+    }//end of assignment
+
+    //Get the test and allow the user to answer the questions
+    public function take($test_assign_id, $test_instance_id = null, $question_id = null) {
+        $errors = array();
+        $test_assign_id =  DB::instance(DB_NAME)->sanitize($test_assign_id);
+        $test_instance_id = DB::instance(DB_NAME)->sanitize($test_instance_id);
+        $question_id = DB::instance(DB_NAME)->sanitize($question_id);
+        if (!is_numeric($test_assign_id)) {$errors[] = "Invalid assignment";}
+        if ($test_instance_id != null && !is_numeric($test_instance_id)) {$errors[] = "Invalid test";}
+        if ($question_id != null && !is_numeric($question_id)) {$errors[] = "Invalid question";}
+
+        //If there is no test instance for this assignment we need to create one
+
+        //Setup the view
+        $this->template->content = View::instance('v_test_take_question');
+
+        if (count($errors) == 0) {
+            $assign_details = siteutils::getQuestionDetails($test_instance_id, $question_id);
+            $this->template->content->assign_details = $assign_details;
+        }
+
+        # Now set the <title> tag
+        $this->template->title = "Test Assignment";
+        $this->template->content->errors = $errors;
+
+        # Render the view
+        echo $this->template;
+
+    }//end of take
+
     //Make the changes required to the test and re-direct to the edit screen again
     public function p_edit($test_id) {
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);

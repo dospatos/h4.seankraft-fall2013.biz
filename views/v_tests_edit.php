@@ -104,33 +104,43 @@
             Materials here
         </div>
         <div id="tab-assign">
-            <form method='POST' id='frmAssign' action='/tests/p_assign/' >
+            <form method='POST' id='frmAssign' action='/tests/p_assign/<?php echo $test_id?>' >
                 <table>
                     <thead class="table-header">
-                    <td><a href="#">Select All</a></td>
+                    <td><input type="checkbox" id="chkCheckAll" /></td>
                     <td>Name</td>
-                    <td>Due Date (<a href="#" title="Plus One month">M+</a> | <a href="#" title="End of year">EOY</a>)</td>
+                    <td>Due Date (<a id="cmdAddMonth" href="#" title="Plus One month">M+</a> | <a href="#" id="cmdEOY" title="End of year">EOY</a>)</td>
                     <td>Assigned Date</td>
                     </thead>
                     <tbody>
                     <?php
                     if ($test_assign_status) {
 
-                        foreach($test_assign_status AS $current_test_assign_status) { ?>
+                        foreach($test_assign_status AS $current_test_assign_status) {
+                            $check_setup = "";
+                            $disable_controls = "";
+                            $status_id = $current_test_assign_status["test_assign_status_id"];
+                            $due_on_dt = $current_test_assign_status["due_on_dt"];
+                            if ($due_on_dt != "") {$due_on_dt = date("m/d/Y", $due_on_dt);}
+                            $assigned_on_dt = $current_test_assign_status["assigned_on_dt"];
+                            if ($assigned_on_dt != ""){$assigned_on_dt = date("m/d/Y", $assigned_on_dt);}
+                            if (isset($status_id)) {$check_setup = "checked='checked'";}
+                            if ($status_id > 1){$disable_controls = "disabled='true'";}//status > 1 means test is being taken or has been taken
+                            ?>
                             <tr>
-                                <td><input type="checkbox" checked="" id="chk_<?php echo $current_test_assign_status['user_id']?>" name="chk_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $current_test_assign_status['user_id']?>"></td>
+                                <td><input class="checkbox" <?php echo $check_setup." ".$disable_controls;?> type="checkbox" id="chk_<?php echo $current_test_assign_status['user_id']?>" name="chk_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $current_test_assign_status['user_id']?>"></td>
                                 <td>
                                     <label for="txt_due_<?php echo $current_test_assign_status['user_id']?>">
                                     <?php echo $current_test_assign_status['first_name']?>&nbsp;<?php echo $current_test_assign_status['last_name']?>
                                     </label>
                                 </td>
-                                <td><input type="text" id="txt_due_<?php echo $current_test_assign_status['user_id']?>" name="txt_due_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $current_test_assign_status['due_on_dt']?>"/></td>
-                                <td><?php echo $current_test_assign_status["assigned_on_dt"];?></td>
+                                <td><input class="due_date" type="text" id="txt_due_<?php echo $current_test_assign_status['user_id']?>" name="txt_due_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $due_on_dt?>"/></td>
+                                <td><?php echo $assigned_on_dt;?></td>
                             </tr>
                         <?php }} else {echo ("<h3>No test takers exist to be assigned</h3>");} ?>
                     <tbody>
                 </table>
-                <input type="submit" value="Assign Test"/>
+                <input type="submit" value="Update Assignments"/>
             </form>
         </div>
     </div>
@@ -195,6 +205,40 @@
 
     $(document).ready(function()
     {
+        Date.prototype.addDays = function(days) {
+            this.setDate(this.getDate() + days);
+            return this;
+        };
+
+        Date.prototype.formatMMDDYYY = function() {
+            var return_date = "";
+            var dd = this.getDate();
+            var mm = this.getMonth()+1; //January is 0!
+
+            var yyyy = this.getFullYear();
+            if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} return_date = mm+'/'+dd+'/'+yyyy;
+            return return_date;
+        }
+
+        $("#chkCheckAll").change(function () {
+            console.log('here');
+            $(".checkbox").prop('checked', this.checked);
+        });
+
+        $("#cmdAddMonth").click(function() {
+            var due_date_text = $(".due_date");
+            var due_date = new Date(due_date_text.val());
+            if (!(due_date instanceof Date && !isNaN(due_date.valueOf()))) {due_date = new Date();}
+
+            due_date = due_date.addDays(30);
+            due_date_text.val(due_date.formatMMDDYYY())
+        });
+
+        $("#cmdEOY").click(function() {
+            var the_date = new Date().getFullYear();
+            the_date = "12/31/" + the_date;
+            var due_date_text = $(".due_date").val(the_date);
+        });
 
         $('#cmdAddQuestion').click(function () {
             //Add the question at the server, get the new ID

@@ -108,18 +108,105 @@ class siteutils {
         $user_id = DB::instance(DB_NAME)->insert('users', $user_data);
 
     }
-    //For a given test send back the assigned status for all the users in the account
-    public static function getTestAssignStatus($test_id) {
+    //For a given test (and optionaly user) send back the assigned status
+    public static function getTestAssignStatus($test_id, $user_id = null, $assign_status_id = null) {
         $q = "SELECT U.user_id, U.first_name, U.last_name, U.email, TA.assigned_on_dt
             , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
+            , S.test_assign_status_descr
             FROM users U
             LEFT JOIN test_assign_user TA ON TA.user_id = U.user_id AND TA.test_id = ".$test_id."
+            LEFT JOIN test_assign_status S ON S.test_assign_status_id = TA.test_assign_status_id
             WHERE U.account_id = (SELECT account_id FROM tests WHERE test_id = ".$test_id.")";
+            if ($user_id != null) {
+               $q = $q." AND U.user_id = ".$user_id;
+            }
+            if ($assign_status_id != null) {
+                $q = $q." AND TA.assign_status_id = ".$assign_status_id;
+            }
+        $q = $q." ORDER BY U.last_name, U.first_name";
         $assign_status = DB::instance(DB_NAME)->select_rows($q);
 
         return $assign_status;
     }
 
+    //For a given test (and optionaly user) send back the assigned status
+    public static function getTestsAssigedToUser($user_id, $assign_status_id = null) {
+        $q = "SELECT U.user_id, U.first_name, U.last_name, U.email, TA.assigned_on_dt
+            , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
+            , S.test_assign_status_descr
+            , T.test_name, T.test_descr, T.test_category
+            FROM users U
+            INNER JOIN test_assign_user TA ON TA.user_id = U.user_id
+            INNER JOIN test_assign_status S ON S.test_assign_status_id = TA.test_assign_status_id
+            INNER JOIN tests T ON T.test_id = TA.test_id
+            WHERE U.user_id =".$user_id." AND T.deleted <> 1";
+        if ($assign_status_id != null) {
+            $q = $q." AND TA.test_assign_status_id = ".$assign_status_id;
+        }
+        $q = $q." ORDER BY U.last_name, U.first_name";
+        $assign_status = DB::instance(DB_NAME)->select_rows($q);
+
+        return $assign_status;
+    }
+
+    //For the given test_assign_id, get the details
+    public static function getTestAssignmentDetails($test_assign_id) {
+        $q = "SELECT U.user_id, U.first_name, U.last_name, U.email, TA.assigned_on_dt
+            , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
+            , S.test_assign_status_descr
+            , T.test_name, T.test_descr, T.test_category, T.minutes_to_complete
+            , COUNT(*) AS question_count
+            FROM users U
+            INNER JOIN test_assign_user TA ON TA.user_id = U.user_id
+            INNER JOIN test_assign_status S ON S.test_assign_status_id = TA.test_assign_status_id
+            INNER JOIN tests T ON T.test_id = TA.test_id
+            INNER JOIN questions Q ON Q.test_id = T.test_id
+            WHERE TA.test_assign_id =".$test_assign_id." AND T.deleted <> 1
+            GROUP BY U.user_id, U.first_name, U.last_name, U.email, TA.assigned_on_dt
+            , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
+            , S.test_assign_status_descr
+            , T.test_name, T.test_descr, T.test_category";
+
+        $assign_details = DB::instance(DB_NAME)->select_row($q);
+
+        return $assign_details;
+    }
+
+    //Get the details for the assigned question
+    //Including 0. question text, 1. all answers, 2. the test instance answers
+    public static function getQuestionDetails($test_instance_id, $question_id = null) {
+
+        //If the question ID is null we need to get the first question
+        if ($question_id == null) {
+            $q = "SELECT MIN(question_id) FROM questions Q
+            INNER JOIN tests T ON T.test_id = Q.test_id
+            INNER JOIN test_assign_user TA ON TA.test_id = T.test_id
+            INNER JOIN test_instance I ON I.test_assign_id = TA.test_assign_id
+            WHERE I.test_instance_id = ".$test_instance_id;
+
+            $question_id = DB::instance(DB_NAME)->select_field($q);
+        }
+
+        $q = "SELECT U.user_id, U.first_name, U.last_name, U.email, TA.assigned_on_dt
+            , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
+            , S.test_assign_status_descr
+            , T.test_name, T.test_descr, T.test_category, T.minutes_to_complete
+            , COUNT(*) AS question_count
+            FROM users U
+            INNER JOIN test_assign_user TA ON TA.user_id = U.user_id
+            INNER JOIN test_assign_status S ON S.test_assign_status_id = TA.test_assign_status_id
+            INNER JOIN tests T ON T.test_id = TA.test_id
+            INNER JOIN questions Q ON Q.test_id = T.test_id
+            WHERE TA.test_assign_id =".$test_assign_id." AND T.deleted <> 1
+            GROUP BY U.user_id, U.first_name, U.last_name, U.email, TA.assigned_on_dt
+            , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
+            , S.test_assign_status_descr
+            , T.test_name, T.test_descr, T.test_category";
+
+        $assign_details = DB::instance(DB_NAME)->select_row($q);
+
+        return $assign_details;
+    }
 
 }
 
