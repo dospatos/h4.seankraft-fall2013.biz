@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d14dc634-fa9e-429d-8866-b944c9b22349" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/c_tests.php" afterPath="$PROJECT_DIR$/controllers/c_tests.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.php" afterPath="$PROJECT_DIR$/config/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/jquery.ui.question.js" afterPath="$PROJECT_DIR$/js/jquery.ui.question.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libraries/siteutils.php" afterPath="$PROJECT_DIR$/libraries/siteutils.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_test_assign_details.php" afterPath="$PROJECT_DIR$/views/v_test_assign_details.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/v_test_take_question.php" afterPath="$PROJECT_DIR$/views/v_test_take_question.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="h2.seankraft-fall2013.biz.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386966303288" ignored="false" />
+    <file path="/Dummy.txt" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386968100698" ignored="false" />
     <file path="/c_users.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386823403452" ignored="false" />
     <file path="/v_users_index.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1386458084193" ignored="false" />
     <file path="/c_posts.php" changelist="d14dc634-fa9e-429d-8866-b944c9b22349" time="1383136725374" ignored="false" />
@@ -533,7 +527,11 @@
       <created>1386966308832</created>
       <updated>1386966308832</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="test taking is 60% done">
+      <created>1386968105262</created>
+      <updated>1386968105262</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="ToolWindowManager">
