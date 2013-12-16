@@ -278,6 +278,7 @@
             }
         });
 
+        function linkTestQuestions() {
         <?php
         //can't use a class selector for these because it always picks the top one and then $(this) does not work like it should
         //so we are forced to loop here in the PHP
@@ -285,6 +286,8 @@
             echo "$('#tab-question-".$current_question["question_id"]."').question({question_text: '".$current_question["question_text"]."', question_type_id:".$current_question["question_type_id"]."});";
         }
         ?>
+        }
+        window.setTimeout(linkTestQuestions(), 1000);//wait a second to load the questions
 
     });
 

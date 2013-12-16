@@ -241,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `test_instance_answer` (
   `answer_id` int(10) unsigned DEFAULT NULL,
   `answer_text` varchar(2000) DEFAULT NULL,
   `is_selected` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`test_instance_id`,`question_id`)
+  PRIMARY KEY (`test_instance_id`,`question_id`,`answer_ID` )
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
