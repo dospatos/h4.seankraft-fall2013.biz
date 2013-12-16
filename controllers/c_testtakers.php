@@ -128,8 +128,8 @@ class testtakers_controller extends secure_controller {
                 if (($handle = fopen($_FILES["file"]["tmp_name"], "r")) !== FALSE) {
                     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                         $num = count($data);
-                        $testtaker_staging_row = ["testtaker_staging_id"=> $testtaker_staging_id, "first_name" => null
-                        ,"last_name" => null, "email" => null, "job_title" => null, "person_id" => null];
+                        $testtaker_staging_row = array("testtaker_staging_id"=> $testtaker_staging_id, "first_name" => null
+                        ,"last_name" => null, "email" => null, "job_title" => null, "person_id" => null);
 
                         for ($c=0; $c < $num; $c++) {
                             if ($c<=5) {
