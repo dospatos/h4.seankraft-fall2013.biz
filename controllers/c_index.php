@@ -16,10 +16,10 @@ class index_controller extends base_controller {
 		
 		# Any method that loads a view will commonly start with this
 		# First, set the content of the template with a view file
-			$this->template->content = View::instance('v_index_index');
+		$this->template->content = View::instance('v_index_index');
 			
 		# Now set the <title> tag
-			$this->template->title = "Hello World";
+	    $this->template->title = "Hello World";
 	
 		# CSS/JS includes
 			/*
@@ -31,10 +31,11 @@ class index_controller extends base_controller {
 	    	*/
 
         //Get the logged in user's list of current assignments
+        if($this->user) {
             $this->template->content->assigned_tests = siteutils::getTestsAssigedToUser($this->user->user_id, 2);
-	      					     		
+        }
 		# Render the view
-			echo $this->template;
+		echo $this->template;
 
 	} # End of method
 	

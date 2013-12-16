@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 12, 2013 at 02:03 PM
+-- Generation Time: Dec 16, 2013 at 07:22 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -13,7 +13,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `seankraf_h4_seankraft_fall2013_biz`
 --
-CREATE DATABASE IF NOT EXISTS `seankraf_h4_seankraft_fall2013_biz` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `seankraf_h4_seankraft_fall2013_biz` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `seankraf_h4_seankraft_fall2013_biz`;
 
 -- --------------------------------------------------------
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `account_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `account_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`account_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `accounts`
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `answers` (
   `answer_order` int(10) unsigned DEFAULT NULL,
   `correct` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`answer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=64 ;
 
 --
 -- Dumping data for table `answers`
@@ -76,13 +76,21 @@ INSERT INTO `answers` (`answer_id`, `question_id`, `answer_text`, `answer_order`
 (45, 21, 'False', 1, 0),
 (46, 22, 'Duster', 0, 1),
 (48, 22, 'Challenger', 1, 1),
-(49, 22, 'Nova', 2, 1),
+(49, 22, 'Nova', 2, 0),
 (50, 22, 'Station Wagon', 3, 0),
 (51, 22, 'Ferrarri', 4, NULL),
 (52, 23, 'Please fill out the essay question', 0, 1),
 (53, 24, 'Rav4', 0, 1),
 (54, 24, 'Honda Accord', 1, 0),
-(55, 24, 'Pickup', 2, 0);
+(55, 24, 'Pickup', 2, 0),
+(56, 25, 'The stop sign', 0, NULL),
+(57, 25, 'The yield sign', 1, 1),
+(58, 25, 'The go-forward sign', 2, NULL),
+(59, 26, 'True', 0, 1),
+(60, 26, 'False', 1, 0),
+(61, 27, '1, 2, 3, 4, 5, 6, 7', 0, 0),
+(62, 27, '1, 2, 3, 4, 5, 6, 7, 8, 9', 1, 0),
+(63, 27, '1, 2, 3, 4, 5, 6, 7, 8, 9, 10', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -96,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `jobs` (
   `department_name` varchar(100) DEFAULT NULL,
   `job_title` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`job_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `jobs`
@@ -111,7 +119,8 @@ INSERT INTO `jobs` (`job_id`, `account_id`, `department_name`, `job_title`) VALU
 (6, 4, '', 'Build Engineer'),
 (7, 4, '', 'Test Taker'),
 (8, 4, '', '1000854'),
-(9, 4, '', 'Farm Worker');
+(9, 4, '', 'Farm Worker'),
+(10, 4, '', 'Singer');
 
 -- --------------------------------------------------------
 
@@ -132,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `all_or_none` tinyint(1) DEFAULT NULL,
   `deleted` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`question_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `questions`
@@ -159,7 +168,10 @@ INSERT INTO `questions` (`question_id`, `question_order`, `test_id`, `created_by
 (21, 0, 7, 3, 'Your first car was a Chevy Monza', 3, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL),
 (22, 1, 7, 3, 'Which cars did I have in high school', 1, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL),
 (23, 2, 7, 3, 'Which was your favorite car', 4, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL),
-(24, 3, 7, 3, 'Which car is your latest purchase', 2, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL);
+(24, 3, 7, 3, 'Which car is your latest purchase', 2, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL),
+(25, 0, 8, 3, 'What sign is yield', 1, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL),
+(26, 1, 8, 3, 'You need to stop at a stop sign', 3, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL),
+(27, 0, 9, 3, 'Which counts to ten', 2, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -171,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `question_types` (
   `question_type_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `question_type_descr` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`question_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `question_types`
@@ -206,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `tests` (
   `deleted_date` datetime DEFAULT NULL,
   `test_category` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`test_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `tests`
@@ -219,7 +231,9 @@ INSERT INTO `tests` (`test_id`, `account_id`, `copied_from_test_id`, `test_name`
 (4, 3, 0, 'Birds I know Of 2013', 'Know your birds son', 0, 2013, NULL, NULL, '0000-00-00 00:00:00', 0, 45, 0, NULL, 'Birds'),
 (5, 3, 0, 'Bikes of the 70s', 'Test about bikes', 0, 2013, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 100, 0, NULL, 'Bikes'),
 (6, 3, 0, 'The Best Parties', 'Which parties were good', 0, 2013, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 100, 0, NULL, 'Party Time'),
-(7, 4, 0, 'Cars I have owned', 'All about my cars', 0, 2013, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 100, 0, NULL, 'Cars');
+(7, 4, 0, 'Cars I have owned', 'All about my cars', 0, 2013, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 100, 0, NULL, 'Cars'),
+(8, 4, 0, 'Driving Test', 'New Jersey', 0, 2013, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 75, 0, NULL, 'Driving'),
+(9, 4, 0, 'Counts I like', 'Some counts that I like', 0, 2013, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 100, 0, NULL, 'Counts');
 
 -- --------------------------------------------------------
 
@@ -232,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `testtaker_staging` (
   `created_by_user_id` int(10) unsigned DEFAULT NULL,
   `created` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`testtaker_staging_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -250,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `testtaker_staging_rows` (
   `person_id` varchar(100) DEFAULT NULL,
   `issue_text` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`testtaker_staging_row_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -262,7 +276,17 @@ CREATE TABLE IF NOT EXISTS `test_assign_status` (
   `test_assign_status_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `test_assign_status_descr` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`test_assign_status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `test_assign_status`
+--
+
+INSERT INTO `test_assign_status` (`test_assign_status_id`, `test_assign_status_descr`) VALUES
+(1, 'Assigned'),
+(2, 'Started'),
+(3, 'Finished'),
+(4, 'Error');
 
 -- --------------------------------------------------------
 
@@ -276,10 +300,23 @@ CREATE TABLE IF NOT EXISTS `test_assign_user` (
   `user_id` int(10) unsigned DEFAULT NULL,
   `test_assign_status_id` int(10) unsigned DEFAULT NULL,
   `assigned_by_user_id` int(10) unsigned DEFAULT NULL,
-  `assigned_on_dt` datetime DEFAULT NULL,
-  `due_on_dt` datetime DEFAULT NULL,
+  `assigned_on_dt` int(11) DEFAULT NULL,
+  `due_on_dt` int(11) DEFAULT NULL,
   PRIMARY KEY (`test_assign_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `test_assign_user`
+--
+
+INSERT INTO `test_assign_user` (`test_assign_id`, `test_id`, `user_id`, `test_assign_status_id`, `assigned_by_user_id`, `assigned_on_dt`, `due_on_dt`) VALUES
+(2, 7, 3, 2, 3, 1386947105, 1392094800),
+(3, 8, 10, 1, 3, 1386967166, 1392094800),
+(4, 8, 3, 3, 3, 1386967166, 1392094800),
+(5, 8, 9, 1, 3, 1386967220, 1402459200),
+(6, 8, 8, 1, 3, 1386967220, 1402459200),
+(7, 8, 11, 1, 3, 1386967220, 1402459200),
+(8, 9, 3, 3, 3, 1387216103, 1389762000);
 
 -- --------------------------------------------------------
 
@@ -299,7 +336,16 @@ CREATE TABLE IF NOT EXISTS `test_instance` (
   `review_override_user_id` int(10) unsigned DEFAULT NULL,
   `review_override_comment` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`test_instance_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+
+--
+-- Dumping data for table `test_instance`
+--
+
+INSERT INTO `test_instance` (`test_instance_id`, `test_assign_id`, `start_dt`, `finish_dt`, `grade`, `graded`, `seconds_elapsed`, `review_override_grade`, `review_override_user_id`, `review_override_comment`) VALUES
+(36, 2, '0000-00-00 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(37, 8, '0000-00-00 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(38, 4, '0000-00-00 00:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -308,13 +354,22 @@ CREATE TABLE IF NOT EXISTS `test_instance` (
 --
 
 CREATE TABLE IF NOT EXISTS `test_instance_answer` (
-  `tests_instance_id` int(10) unsigned NOT NULL,
+  `test_instance_id` int(10) unsigned NOT NULL,
   `question_id` int(10) unsigned NOT NULL,
   `answer_id` int(10) unsigned DEFAULT NULL,
   `answer_text` varchar(2000) DEFAULT NULL,
   `is_selected` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`tests_instance_id`,`question_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`test_instance_id`,`question_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `test_instance_answer`
+--
+
+INSERT INTO `test_instance_answer` (`test_instance_id`, `question_id`, `answer_id`, `answer_text`, `is_selected`) VALUES
+(37, 27, 63, NULL, 1),
+(38, 25, 57, NULL, 1),
+(38, 26, 59, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -338,7 +393,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `is_admin` tinyint(1) DEFAULT NULL,
   `person_id` varchar(100) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `users`
@@ -347,10 +402,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`user_id`, `created`, `modified`, `token`, `password`, `last_login`, `time_zone`, `first_name`, `last_name`, `email`, `job_id`, `account_id`, `is_admin`, `person_id`) VALUES
 (1, 1386455902, 1386455902, '18e7df0d114a9e6b413d73e8b66ae1abcd5eab5b', 'c0393820285407ea0cdc26cb274516bc470e1274', NULL, NULL, 'sean', 'kraft', 'sean@seankraft.com', 2, 2, 1, ''),
 (2, 1386459894, 1386459894, '9de5cd1e57cec18a4faa5a5c25185f8f870e49a1', 'b4de51ccd938dd20fcb68c79e1e5b56e43d73f8e', NULL, NULL, 'Sean', 'Kraft', 'sean@concernsoftware.com', 3, 3, 1, ''),
-(3, 1386822142, 1386822142, 'ea56bca7b4ecfbef91ac5b25bc5dfb6be32903e5', 'b4de51ccd938dd20fcb68c79e1e5b56e43d73f8e', 1386824031, NULL, 'Bubba ', 'Gump', 'bubba@gump.com', 4, 4, 1, ''),
+(3, 1386822142, 1386822142, '4a132cc72bfd17708537609dc59c83c6b743e0c8', 'b4de51ccd938dd20fcb68c79e1e5b56e43d73f8e', 1387204203, NULL, 'Bubba ', 'Gump', 'bubba@gump.com', 4, 4, 1, ''),
 (8, 1386823460, 1386823460, '5146b002643e932220e38297644a6a2cbb2b2ee4', 'e9bbb16910bd91917754637c1aed28b8b2f1144d', NULL, NULL, 'Carolyn', 'Quoma', 'carolynquoma@yahoo.com', 5, 4, 0, ''),
 (9, 1386823460, 1386823460, 'b576a4c40f0eadfa1b40270ae76f3e046669e52b', 'e9bbb16910bd91917754637c1aed28b8b2f1144d', NULL, NULL, 'Mellon', 'Javis', 'mj@jarvis.com', 6, 4, 0, ''),
 (10, 1386823946, 1386823946, '2587e237bfecfd10ce2d1f5921e4bc8032d445e4', 'e9bbb16910bd91917754637c1aed28b8b2f1144d', 1386823982, NULL, 'John', 'Baldwin', 'jbaldwin@jb.com', 7, 4, 0, ''),
-(11, 1386823946, 1386823946, '438e8ff2517467452ef3e84ec5c2e19945949e38', 'e9bbb16910bd91917754637c1aed28b8b2f1144d', NULL, NULL, 'Mark', 'Spencer', 'ms@baldwin.com', 7, 4, 0, ''),
+(11, 1386823946, 1386823946, 'aa0a83ca23f84c0df313d6dbb290e03d80c80325', 'e9bbb16910bd91917754637c1aed28b8b2f1144d', 1386967244, NULL, 'Mark', 'Spencer', 'ms@baldwin.com', 7, 4, 0, ''),
 (12, 1386851973, 1386851973, '9a859b86582eb2be565db7371708f7683303e14c', 'e9bbb16910bd91917754637c1aed28b8b2f1144d', NULL, NULL, 'Mario', 'Andretti', 'mario@andretti.com', 8, 4, 0, ''),
-(13, 1386852009, 1386852009, '792303efe752e150fbb6f22bdc53965fd296ac0f', 'e9bbb16910bd91917754637c1aed28b8b2f1144d', NULL, NULL, 'Jethro', 'Tull', 'jt@tull.com', 9, 4, 0, '');
+(13, 1386852009, 1386852009, '792303efe752e150fbb6f22bdc53965fd296ac0f', 'e9bbb16910bd91917754637c1aed28b8b2f1144d', NULL, NULL, 'Jethro', 'Tull', 'jt@tull.com', 9, 4, 0, ''),
+(14, 1386857965, 1386857965, '635a231ad3ea82f49cb6b9460711cece0ad1cdf9', 'e9bbb16910bd91917754637c1aed28b8b2f1144d', NULL, NULL, 'Mark', 'Anthony', 'mark@anthony.com', 10, 4, 0, '');

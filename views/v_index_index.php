@@ -1,9 +1,11 @@
 <h2>Welcome to <?=APP_NAME?><?php if($user) echo ', '.$user->first_name; ?></h2>
 
+<?php if(!$user) { ?>
     <p>
-        You can access your
+        Our Online Tests is a web based home for all of your company's tests and quizzes. <br/>
+        Please <a href="/users/login">log in</a> or <a href="/users/signup">create an account</a> today.
     </p>
-
+<?php }?>
 
 </p>
 
