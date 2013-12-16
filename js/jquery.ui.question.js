@@ -4,7 +4,8 @@
                 question_id: null,
                 display_mode: "edit",
                 question_text: null,
-                question_type_id: null
+                question_type_id: null,
+                test_instance_id: null
 
             },
             _create: function() {
@@ -20,10 +21,11 @@
                 //Get the test from the server and draw the display
                 var json_data = null;
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: "/questions/get/" + this.options.question_id,
                     dataType: "json",
                     async: false,
+                    data: {test_instance_id: this.options.test_instance_id},
                     success : function(data) {
                         json_data = data;
                     }
@@ -51,32 +53,37 @@
                         $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
                     }));
                 }
-                this.element.append(display_text);
+                if (this.options.display_mode != "review"){this.element.append(display_text);}
 
                 switch (question_type_id) {
                     case 1 : //1 - choose all correct
                     case 2: {//2 - choose single correct
-                        //Write out a textbox so the user can enter the next answer
-                        var new_answer_id = "txt_new_answer_" + this.options.question_id;
-                        this.element.append("<input type='text' id='" + new_answer_id +  "' value=''/><br/>");
-                        //Bind the keyup events to add a new answer
-
-                        $("#" + new_answer_id).bind("keyup", (function(e) {
-                            if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
-                            $('#' + this.id).closest(".question").question("addAnswer", $(this).val());
-                        }));
-
-                        $("#" + new_answer_id).watermark('Enter a new answer', {
-                            className: 'lightText'
-                        });
-
 
                         if (this.options.display_mode == "edit"){
-                            //display all the answers
+                            //Write out a textbox so the user can enter the next answer
+                            var new_answer_id = "txt_new_answer_" + this.options.question_id;
+                            this.element.append("<input type='text' id='" + new_answer_id +  "' value=''/><br/>");
+
+                            //Bind the keyup events to add a new answer
+                            $("#" + new_answer_id).bind("keyup", (function(e) {
+                                if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
+                                $('#' + this.id).closest(".question").question("addAnswer", $(this).val());
+                            }));
+
+                            $("#" + new_answer_id).watermark('Enter a new answer', {
+                                className: 'lightText'
+                            });
+
+                            //display all the answers in edit mode
                             for(i=0;i<answers.length;i++) {
                                 this._addAnswerDisplay(question_id, question_type_id, answers[i].answer_id, answers[i].answer_text, answers[i].correct);
                             }
-                        } else {//It's time to display the question
+
+                        } else {//The display type is 'take'
+                            //display all the answers - same for edit and take
+                            for(i=0;i<answers.length;i++) {
+                                this._addAnswerDisplay(question_id, question_type_id, answers[i].answer_id, answers[i].answer_text, answers[i].correct);
+                            }
                         }
                         break;
                     }//2 - single correct
@@ -92,7 +99,7 @@
                         for(i=0;i<answers.length;i++) {
                             var answer_text = answers[i].answer_text;
                             var answer_id = answers[i].answer_id;
-                            this._addAnswerDisplay(question_id, question_type_id, answer_id, answer_text, true);
+                            this._addAnswerDisplay(question_id, question_type_id, answer_id, answer_text, answers[i].correct);//correct here means that the queestion is filled out
                         }
                     }//4 - essay
                 }
@@ -108,38 +115,92 @@
                 var answer_span_id = "answer_span_" + answer_id;
 
                 switch (question_type_id) {
-                    case 1://A check box, a textbox, and a delete control
-                        this.element.append("<span id='" + answer_span_id + "'>"
-                         + "<input type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "'/> "
-                         + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "'/>"
-                         + " - <a href='#' class='alerttext' id='" + delete_control_id + "' answer_id='" + answer_id + "'>delete</a><br/>"
-                         + "</span>");
+                    case 1://A check box list, a textbox, and a delete control for edit and a DIV for take
+                        switch (this.options.display_mode) {
+                            case "edit":
+                                this.element.append("<span id='" + answer_span_id + "'>"
+                                 + "<input type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "'/> "
+                                 + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "'/>"
+                                 + " - <a href='#' class='alerttext' id='" + delete_control_id + "' answer_id='" + answer_id + "'>delete</a><br/>"
+                                 + "</span>");
+                                break;
+                            case "take":
+                                this.element.append("<span id='" + answer_span_id + "'>"
+                                + "<input type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + "answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "'/> "
+                                + "<label for='" + select_control_id + "'>" + answer_text + "</label><br/>"
+                                + "</span>");
+                                break;
+                            case "review":
+                                if (answer_correct == 1){
+                                    this.element.append("<div>A: " + answer_text + "</div>")
+                                }
+                            break;
+                        }
                         break;
-                    case 2://a radio button, text box, and delete
-                        this.element.append("<span id='" + answer_span_id + "'>"
-                            + "<input type='radio' id='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' name='" + rdo_control_name + "'/> "
-                            + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "'/>"
-                            + " - <a href='#' class='alerttext' id='" + delete_control_id + "' answer_id='" + answer_id + "'>delete</a><br/>"
-                            + "</span>");
+                    case 2://a radio button list
+                        switch (this.options.display_mode){
+                            case "edit":
+                                this.element.append("<span id='" + answer_span_id + "'>"
+                                + "<input type='radio' id='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' name='" + rdo_control_name + "' value='" + answer_id + "'/> "
+                                + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "'/>"
+                                + " - <a href='#' class='alerttext' id='" + delete_control_id + "' answer_id='" + answer_id + "'>delete</a><br/>"
+                                + "</span>");
+                                break;
+                            case "take":
+                                //TODO: find out if the answer is selected by the user
+                                this.element.append("<span id='" + answer_span_id + "'>"
+                                + "<input type='radio' id='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' name='" + rdo_control_name + "' value='" + answer_id + "'/> "
+                                + "<label for='" + select_control_id + "'>" + answer_text + "</label><br/>"
+                                + "</span>");
+                                break;
+                            case "review":
+                                if (answer_correct == 1){
+                                    this.element.append("<div>A: " + answer_text + "</div>")
+                                }
+                                break;
+                        }
                         break;
-                    case 3://just radio buttons for true/false
-                        this.element.append("<span id='" + answer_span_id + "'>"
-                            + "<label for='" + select_control_id + "'>" + answer_text + "</label>"
-                            + "<input type='radio' id='" + select_control_id + "' name='" + rdo_control_name + "' " + answer_select + " answer_id='" + answer_id + "' />"
-                            + "</span>");
+                    case 3://just radio buttons for true/false - same for edit and take
+                        switch (this.options.display_mode){
+                            case "edit":
+                            case "take":
+                                this.element.append("<span id='" + answer_span_id + "'>"
+                                    + "<label for='" + select_control_id + "'>" + answer_text + "</label>"
+                                    + "<input type='radio' id='" + select_control_id + "' name='" + rdo_control_name + "' " + answer_select + " answer_id='" + answer_id + "' value='" + answer_id + "' />"
+                                    + "</span>");
+                                break;
+                            case "review":
+                                if (answer_correct == 1){
+                                    this.element.append("<div>A: " + answer_text + "</div>")
+                                }
+                                break;
+                        }
+
                         break;
                     case 4://Show a text area with prompting text as a watermark
                         var display_text_area = "<span id='" + answer_span_id + "'>";
-                        if (this.options.display_mode == "edit"){
-                            display_text_area+= "<label for='" + textbox_control_id + "'>The test taker will see the following text at a prompt</label>";
-                        }
-                        display_text_area+= "<textarea rows='4' cols='50' id='" + textbox_control_id + "'></textarea>"
-                        + "</span>";
+                        switch (this.options.display_mode) {
+                            case "edit":
+                                display_text_area+= "<label for='" + textbox_control_id + "'>The test taker will see the following text as a prompt</label><br/>";
+                            case "take":
+                                display_text_area+= "<textarea rows='4' cols='50' id='" + textbox_control_id + "' name='" + textbox_control_id + "'></textarea>"
+                                    + "</span>";
 
-                        this.element.append(display_text_area);
-                        $("#" + textbox_control_id).watermark(answer_text, {
-                            className: 'lightText'
-                        });
+                                this.element.append(display_text_area);
+                                if (answer_correct==0) {//show the prompting watermark
+                                    $("#" + textbox_control_id).watermark(answer_text, {
+                                        className: 'lightText'
+                                    });
+                                } else {
+                                    $("#" + textbox_control_id).val(answer_text);
+                                }
+                                break;
+                            case "review":
+                                if (answer_correct == 1){
+                                    this.element.append("<div>A: " + answer_text + "</div>")
+                                }
+                                break;
+                        }
 
                         break;
                 }
@@ -235,7 +296,6 @@
                 switch (option) {
                     case "question_text":
                         var newVal = value.replace(/[\n\r]/g, ' ');
-                        alert(newVal);
                         break;
                     case "backgroundColor":
                         el.css("backgroundColor", value);
