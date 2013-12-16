@@ -183,6 +183,7 @@ class tests_controller extends secure_controller {
     //Get the test and allow the user to answer the questions
     public function take($test_assign_id, $test_instance_id = null, $question_id = null) {
         $errors = array();
+        //Is out input legit at all?
         $test_assign_id =  DB::instance(DB_NAME)->sanitize($test_assign_id);
         $test_instance_id = DB::instance(DB_NAME)->sanitize($test_instance_id);
         $question_id = DB::instance(DB_NAME)->sanitize($question_id);
@@ -190,14 +191,51 @@ class tests_controller extends secure_controller {
         if ($test_instance_id != null && !is_numeric($test_instance_id)) {$errors[] = "Invalid test";}
         if ($question_id != null && !is_numeric($question_id)) {$errors[] = "Invalid question";}
 
-        //If there is no test instance for this assignment we need to create one
-
-        //Setup the view
-        $this->template->content = View::instance('v_test_take_question');
+        //Does our legit input exist in our DB for this user?
+        if (count($errors) == 0) {
+            $test_assign = DB::instance(DB_NAME)->select_row("SELECT test_assign_id, user_id FROM test_assign_user WHERE test_assign_id=".$test_assign_id);
+            if (count($test_assign) > 0) {
+                $check_user_id = $test_assign["user_id"];
+                if ($check_user_id != $this->user->user_id) {$errors[] = "Invalid user";}
+            } else {$errors[] = "Invalid assignment";}
+        }
 
         if (count($errors) == 0) {
-            $assign_details = siteutils::getQuestionDetails($test_instance_id, $question_id);
-            $this->template->content->assign_details = $assign_details;
+            //If there is no test instance for this assignment we need to create one
+            $instance_details = null;
+            if ($test_instance_id != null) {
+                $q = "SELECT test_instance_id, test_assign_id, start_dt, finish_dt FROM test_instance WHERE test_instance_id=".$test_instance_id;
+                $instance_details = DB::instance(DB_NAME)->select_row($q);
+            }
+            if (count($instance_details) == 0) {//no existing instance
+                $create_instance = ["start_dt" => Time::now(),"test_assign_id" => $test_assign_id];
+                $test_instance_id = DB::instance(DB_NAME)->insert("test_instance", $create_instance);
+            } else {
+                $finish_dt = $instance_details["finish_dt"];
+                if (isset($finish_dt)) {$errors[] = "This test has already been completed";}
+                $check_test_assign_id = $instance_details["test_assign_id"];
+                if ($check_test_assign_id != $test_assign_id) {$errors[] = "Instance is not valid";}
+            }
+
+            //Setup the view
+            $this->template->content = View::instance('v_test_take_question');
+            $this->template->content->errors = $errors;
+
+            //get the question details and setup the form
+            $question_details = siteutils::getQuestionDetails($test_instance_id, $question_id);
+            $this->template->content->question_details = $question_details;
+            $this->template->content->question_text = $question_details[0]['question_text'];
+            $this->template->content->question_type_id = $question_details[0]['question_type_id'];
+            $this->template->content->test_assign_id = $test_assign_id;
+            $this->template->content->test_instance_id = $test_instance_id;
+            $this->template->content->question_id = $question_details[0]['question_id'];
+            $this->template->content->next_question_id = $question_details[0]['next_question_id'];
+            $this->template->content->prior_question_id = $question_details[0]['prior_question_id'];
+            $this->template->content->question_order = $question_details[0]['question_order'];
+            $due_on_dt = $question_details[0]["due_on_dt"];
+            if ($due_on_dt != "") {$due_on_dt = date("m/d/Y", $due_on_dt);}
+            $this->template->content->$due_on_dt = $due_on_dt;
+
         }
 
         # Now set the <title> tag
