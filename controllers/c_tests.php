@@ -180,30 +180,21 @@ class tests_controller extends secure_controller {
 
     }//end of assignment
 
+
     //Get the test and allow the user to answer the questions
     public function take($test_assign_id, $test_instance_id = null, $question_id = null) {
-        $errors = array();
-        //Is out input legit at all?
-        $test_assign_id =  DB::instance(DB_NAME)->sanitize($test_assign_id);
-        $test_instance_id = DB::instance(DB_NAME)->sanitize($test_instance_id);
-        $question_id = DB::instance(DB_NAME)->sanitize($question_id);
-        if (!is_numeric($test_assign_id)) {$errors[] = "Invalid assignment";}
-        if ($test_instance_id != null && !is_numeric($test_instance_id)) {$errors[] = "Invalid test";}
-        if ($question_id != null && !is_numeric($question_id)) {$errors[] = "Invalid question";}
+        $errors = $this->checkQuestionInput($test_assign_id, $test_instance_id, $question_id, 2);
 
-        //Does our legit input exist in our DB for this user?
-        if (count($errors) == 0) {
-            $test_assign = DB::instance(DB_NAME)->select_row("SELECT test_assign_id, user_id FROM test_assign_user WHERE test_assign_id=".$test_assign_id);
-            if (count($test_assign) > 0) {
-                $check_user_id = $test_assign["user_id"];
-                if ($check_user_id != $this->user->user_id) {$errors[] = "Invalid user";}
-            } else {$errors[] = "Invalid assignment";}
-        }
+        //Setup the view
+        $this->template->content = View::instance('v_test_take_question');
 
         if (count($errors) == 0) {
             //If there is no test instance for this assignment we need to create one
             $instance_details = null;
-            if ($test_instance_id != null) {
+            if ($test_instance_id == null) {
+                $q = "SELECT test_instance_id, test_assign_id, start_dt, finish_dt FROM test_instance WHERE test_assign_id =".$test_assign_id;
+                $instance_details = DB::instance(DB_NAME)->select_row($q);
+            } else {
                 $q = "SELECT test_instance_id, test_assign_id, start_dt, finish_dt FROM test_instance WHERE test_instance_id=".$test_instance_id;
                 $instance_details = DB::instance(DB_NAME)->select_row($q);
             }
@@ -211,15 +202,16 @@ class tests_controller extends secure_controller {
                 $create_instance = ["start_dt" => Time::now(),"test_assign_id" => $test_assign_id];
                 $test_instance_id = DB::instance(DB_NAME)->insert("test_instance", $create_instance);
             } else {
+                $test_instance_id = $instance_details["test_instance_id"];//needs to be set because an assign ID may be all that was sent
                 $finish_dt = $instance_details["finish_dt"];
                 if (isset($finish_dt)) {$errors[] = "This test has already been completed";}
                 $check_test_assign_id = $instance_details["test_assign_id"];
                 if ($check_test_assign_id != $test_assign_id) {$errors[] = "Instance is not valid";}
             }
 
-            //Setup the view
-            $this->template->content = View::instance('v_test_take_question');
-            $this->template->content->errors = $errors;
+            //mark the test_assign_user as being taken
+            $test_assign_update = ["test_assign_status_id" => 2];
+            DB::instance(DB_NAME)->update("test_assign_user", $test_assign_update, "WHERE test_assign_id = ".$test_assign_id);
 
             //get the question details and setup the form
             $question_details = siteutils::getQuestionDetails($test_instance_id, $question_id);
@@ -246,6 +238,113 @@ class tests_controller extends secure_controller {
         echo $this->template;
 
     }//end of take
+
+    //question is being submitted with an answer
+    public function p_take($test_assign_id, $test_instance_id, $question_id) {
+        $errors = $this->checkQuestionInput($test_assign_id, $test_instance_id, $question_id, 2);
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+
+        $next_question_id = $question_id;
+        if (count($errors) == 0){
+            $question_details = siteutils::getQuestionDetails($test_instance_id,$question_id);
+            $question_type_id = $question_details[0]["question_type_id"];
+            $next_question_id = $question_details[0]["next_question_id"];
+
+            //delete any existing answer for this test instance
+            $q = "DELETE FROM test_instance_answer WHERE test_instance_id = ".$test_instance_id." AND question_id =".$question_id;
+            DB::instance(DB_NAME)->query($q);
+
+            switch ($question_type_id) {
+                case 1://check boxes
+                    //Find the passed in checkboxes (these are selected by the user)
+                    foreach($_POST as $key => $value) {
+                        if (strpos($key, 'select_') === 0) {//we have a checkbox
+                            //parse out the answer id and pop it into the database
+                            $arr = explode("_", $key);
+                            $answer_id = $arr[count($arr)-1];
+                            $test_instance_answer = [
+                                "answer_id" => $answer_id,
+                                "is_selected" => 1,
+                                "question_id" => $question_id,
+                                "test_instance_id" => $test_instance_id
+                            ];
+                            //echo var_dump($test_instance_answer);
+                            $test_instance_answer_id = DB::instance(DB_NAME)->insert("test_instance_answer",$test_instance_answer);
+                        }
+                    }
+                    break;
+                case 2://radio buttons
+                case 3://true or false (which is similar to radio buttons)
+                    foreach($_POST as $key => $value) {//the value will be the answer_id that was chosen
+                        if (strpos($key, "question_answer") === 0) {//we have a checkbox
+                            $test_instance_answer = [
+                                "answer_id" => $value,
+                                "is_selected" => 1,
+                                "question_id" => $question_id,
+                                "test_instance_id" => $test_instance_id
+                            ];
+                            $test_instance_answer_id = DB::instance(DB_NAME)->insert("test_instance_answer",$test_instance_answer);
+                        }
+                    }
+                    break;
+                case 4:
+                    $answer_id = $question_details[0]["answer_id"];
+                    $answer_control_name = "txt_".$question_id."_".$answer_id;
+                    $answer_text = $_POST[$answer_control_name];
+                    $test_instance_answer = [
+                        "answer_id" => $answer_id,
+                        "is_selected" => 1,
+                        "question_id" => $question_id,
+                        "test_instance_id" => $test_instance_id,
+                        "answer_text" => $answer_text
+                    ];
+                    $test_instance_answer_id = DB::instance(DB_NAME)->insert("test_instance_answer",$test_instance_answer);
+                    break;
+            }
+        }
+        if ($next_question_id != null){
+            Router::redirect("/tests/take/".$test_assign_id."/".$test_instance_id."/".$next_question_id);
+        } else {//go to the test summary
+            Router::redirect("/tests/takesummary/".$test_assign_id."/".$test_instance_id);
+        }
+    }
+
+    //Show a summary of the test to the user with a "finish" button
+    public function takesummary($test_assign_id, $test_instance_id) {
+        $errors = $this->checkQuestionInput($test_assign_id, $test_instance_id, null);
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+
+        if (count($errors) == 0){
+            $test_assign_id =  DB::instance(DB_NAME)->sanitize($test_assign_id);
+            $test_instance_id = DB::instance(DB_NAME)->sanitize($test_instance_id);
+
+            $instance_summary = siteutils::getTestInstanceSummary($test_instance_id);
+
+            $this->template->content = View::instance('v_tests_take_summary');
+            $this->template->title   = "Test Summary";
+            $this->template->content->instance_summary = $instance_summary;
+            $this->template->content->test_assign_id = $test_assign_id;
+            $this->template->content->test_instance_id = $test_instance_id;
+
+            echo $this->template;
+        }
+
+    }
+
+    //testtaker is submitting the test - mark it as taken and grade it
+    public function p_submit($test_assign_id, $test_instance_id) {
+        $errors = $this->checkQuestionInput($test_assign_id, $test_instance_id, null);
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+
+        if (count($errors) == 0){
+            //mark the test_assign_user as being taken
+            $test_assign_update = ["test_assign_status_id" => 3];
+            DB::instance(DB_NAME)->update("test_assign_user", $test_assign_update, "WHERE test_assign_id = ".$test_assign_id);
+
+            //TODO: Grade the instance
+
+        }
+    }
 
     //Make the changes required to the test and re-direct to the edit screen again
     public function p_edit($test_id) {
@@ -313,6 +412,31 @@ class tests_controller extends secure_controller {
         $template_instance->content->question_types = questions_controller::getQuestionTypes();
     }
 
+    private function checkQuestionInput($test_assign_id, $test_instance_id = null, $question_id = null, $min_status_id = null) {
+        $errors = array();
+        //Is out input legit at all?
+        $test_assign_id =  DB::instance(DB_NAME)->sanitize($test_assign_id);
+        $test_instance_id = DB::instance(DB_NAME)->sanitize($test_instance_id);
+        $question_id = DB::instance(DB_NAME)->sanitize($question_id);
+        if (!is_numeric($test_assign_id)) {$errors[] = "Invalid assignment";}
+        if ($test_instance_id != null && !is_numeric($test_instance_id)) {$errors[] = "Invalid test";}
+        if ($question_id != null && !is_numeric($question_id)) {$errors[] = "Invalid question";}
 
+        //Does our legit input exist in our DB for this user?
+        if (count($errors) == 0) {
+            $test_assign = DB::instance(DB_NAME)->select_row("SELECT test_assign_id, user_id, test_assign_status_id FROM test_assign_user WHERE test_assign_id=".$test_assign_id);
+            if (count($test_assign) > 0) {
+                $check_user_id = $test_assign["user_id"];
+                if ($check_user_id != $this->user->user_id) {$errors[] = "Invalid user";}
+
+                if ($min_status_id != null) {
+                    $current_status_id = $test_assign["test_assign_status_id"];
+                    if ($current_status_id > $min_status_id) {$errors[] = "Cannot complete test at this time";}
+                }
+            } else {$errors[] = "Invalid assignment";}
+        }
+
+        return $errors;
+    }
 
 } # End of class

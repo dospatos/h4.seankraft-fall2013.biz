@@ -45,14 +45,35 @@ class questions_controller extends secure_controller {
 
     //Get a single question with its answers and pass it back json style
     public function get($question_id) {
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+        $test_instance_id = null;
+        if (isset($_POST["test_instance_id"])) {
+            $test_instance_id = $_POST["test_instance_id"];
+        }
+        //if we were passed a test instance_id we know it's a user taking a test so we only send the answers that the user gave
         $q = "SELECT question_id, question_order, test_id, created_by_user_id, question_text, question_type_id, question_image
-            , created, updated, all_or_none, deleted FROM questions WHERE question_id = ".$question_id;
+                , created, updated, all_or_none, deleted FROM questions WHERE question_id = ".$question_id;
 
         $question = DB::instance(DB_NAME)->select_row($q);
 
-        $q = "SELECT answer_id, question_id, answer_text, answer_order, correct FROM answers WHERE question_id = ".$question_id." ORDER BY answer_order ASC";
-        $answers = DB::instance(DB_NAME)->select_rows($q);
-        $question["answers"] = $answers;
+        if ($test_instance_id != null) {//return the question as the test taker answered it
+            $q = "SELECT A.answer_id, A.question_id, IF(TIA.answer_text IS NULL,A.answer_text, TIA.answer_text) AS answer_text
+                , A.answer_order, IF(TIA.is_selected IS NULL, 0, TIA.is_selected ) AS correct
+                FROM answers A
+                LEFT JOIN test_instance_answer TIA ON TIA.answer_id = A.answer_id AND TIA.test_instance_id = ".$test_instance_id."
+                WHERE A.question_id = ".$question_id." ORDER BY answer_order ASC";
+            $answers = DB::instance(DB_NAME)->select_rows($q);
+            $question["answers"] = $answers;
+        } else {//the test is being edited - check that this is an admin
+            if ($this->user->is_admin) {
+                $q = "SELECT answer_id, question_id, answer_text, answer_order, correct FROM answers WHERE question_id = ".$question_id." ORDER BY answer_order ASC";
+                $answers = DB::instance(DB_NAME)->select_rows($q);
+                $question["answers"] = $answers;
+            } else {
+                echo json_encode("invalid user");
+                die;
+            }
+        }
 
         echo json_encode($question);
     }

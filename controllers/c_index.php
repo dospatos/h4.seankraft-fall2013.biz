@@ -31,7 +31,7 @@ class index_controller extends base_controller {
 	    	*/
 
         //Get the logged in user's list of current assignments
-            $this->template->content->assigned_tests = siteutils::getTestsAssigedToUser($this->user->user_id, 1);
+            $this->template->content->assigned_tests = siteutils::getTestsAssigedToUser($this->user->user_id, 2);
 	      					     		
 		# Render the view
 			echo $this->template;

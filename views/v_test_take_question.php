@@ -12,7 +12,7 @@ if (isset($question_details)) {
     ?>
     <section>
         <div>
-            <form action="/test/p_take/<?php echo $question_id?>" method="post">
+            <form action="/tests/p_take/<?php echo $test_assign_id.'/'.$test_instance_id.'/'.$question_id?>" method="post">
                 <fieldset>
                     <legend>Question #<?php echo $question_order + 1?></legend>
                     <div id='tab-question-<?php echo $question_id ?>'
@@ -39,6 +39,6 @@ if (isset($question_details)) {
 
 <script type="text/javascript">
     $(document).ready(function(){
-        <?php echo "\t$('#tab-question-".$question_id."').question({display_mode: 'take',question_id:".$question_id.",question_text: '".$question_text."', question_type_id:".$question_type_id."});"; ?>
+        <?php echo "\t$('#tab-question-".$question_id."').question({test_instance_id: ".$test_instance_id.",display_mode: 'take',question_id:".$question_id.",question_text: '".$question_text."', question_type_id:".$question_type_id."});"; ?>
     });
 </script>

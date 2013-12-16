@@ -148,6 +148,24 @@ class siteutils {
         return $assign_status;
     }
 
+    //for a test instance get the summary information
+    public static function getTestInstanceSummary($test_instance_id) {
+        $q = "SELECT  TI.test_instance_id, TA.assigned_on_dt
+            , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
+            , T.test_name, T.test_descr, T.test_category, T.minutes_to_complete
+            , Q.question_id, Q.question_text, Q.question_order
+            FROM test_instance TI
+            INNER JOIN test_assign_user TA ON TA.test_assign_id = TI.test_assign_id
+            INNER JOIN tests T ON T.test_id = TA.test_id
+            INNER JOIN questions Q ON Q.test_id = T.test_id
+            WHERE TI.test_instance_id =".$test_instance_id." AND T.deleted <> 1
+            ORDER BY Q.question_order";
+
+        $instance_details = DB::instance(DB_NAME)->select_rows($q);
+
+        return $instance_details;
+    }
+
     //For the given test_assign_id, get the details
     public static function getTestAssignmentDetails($test_assign_id) {
         $q = "SELECT U.user_id, U.first_name, U.last_name, U.email, TA.assigned_on_dt
@@ -202,7 +220,7 @@ class siteutils {
             LEFT JOIN questions Qprior ON Qprior.test_id = Q.test_id AND Qprior.question_order = (IF(Q.question_order=0,null,Q.question_order) - 1)
             INNER JOIN answers A ON A.question_id = Q.question_id
             LEFT JOIN test_instance_answer IA ON IA.answer_id = A.answer_id
-            WHERE test_instance_id=".$test_instance_id;
+            WHERE TI.test_instance_id=".$test_instance_id;
 
         $question_details = DB::instance(DB_NAME)->select_rows($q);
 
