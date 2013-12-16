@@ -141,7 +141,7 @@ class siteutils {
             INNER JOIN tests T ON T.test_id = TA.test_id
             WHERE U.user_id =".$user_id." AND T.deleted <> 1";
         if ($assign_status_id != null) {
-            $q = $q." AND TA.test_assign_status_id = ".$assign_status_id;
+            $q = $q." AND TA.test_assign_status_id <= ".$assign_status_id;
         }
         $q = $q." ORDER BY U.last_name, U.first_name";
         $assign_status = DB::instance(DB_NAME)->select_rows($q);
