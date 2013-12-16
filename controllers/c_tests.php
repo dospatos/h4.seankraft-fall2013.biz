@@ -262,12 +262,12 @@ class tests_controller extends secure_controller {
                             //parse out the answer id and pop it into the database
                             $arr = explode("_", $key);
                             $answer_id = $arr[count($arr)-1];
-                            $test_instance_answer = [
+                            $test_instance_answer =  array(
                                 "answer_id" => $answer_id,
                                 "is_selected" => 1,
                                 "question_id" => $question_id,
                                 "test_instance_id" => $test_instance_id
-                            ];
+                            );
                             //echo var_dump($test_instance_answer);
                             $test_instance_answer_id = DB::instance(DB_NAME)->insert("test_instance_answer",$test_instance_answer);
                         }
@@ -277,12 +277,12 @@ class tests_controller extends secure_controller {
                 case 3://true or false (which is similar to radio buttons)
                     foreach($_POST as $key => $value) {//the value will be the answer_id that was chosen
                         if (strpos($key, "question_answer") === 0) {//we have a checkbox
-                            $test_instance_answer = [
+                            $test_instance_answer = array(
                                 "answer_id" => $value,
                                 "is_selected" => 1,
                                 "question_id" => $question_id,
                                 "test_instance_id" => $test_instance_id
-                            ];
+                            );
                             $test_instance_answer_id = DB::instance(DB_NAME)->insert("test_instance_answer",$test_instance_answer);
                         }
                     }
@@ -291,13 +291,13 @@ class tests_controller extends secure_controller {
                     $answer_id = $question_details[0]["answer_id"];
                     $answer_control_name = "txt_".$question_id."_".$answer_id;
                     $answer_text = $_POST[$answer_control_name];
-                    $test_instance_answer = [
+                    $test_instance_answer = array(
                         "answer_id" => $answer_id,
                         "is_selected" => 1,
                         "question_id" => $question_id,
                         "test_instance_id" => $test_instance_id,
                         "answer_text" => $answer_text
-                    ];
+                    );
                     $test_instance_answer_id = DB::instance(DB_NAME)->insert("test_instance_answer",$test_instance_answer);
                     break;
             }
