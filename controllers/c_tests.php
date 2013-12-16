@@ -199,7 +199,7 @@ class tests_controller extends secure_controller {
                 $instance_details = DB::instance(DB_NAME)->select_row($q);
             }
             if (count($instance_details) == 0) {//no existing instance
-                $create_instance = ["start_dt" => Time::now(),"test_assign_id" => $test_assign_id];
+                $create_instance =array("start_dt" => Time::now(),"test_assign_id" => $test_assign_id);
                 $test_instance_id = DB::instance(DB_NAME)->insert("test_instance", $create_instance);
             } else {
                 $test_instance_id = $instance_details["test_instance_id"];//needs to be set because an assign ID may be all that was sent
@@ -210,7 +210,7 @@ class tests_controller extends secure_controller {
             }
 
             //mark the test_assign_user as being taken
-            $test_assign_update = ["test_assign_status_id" => 2];
+            $test_assign_update = array("test_assign_status_id" => 2);
             DB::instance(DB_NAME)->update("test_assign_user", $test_assign_update, "WHERE test_assign_id = ".$test_assign_id);
 
             //get the question details and setup the form
@@ -338,7 +338,7 @@ class tests_controller extends secure_controller {
 
         if (count($errors) == 0){
             //mark the test_assign_user as being taken
-            $test_assign_update = ["test_assign_status_id" => 3];
+            $test_assign_update = array("test_assign_status_id" => 3);
             DB::instance(DB_NAME)->update("test_assign_user", $test_assign_update, "WHERE test_assign_id = ".$test_assign_id);
 
             //TODO: Grade the instance
