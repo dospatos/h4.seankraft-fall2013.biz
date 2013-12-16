@@ -122,9 +122,9 @@ class testtakers_controller extends secure_controller {
             else
             {
                 //store the contents of the file in the database staging table
-                $testtaker_staging_id = DB::instance(DB_NAME)->insert('testtaker_staging', ["created" => Time::now(),
+                $testtaker_staging_id = DB::instance(DB_NAME)->insert('testtaker_staging', array("created" => Time::now(),
                         "created_by_user_id" => $this->user->user_id
-                    ]);
+                ));
                 if (($handle = fopen($_FILES["file"]["tmp_name"], "r")) !== FALSE) {
                     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                         $num = count($data);

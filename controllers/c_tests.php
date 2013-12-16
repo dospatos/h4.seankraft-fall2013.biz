@@ -136,13 +136,13 @@ class tests_controller extends secure_controller {
                         $due_on_date = "txt_due_".$value;
                         $due_on_date = $_POST[$due_on_date];
                         $due_on_date = strtotime($due_on_date);
-                        $assign_test = ["assigned_by_user_id" => $this->user->user_id,
+                        $assign_test = array("assigned_by_user_id" => $this->user->user_id,
                             "assigned_on_dt" => Time::now(),
                             "due_on_dt" => $due_on_date,
                             "test_assign_status_id" => "1",
                             "test_id" => $test_id,
                             "user_id" => $value
-                        ];
+                        );
 
                         $test_assign_id = DB::instance(DB_NAME)->insert('test_assign_user', $assign_test);
                     }
