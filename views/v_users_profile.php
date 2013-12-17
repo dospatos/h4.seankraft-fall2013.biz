@@ -31,7 +31,7 @@
             <input type='text' name='title' value='<?php echo stripslashes($currentuser["job_title"]); ?>'>
         </p>
         <p>
-            <label for='email'>Email (this is also your username)</label>
+            <label for='email'>Email (this is also the username)</label>
             <input type='text' name='email' value='<?php echo stripslashes($currentuser["email"]); ?>'>
             <br>
         </p>

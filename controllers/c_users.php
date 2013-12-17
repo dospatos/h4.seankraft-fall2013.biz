@@ -27,18 +27,8 @@ class users_controller extends base_controller {
     public function profileedit($id = null) {
 
         siteutils::redirectnonloggedinuser($this->user);
-        /* users can edit
-        1. themselves
-        2. any user within their account, provided they are an admin
-        */
-        $id = DB::instance(DB_NAME)->sanitize($id);
-        if ($this->user->user_id != $id) { //if we're trying to edit another user we need to know if that's OK
-            $q = "SELECT U2.user_id FROM users U1 INNER JOIN users U2 ON U2.user_id = ".$id." AND U2.account_id = U1.account_id WHERE U1.user_id = ".$this->user->user_id." AND U1.is_admin = 1";
-            $id = DB::instance(DB_NAME)->select_field($q);
-            if (!$id) { //someone is trying to edit a user they don't have access to - let them edit their own user and log the situation
-                $id = $this->user->user_id;
-            }
-        }
+        $id = siteutils::getLegitUserId($id, $this->user);
+
         $currentuser = siteutils::getuserprofile($id);
 
         $this->template->content = View::instance('v_users_profile');

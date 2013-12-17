@@ -135,23 +135,25 @@ class siteutils {
             , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
             , S.test_assign_status_descr
             , T.test_name, T.test_descr, T.test_category
+            , TI.graded, TI.grade, TI.seconds_elapsed, TI.finish_dt, TI.start_dt, TI.review_override_grade, TI.review_override_user_id, TI.review_override_comment
             FROM users U
             INNER JOIN test_assign_user TA ON TA.user_id = U.user_id
             INNER JOIN test_assign_status S ON S.test_assign_status_id = TA.test_assign_status_id
+            LEFT JOIN test_instance TI ON TI.test_assign_id = TA.test_assign_id
             INNER JOIN tests T ON T.test_id = TA.test_id
             WHERE U.user_id =".$user_id." AND T.deleted <> 1";
         if ($assign_status_id != null) {
             $q = $q." AND TA.test_assign_status_id <= ".$assign_status_id;
         }
-        $q = $q." ORDER BY U.last_name, U.first_name";
+        $q = $q." ORDER BY U.last_name, U.first_name, T.test_category";
         $assign_status = DB::instance(DB_NAME)->select_rows($q);
         return $assign_status;
     }
 
     //for a test instance get the summary information
     public static function getTestInstanceSummary($test_instance_id) {
-        $q = "SELECT  TI.test_instance_id, TA.assigned_on_dt
-            , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
+        $q = "SELECT  TI.test_instance_id,TI.graded,TI.grade,TI.start_dt,TI.finish_dt,TI.seconds_elapsed
+            , TA.assigned_on_dt, TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
             , T.test_name, T.test_descr, T.test_category, T.minutes_to_complete
             , Q.question_id, Q.question_text, Q.question_order
             FROM test_instance TI
@@ -225,6 +227,94 @@ class siteutils {
         $question_details = DB::instance(DB_NAME)->select_rows($q);
 
         return $question_details;
+    }
+
+    public static function getGradeableTestInstance($test_instance_id) {
+        $q="SELECT TI.test_instance_id, TI.start_dt, TI.finish_dt
+            , TI.grade, TI.graded, TI.seconds_elapsed, TI.review_override_grade
+            , TI.review_override_user_id, TI.review_override_comment
+            , TA.test_assign_id, TA.test_id, user_id, TA.test_assign_status_id
+            , TA.assigned_by_user_id, TA.assigned_on_dt, TA.due_on_dt, T.test_id
+            , T.account_id, T.test_name, T.test_descr, T.minutes_to_complete
+            , T.test_category, Q.question_id, Q.question_order, Q.question_text
+            , Q.question_type_id, Q.question_image
+            , A.answer_id, A.answer_text, A.answer_order
+            , COALESCE(A.correct, 0) AS correct
+            , COALESCE(TIA.is_selected, 0) AS is_selected, COALESCE(TIA.answer_text, 'NA') AS submitted_answer_text
+            ,IF(COALESCE(TIA.is_selected, 0) = A.correct, 1, 0) AS answered_correctly
+            FROM test_instance TI
+            INNER JOIN test_assign_user TA ON TA.test_assign_id = TI.test_assign_id
+            INNER JOIN tests T ON T.test_id = TA.test_id
+            INNER JOIN questions Q ON Q.test_id = T.test_id
+            INNER JOIN answers A ON A.question_id = Q.question_id
+            LEFT JOIN test_instance_answer TIA ON TIA.test_instance_id = TI.test_instance_id AND TIA.answer_id = A.answer_id
+            WHERE TI.test_instance_id =".$test_instance_id."
+            ORDER BY Q.question_order, A.answer_order";
+
+        $test_instance_details = DB::instance(DB_NAME)->select_rows($q);
+
+        return $test_instance_details;
+    }
+
+    //Grade the test
+    public static function gradeTest($test_instance_id) {
+        $gradeable_test = siteutils::getGradeableTestInstance($test_instance_id);
+
+        $row_counter = 0;
+        $question_count = 0;
+        $correct_answer_count = 0;
+        $current_question_id = 0;
+        $next_question_id = $gradeable_test[$row_counter]["question_id"];
+        $current_question_correct = true;
+        while ($next_question_id != null) {
+            if ($next_question_id != $current_question_id) {//new question has been reached
+                $question_count++;
+                if ($current_question_correct){$correct_answer_count++;}
+                $current_question_id = $next_question_id;
+            }
+
+            //Check if the answer is correct - if any are wrong the entire question is wrong
+            if ($current_question_correct) {
+                $current_question_correct = $gradeable_test[$row_counter]["answered_correctly"] == "1";
+            }
+
+            //Move to the next row
+            $row_counter++;
+            $next_question_id = null;
+            if ($row_counter < count($gradeable_test)) {
+                $next_question_id =  $gradeable_test[$row_counter]["question_id"];
+            }
+        }
+
+        //set the grade and update the instance
+        //echo $correct_answer_count." / ".$question_count."<br/>";
+        $test_grade = 0;
+        if ($question_count > 0) {
+            $test_grade = ($correct_answer_count / $question_count) * 100;
+        }
+        //echo $test_grade."<br/>";
+        $test_instance_update = array("grade" => $test_grade, "graded" => 1);
+        DB::instance(DB_NAME)->update("test_instance", $test_instance_update, "WHERE test_instance_id =".$test_instance_id);
+
+        return siteutils::getTestInstanceSummary($test_instance_id);
+
+    }
+
+    /* users can access
+    1. themselves
+    2. any user within their account, provided they are an admin
+    */
+    public static function getLegitUserId($user_id = null, $user) {
+        $user_id = DB::instance(DB_NAME)->sanitize($user_id);
+        $user_id = $user_id == null ? $user->user_id : $user_id;
+        if ($user->user_id != $user_id) { //if we're trying to edit another user we need to know if that's OK
+            $q = "SELECT U2.user_id FROM users U1 INNER JOIN users U2 ON U2.user_id = ".$user_id." AND U2.account_id = U1.account_id WHERE U1.user_id = ".$user->user_id." AND U1.is_admin = 1";
+            $user_id = DB::instance(DB_NAME)->select_field($q);
+            if (!$user_id) { //someone is trying to edit a user they don't have access to - let them edit their own user and log the situation
+                $id = $user->user_id;
+            }
+        }
+        return $user_id;
     }
 
 }

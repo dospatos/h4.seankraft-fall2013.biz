@@ -106,6 +106,7 @@
             },
             //Append the proper elements to the DOM to enable the editing of answers
             _addAnswerDisplay: function(question_id, question_type_id, answer_id, answer_text, answer_correct) {
+                //console.log("answer_id: " + answer_id + ", question_type_id:" + question_type_id);
                 var select_control_prefix = "select_";
                 var answer_select= answer_correct == "1" ? "checked='checked'" : "";
                 var select_control_id = select_control_prefix + question_id + "_" + answer_id;
@@ -200,10 +201,10 @@
                                     this.element.append("<div>A: " + answer_text + "</div>")
                                 }
                                 break;
-                        }
+                        }//display_mode
 
                         break;
-                }
+                }//question_type_id
 
                 $("#" + select_control_id).change(function(){
                     //When this is triggered, we have no answer context - we have to rely on our on attributes to survive

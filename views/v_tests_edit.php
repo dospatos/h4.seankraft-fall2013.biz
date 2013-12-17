@@ -221,7 +221,6 @@
         }
 
         $("#chkCheckAll").change(function () {
-            console.log('here');
             $(".checkbox").prop('checked', this.checked);
         });
 
@@ -243,7 +242,7 @@
         $('#cmdAddQuestion').click(function () {
             //Add the question at the server, get the new ID
             var question_text = $('#question_text').val();
-            var question_type_id = $("input[name='question_type_id']:checked").val();
+            var question_type_id = parseInt($("input[name='question_type_id']:checked").val());
             var test_id = $('#test_id').val();
             var question_id = 0;
 
@@ -264,7 +263,7 @@
                 data: { question_text: question_text, question_type_id: question_type_id},
                 async: false,
                 success : function(data) {
-                    question_id = data;
+                    question_id = Number(data);
                 }
             });
 
@@ -274,7 +273,7 @@
                 var newTab = $( "#tab-questions .ui-tabs-nav").append("<li><a href='#tab-question-" + question_id + "'>" + question_text + "-" + question_type_id +"</li>");
                 $("#tab-questions").tabs("refresh");
                 //light up the question
-                $( "#tab-question-" + question_id).question({question_text: question_text});
+                $( "#tab-question-" + question_id).question({question_text: question_text, question_type_id: question_type_id, question_id: question_id});
             }
         });
 

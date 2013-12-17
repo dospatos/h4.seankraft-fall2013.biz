@@ -331,6 +331,19 @@ class tests_controller extends secure_controller {
 
     }
 
+    //Display the history of tests for the user
+    public function viewhistory($user_id = null) {
+        $user_id = siteutils::getLegitUserId($user_id, $this->user);
+        $test_list = siteutils::getTestsAssigedToUser($user_id, 3);
+
+        //Display the test history
+        $this->template->content = View::instance('v_test_display_user_history');
+        $this->template->title   = "Test History";
+        $this->template->content->test_list = $test_list;
+
+        echo $this->template;
+    }
+
     //testtaker is submitting the test - mark it as taken and grade it
     public function p_submit($test_assign_id, $test_instance_id) {
         $errors = $this->checkQuestionInput($test_assign_id, $test_instance_id, null);
@@ -341,7 +354,21 @@ class tests_controller extends secure_controller {
             $test_assign_update = array("test_assign_status_id" => 3);
             DB::instance(DB_NAME)->update("test_assign_user", $test_assign_update, "WHERE test_assign_id = ".$test_assign_id);
 
-            //TODO: Grade the instance
+            $test_instance_update = array("test_instance_id" => $test_instance_id, "finish_dt" => Time::now());
+            DB::instance(DB_NAME)->update("test_instance", $test_instance_update, "WHERE test_instance_id = ".$test_instance_id);
+
+            //Grade the test
+            $graded_test = siteutils::gradeTest($test_instance_id);
+            if (count($graded_test) > 0){$graded_test = $graded_test[0];}
+
+            //Display the grade
+            $this->template->content = View::instance('v_test_display_grade');
+            $this->template->title   = "Grade Summary";
+            $this->template->content->graded_test = $graded_test;
+            $this->template->content->test_assign_id = $test_assign_id;
+            $this->template->content->test_instance_id = $test_instance_id;
+
+            echo $this->template;
 
         }
     }

@@ -120,7 +120,8 @@ class questions_controller extends secure_controller {
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
         $answer_id = $_POST["answer_id"];
         $correct = $_POST["correct"];
-        //first reset the answers to not correct, unless the question type is "all correct answers
+        if ($correct == "" || $correct == null || !isset($correct)) {$correct = "0";}
+        //first reset the answers to not correct, unless the question type is 1 aka. "all correct answers"
         $q = "UPDATE answers SET correct = 0 WHERE question_id IN (SELECT question_id FROM questions WHERE question_id = ".$question_id." AND question_type_id <> 1)";
         DB::instance(DB_NAME)->query($q);
 
