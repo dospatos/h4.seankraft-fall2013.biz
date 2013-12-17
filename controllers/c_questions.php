@@ -79,12 +79,13 @@ class questions_controller extends secure_controller {
     }
 
     //add a new answer for a question
-    public function p_addquestion($question_id) {
+    public function p_addanswer($question_id) {
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
         $_POST{"question_id"} = $question_id;
         //get the next answer_order for the question
         $answer_order = $this->getNextAnswerOrder($question_id);
         $_POST["answer_order"] = $answer_order;
+        $_POST["correct"] = 0;//default to not-correct
 
         //Set the question to whatever was sent in
         $answer_id = DB::instance(DB_NAME)->insert("answers", $_POST);
@@ -113,6 +114,18 @@ class questions_controller extends secure_controller {
         //Set the question to whatever was sent in
         $q = "UPDATE questions SET question_text = '".$question_text."' WHERE question_id = ".$question_id;
         DB::instance(DB_NAME)->query($q);
+    }
+
+    //update the text of a question
+    public function p_set_answer_text($question_id) {
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+        $answer_text = trim($_POST["answer_text"]);
+        $answer_id = DB::instance(DB_NAME)->select_field("SELECT MAX(answer_id) FROM answers WHERE question_id = ".$question_id." AND question_id IN (SELECT question_id FROM questions WHERE question_id =".$question_id." AND question_type_id = 4)");
+        if ($answer_id) {
+            //Set the question to whatever was sent in
+            $q = "UPDATE answers SET answer_text = '".$answer_text."' WHERE answer_id = ".$answer_id;
+            DB::instance(DB_NAME)->query($q);
+        }
     }
 
     //update the answer to a single question

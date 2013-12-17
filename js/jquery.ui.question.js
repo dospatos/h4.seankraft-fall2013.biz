@@ -45,16 +45,17 @@
                 //All questions have display text
                 var display_text = "<div id='" + display_text_id + "'>" + this.options.question_text + "</div>";
                 if (this.options.display_mode == "edit"){
-                    display_text = "<p><textarea rows='4' cols='50' id='" + display_text_id + "' name='txt_" + question_id + "_question_text'>" + this.options.question_text + "</textarea></p>";
+                    display_text = "<textarea rows='4' cols='50' id='" + display_text_id + "' name='" + display_text_id + "'>" + this.options.question_text + "</textarea>";
 
                     //On display text lost focus or when the enter key is pressed - update the question text
+                    this.element.append(display_text);
                     $("#" + display_text_id).bind("blur keyup", (function(e) {
                         if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
                         $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
                     }));
+                } else {
+                    if (this.options.display_mode != "review"){this.element.append(display_text);}
                 }
-                if (this.options.display_mode != "review"){this.element.append(display_text);}
-
                 switch (question_type_id) {
                     case 1 : //1 - choose all correct
                     case 2: {//2 - choose single correct
@@ -179,10 +180,21 @@
 
                         break;
                     case 4://Show a text area with prompting text as a watermark
-                        var display_text_area = "<span id='" + answer_span_id + "'>";
+                        var display_text_area = "<br/><span id='" + answer_span_id + "'>";
                         switch (this.options.display_mode) {
                             case "edit":
-                                display_text_area+= "<label for='" + textbox_control_id + "'>The test taker will see the following text as a prompt</label><br/>";
+                                display_text_area+= "<label for='" + textbox_control_id + "'>The test taker will see the following text as a prompt</label><br/>"
+                                + "<textarea rows='4' cols='50' id='" + textbox_control_id + "' name='" + textbox_control_id + "'></textarea>"
+                                    + "</span>";
+
+                                this.element.append(display_text_area);
+                                $("#" + textbox_control_id).val(answer_text);
+                                $("#" + textbox_control_id).bind("blur keyup", (function(e) {
+                                    if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
+                                    $('#' + this.id).closest(".question").question("changeAnswerText", $(this).val());
+                                }));
+
+                                break;
                             case "take":
                                 display_text_area+= "<textarea rows='4' cols='50' id='" + textbox_control_id + "' name='" + textbox_control_id + "'></textarea>"
                                     + "</span>";
@@ -242,7 +254,17 @@
                     type: "POST",
                     url: "/questions/p_set_question_text/" + this.options.question_id,
                     data: { question_text: question_text},
-                    async: false
+                    async: true
+                });
+            },
+            changeAnswerText: function(answer_text){
+                //alert("question_id: " + this.options.question_id + ", answer_text: " + answer_text);
+                answer_text = answer_text.replace(/[\n\r]/g, ' ');
+                $.ajax({
+                    type: "POST",
+                    url: "/questions/p_set_answer_text/" + this.options.question_id,
+                    data: { answer_text: answer_text},
+                    async: true
                 });
             },
             addAnswer: function(answer_text){
@@ -250,7 +272,7 @@
                 var answer_id = 0;
                 $.ajax({
                     type: "POST",
-                    url: "/questions/p_addquestion/" + this.options.question_id,
+                    url: "/questions/p_addanswer/" + this.options.question_id,
                     data: { answer_text: answer_text},
                     async: false,
                     dataType: "json",

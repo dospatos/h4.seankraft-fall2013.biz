@@ -220,6 +220,15 @@
             return return_date;
         }
 
+        //thanks to KooiInc on stackoverflow for this next block
+        String.prototype.trunc =
+            function(n,useWordBoundary){
+                var toLong = this.length>n,
+                    s_ = toLong ? this.substr(0,n-1) : this;
+                s_ = useWordBoundary && toLong ? s_.substr(0,s_.lastIndexOf(' ')) : s_;
+                return  toLong ? s_ + '&hellip;' : s_;
+            };
+
         $("#chkCheckAll").change(function () {
             $(".checkbox").prop('checked', this.checked);
         });
@@ -270,7 +279,7 @@
             if (question_id != null) {
                 //Add the question to the local page
                 var newTabContent = $("#tab-questions").append("<div style='display: none' id='tab-question-" + question_id + "' class='question ui-tabs-panel ui-widget-content ui-corner-bottom' question_id='" + question_id + "' aria-labelledby='ui-id-4' role='tabpanel' aria-expanded='false' aria-hidden='true' style='display: none;'></div>");
-                var newTab = $( "#tab-questions .ui-tabs-nav").append("<li><a href='#tab-question-" + question_id + "'>" + question_text + "-" + question_type_id +"</li>");
+                var newTab = $( "#tab-questions .ui-tabs-nav").append("<li><a href='#tab-question-" + question_id + "'>" + question_text.trunc(15, true) + "</li>");
                 $("#tab-questions").tabs("refresh");
                 //light up the question
                 $( "#tab-question-" + question_id).question({question_text: question_text, question_type_id: question_type_id, question_id: question_id});

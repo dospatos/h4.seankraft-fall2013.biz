@@ -197,7 +197,7 @@ class siteutils {
 
         //If the question ID is null we need to get the first question
         if ($question_id == null) {
-            $q = "SELECT MIN(question_id) FROM questions Q
+            $q = "SELECT MIN(question_id) AS question_id FROM questions Q
             INNER JOIN tests T ON T.test_id = Q.test_id
             INNER JOIN test_assign_user TA ON TA.test_id = T.test_id
             INNER JOIN test_instance I ON I.test_assign_id = TA.test_assign_id
@@ -220,7 +220,7 @@ class siteutils {
             INNER JOIN questions Q ON Q.question_id = ".$question_id."
             LEFT JOIN questions Qnext ON Qnext.test_id = Q.test_id AND Qnext.question_order = (Q.question_order + 1)
             LEFT JOIN questions Qprior ON Qprior.test_id = Q.test_id AND Qprior.question_order = (IF(Q.question_order=0,null,Q.question_order) - 1)
-            INNER JOIN answers A ON A.question_id = Q.question_id
+            LEFT JOIN answers A ON A.question_id = Q.question_id
             LEFT JOIN test_instance_answer IA ON IA.answer_id = A.answer_id
             WHERE TI.test_instance_id=".$test_instance_id;
 
@@ -241,7 +241,7 @@ class siteutils {
             , A.answer_id, A.answer_text, A.answer_order
             , COALESCE(A.correct, 0) AS correct
             , COALESCE(TIA.is_selected, 0) AS is_selected, COALESCE(TIA.answer_text, 'NA') AS submitted_answer_text
-            ,IF(COALESCE(TIA.is_selected, 0) = A.correct, 1, 0) AS answered_correctly
+            ,IF(COALESCE(TIA.is_selected, 0) = COALESCE(A.correct, 0), 1, 0) AS answered_correctly
             FROM test_instance TI
             INNER JOIN test_assign_user TA ON TA.test_assign_id = TI.test_assign_id
             INNER JOIN tests T ON T.test_id = TA.test_id
