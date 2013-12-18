@@ -69,13 +69,13 @@
                     <legend>Add Question</legend>
                     <p>
                         <label for="question_text">Question Text:</label>
-                        <input type='text' name='question_text' id='question_text'/>
+                        <input type='text' name='question_text' id='question_text' style="width:450px"/>
                     </p>
                     <p>
                     <div>Question Type:</div>
                     <?php foreach($question_types AS $current_question_type) { ?>
                         <label for="question_type_id_<?php echo $current_question_type['question_type_id']?>"><?php echo $current_question_type['question_type_descr']?></label>
-                        <input type="radio" name="question_type_id" id="question_type_id_<?php echo $current_question_type['question_type_id']?>" value="<?php echo $current_question_type['question_type_id']?>"/> |
+                        <input type="radio" name="question_type_id" id="question_type_id_<?php echo $current_question_type['question_type_id']?>" value="<?php echo $current_question_type['question_type_id']?>"/>
                     <?php } ?>
                     </p>
                     <input type='hidden' name='test_id' id='test_id' value='<?php echo $test_id;?>'/>
@@ -284,6 +284,8 @@
                 //light up the question
                 $( "#tab-question-" + question_id).question({question_text: question_text, question_type_id: question_type_id, question_id: question_id});
             }
+
+            $('#question_text').val("");//blank out the question
         });
 
         function linkTestQuestions() {

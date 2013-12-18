@@ -45,7 +45,7 @@
                 //All questions have display text
                 var display_text = "<div id='" + display_text_id + "'>" + this.options.question_text + "</div>";
                 if (this.options.display_mode == "edit"){
-                    display_text = "<textarea rows='4' cols='50' id='" + display_text_id + "' name='" + display_text_id + "'>" + this.options.question_text + "</textarea>";
+                    display_text = "<textarea rows='4' cols='50' id='" + display_text_id + "' name='" + display_text_id + "'>" + this.options.question_text + "</textarea><br/>";
 
                     //On display text lost focus or when the enter key is pressed - update the question text
                     this.element.append(display_text);

@@ -15,16 +15,17 @@
 </p>
 
 <?php if($user) { ?>
-        <h3>Your current tests</h3>
-        <table>
-        <thead class="table-header">
-        <td>Test Name</td>
-        <td>Due On</td>
-        <td>Assigned On</td>
-        </thead>
         <tbody>
             <?php
-            if (count($assigned_tests) > 0) {
+            if (count($assigned_tests) > 0) {?>
+            <h3>Your current tests</h3>
+            <table>
+                <thead class="table-header">
+                <td>Test Name</td>
+                <td>Due On</td>
+                <td>Assigned On</td>
+                </thead>
+                <?php
                 foreach($assigned_tests AS $current_test_assign) {
                     $due_on_dt = $current_test_assign["due_on_dt"];
                     if ($due_on_dt != "") {$due_on_dt = date("m/d/Y", $due_on_dt);}
