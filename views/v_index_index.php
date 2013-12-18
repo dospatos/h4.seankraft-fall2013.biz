@@ -45,6 +45,6 @@
         </table>
     <?php } else {echo ("<h3>No test currently assigned</h3>");} ?>
 <?php } else { ?>
-    <p>Please take a look at this demo of how the application works</p>
+    <p>Please take a look at this demo showing how the application works</p>
     <iframe width="420" height="315" src="//www.youtube.com/embed/urwIqBk853A" frameborder="0" allowfullscreen></iframe>
 <?php } ?>
