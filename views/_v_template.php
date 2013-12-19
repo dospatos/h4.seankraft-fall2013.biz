@@ -20,7 +20,7 @@
 </head>
 
 <body>
-
+<div style="width:900px;margin-left:auto;margin-right:auto">
 <div id='menu' style="width:100%;">
 
     <div id="spanUsername" style="float:left;width:300px;margin-top: 2px">
@@ -60,6 +60,6 @@
 <div id="maincontent">
 <?php if(isset($content)) echo $content; ?>
 </div>
-
+</div>
 </body>
 </html>
