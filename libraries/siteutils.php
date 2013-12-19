@@ -206,10 +206,10 @@ class siteutils {
             $question_id = DB::instance(DB_NAME)->select_field($q);
         }
         $q = "SELECT
-        TI.test_instance_id,TI.start_dt,TI.finish_dt,TI.grade,TI.graded
+        TI.test_instance_id,TI.start_dt,TI.finish_dt,TI.grade,TI.graded,TI.timer_id
         ,TI.seconds_elapsed,TI.review_override_grade,TI.review_override_user_id,TI.review_override_comment
         ,TA.test_assign_id,TA.test_id,user_id,TA.test_assign_status_id,TA.assigned_by_user_id,TA.assigned_on_dt,TA.due_on_dt
-        ,T.test_id,T.account_id,T.test_name,T.test_descr,T.minutes_to_complete,T.test_category
+        ,T.test_id,T.account_id,T.test_name,T.test_descr,COALESCE(T.minutes_to_complete, 0) AS minutes_to_complete,T.test_category
         ,Q.question_id,Q.question_order,Q.question_text,Q.question_type_id,Q.question_image
         ,Qprior.question_id AS prior_question_id,Qnext.question_id AS next_question_id
         ,A.answer_id,A.answer_text,A.answer_order,A.correct

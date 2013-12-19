@@ -31,7 +31,7 @@
                 }
 
                 //setup the server timer if required
-                if (o.synchWithServer) {
+                if (o.synchWithServer && this.options.serverTimerId == null) {
                     $serverTimerID = null;
                     $.ajax({
                         type: "GET",

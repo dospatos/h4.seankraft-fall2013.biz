@@ -9,7 +9,11 @@
 ?>
 <?php
 if (isset($instance_summary)) {?>
-    <h2>Test Complete</h2>
+    <h2>Test Review</h2>
+    <?php if(isset($timeout)) {
+        echo "<h3 style='color:red'>You have taken all the time allotted for this test, please review and set to complete</h3>";
+    }
+    ?>
     <p>Congratulations! You have completed the test: "<?php echo trim($instance_summary[0]["test_name"]);?>".
         Below is a summary of your answers, please click "Finish Test" to submit your test for grading. You may
         also use the links to further review or change your answers.</p>

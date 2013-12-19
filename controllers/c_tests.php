@@ -215,6 +215,11 @@ class tests_controller extends secure_controller {
 
             //get the question details and setup the form
             $question_details = siteutils::getQuestionDetails($test_instance_id, $question_id);
+            $timer_id = $question_details[0]['timer_id'];
+            $secondsEt = 0;
+            if ($timer_id != null) {
+                $secondsEt = DB::instance(DB_NAME)->select_field("select elapsed_seconds FROM timers WHERE timer_id=".$timer_id);
+            } else {$timer_id = "null";}//this will render for javascript correctly now
             $this->template->content->question_details = $question_details;
             $this->template->content->question_text = $question_details[0]['question_text'];
             $this->template->content->question_type_id = $question_details[0]['question_type_id'];
@@ -224,6 +229,9 @@ class tests_controller extends secure_controller {
             $this->template->content->next_question_id = $question_details[0]['next_question_id'];
             $this->template->content->prior_question_id = $question_details[0]['prior_question_id'];
             $this->template->content->question_order = $question_details[0]['question_order'];
+            $this->template->content->minutes_to_complete = $question_details[0]['minutes_to_complete'];
+            $this->template->content->serverTimerId = $timer_id;
+            $this->template->content->secondsEt = $secondsEt;
             $due_on_dt = $question_details[0]["due_on_dt"];
             if ($due_on_dt != "") {$due_on_dt = date("m/d/Y", $due_on_dt);}
             $this->template->content->$due_on_dt = $due_on_dt;
@@ -312,7 +320,6 @@ class tests_controller extends secure_controller {
     //Show a summary of the test to the user with a "finish" button
     public function takesummary($test_assign_id, $test_instance_id) {
         $errors = $this->checkQuestionInput($test_assign_id, $test_instance_id, null);
-        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
 
         if (count($errors) == 0){
             $test_assign_id =  DB::instance(DB_NAME)->sanitize($test_assign_id);
@@ -325,6 +332,10 @@ class tests_controller extends secure_controller {
             $this->template->content->instance_summary = $instance_summary;
             $this->template->content->test_assign_id = $test_assign_id;
             $this->template->content->test_instance_id = $test_instance_id;
+
+            if (isset($_GET["timeout"])) {
+                $this->template->content->timeout=true;
+            }
 
             echo $this->template;
         }
@@ -369,6 +380,18 @@ class tests_controller extends secure_controller {
             $this->template->content->test_instance_id = $test_instance_id;
 
             echo $this->template;
+
+        }
+    }
+
+    //Set the timer_id to the test_instance
+    public function settimer($test_instance_id, $timer_id) {
+        $errors = array();
+        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
+
+        if (count($errors) == 0){
+            $test_instance_update = array("timer_id" => $timer_id);
+            DB::instance(DB_NAME)->update("test_instance", $test_instance_update, "WHERE test_instance_id = ".$test_instance_id." AND timer_id IS NULL");//don't let the timer_id get overwritten
 
         }
     }
