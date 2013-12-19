@@ -21,9 +21,9 @@
 
 <body>
 
-<div id='menu' style="width:100%;border:1px solid black">
+<div id='menu' style="width:100%;">
 
-    <div id="spanUsername" style="clear: both">
+    <div id="spanUsername" style="float:left;width:300px;margin-top: 2px">
     <a href='/'>Our Online Tests</a>
 
     <?php if($user) { //menu items for logged in users?>
@@ -31,7 +31,7 @@
     <?php }?>
     </div>
 
-    <div id="spanMenu" style="text-align: right;border:1px solid red;clear: none;">
+    <div id="spanMenu" style="text-align: right;float: right;margin-top: 2px;">
         <?php if($user) { ?>
             <?php if ($user->is_admin) {//menu items for admins?>
                 <a href="/tests">Tests |
