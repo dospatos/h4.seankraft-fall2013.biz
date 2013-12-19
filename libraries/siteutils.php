@@ -135,7 +135,7 @@ class siteutils {
             , TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
             , S.test_assign_status_descr
             , T.test_name, T.test_descr, T.test_category
-            , TI.graded, TI.grade, TI.seconds_elapsed, TI.finish_dt, TI.start_dt, TI.review_override_grade, TI.review_override_user_id, TI.review_override_comment
+            , TI.graded, TI.grade, TI.finish_dt, TI.start_dt, TI.review_override_grade, TI.review_override_user_id, TI.review_override_comment
             FROM users U
             INNER JOIN test_assign_user TA ON TA.user_id = U.user_id
             INNER JOIN test_assign_status S ON S.test_assign_status_id = TA.test_assign_status_id
@@ -152,14 +152,16 @@ class siteutils {
 
     //for a test instance get the summary information
     public static function getTestInstanceSummary($test_instance_id) {
-        $q = "SELECT  TI.test_instance_id,TI.graded,TI.grade,TI.start_dt,TI.finish_dt,TI.seconds_elapsed
+        $q = "SELECT  TI.test_instance_id,TI.graded,TI.grade,TI.start_dt,TI.finish_dt
             , TA.assigned_on_dt, TA.due_on_dt,TA.test_assign_id, TA.test_assign_status_id
             , T.test_name, T.test_descr, T.test_category, T.minutes_to_complete
             , Q.question_id, Q.question_text, Q.question_order
+            , TIM.elapsed_seconds
             FROM test_instance TI
             INNER JOIN test_assign_user TA ON TA.test_assign_id = TI.test_assign_id
             INNER JOIN tests T ON T.test_id = TA.test_id
             INNER JOIN questions Q ON Q.test_id = T.test_id
+            LEFT JOIN timers TIM ON TIM.timer_id = TI.timer_id
             WHERE TI.test_instance_id =".$test_instance_id." AND T.deleted <> 1
             ORDER BY Q.question_order";
 
@@ -207,7 +209,7 @@ class siteutils {
         }
         $q = "SELECT
         TI.test_instance_id,TI.start_dt,TI.finish_dt,TI.grade,TI.graded,TI.timer_id
-        ,TI.seconds_elapsed,TI.review_override_grade,TI.review_override_user_id,TI.review_override_comment
+        ,TI.review_override_grade,TI.review_override_user_id,TI.review_override_comment
         ,TA.test_assign_id,TA.test_id,user_id,TA.test_assign_status_id,TA.assigned_by_user_id,TA.assigned_on_dt,TA.due_on_dt
         ,T.test_id,T.account_id,T.test_name,T.test_descr,COALESCE(T.minutes_to_complete, 0) AS minutes_to_complete,T.test_category
         ,Q.question_id,Q.question_order,Q.question_text,Q.question_type_id,Q.question_image
@@ -231,7 +233,7 @@ class siteutils {
 
     public static function getGradeableTestInstance($test_instance_id) {
         $q="SELECT TI.test_instance_id, TI.start_dt, TI.finish_dt
-            , TI.grade, TI.graded, TI.seconds_elapsed, TI.review_override_grade
+            , TI.grade, TI.graded, TI.review_override_grade
             , TI.review_override_user_id, TI.review_override_comment
             , TA.test_assign_id, TA.test_id, user_id, TA.test_assign_status_id
             , TA.assigned_by_user_id, TA.assigned_on_dt, TA.due_on_dt, T.test_id

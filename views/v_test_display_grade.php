@@ -13,7 +13,7 @@
 <?php
 if (isset($graded_test)) {
     $due_on_dt = $graded_test["due_on_dt"];
-    $minutes_taken = $graded_test["seconds_elapsed"] == null ? "Not timed" : $graded_test["seconds_elapsed"] / 60;
+    $minutes_taken = $graded_test["elapsed_seconds"] == null ? "Not timed" : $graded_test["elapsed_seconds"] / 60;
     if ($due_on_dt != "") {$due_on_dt = date("m/d/Y", $due_on_dt);}
     $timer_text = $graded_test["minutes_to_complete"] > 0 ? $graded_test["minutes_to_complete"] : "Not Timed";
     ?>

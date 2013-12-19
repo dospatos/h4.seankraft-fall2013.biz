@@ -49,7 +49,8 @@ class tests_controller extends secure_controller {
         $errors = array();
         $data = ob_get_clean();
         //check that the test does not yet exist
-        $existing_test_id = $this->getExistingTestId(trim($_POST["test_name"]));
+        $test_name = $_POST["test_name"];
+        $existing_test_id = $this->getExistingTestId(trim($test_name));
 
         if ($existing_test_id) {$errors[] = "The test named, ".$test_name.", already exists";}
 
@@ -65,7 +66,7 @@ class tests_controller extends secure_controller {
 
             $test_id = DB::instance(DB_NAME)->insert('tests', $_POST);
 
-            Router::redirect("/tests");
+            Router::redirect("/tests/edit/".$test_id);
 
         } else {//there were errors
             $this->template->content = View::instance('v_tests_create');

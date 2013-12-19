@@ -7,7 +7,7 @@
     </p>
 <?php } else {?>
     <p>
-        Here you will find all tests assigned to you, as well as your test history, grades, and study materials.
+        Here you will find all tests assigned to you, as well as your test history and grades.
     </p>
 
 <?php }?>

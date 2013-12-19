@@ -20,19 +20,19 @@
     .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: right; width: 40em;}
 </style>
 
+<h3>Edit Test: <?php echo $test_name;?></h3>
 
 <section>
     <div id="tabs">
         <ul>
             <li><a href="#tab-test">Test</a></li>
             <li><a href="#tab-questions">Questions</a></li>
-            <li><a href="#tab-materials">Materials</a></li>
             <li><a href="#tab-assign">Assign</a></li>
         </ul>
         <div id="tab-test">
             <form method='POST' id='frmTest' action='/tests/p_edit/<?php echo $test_id;?>'>
                 <fieldset>
-                    <legend>Edit Test</legend>
+                    <legend>Test Details</legend>
                     <p>
                         <label for="test_name">Test Name:</label>
                         <input type='text' name='test_name' id='test_name' value='<?php echo $test_name;?>'/>
@@ -73,9 +73,11 @@
                     </p>
                     <p>
                     <div>Question Type:</div>
-                    <?php foreach($question_types AS $current_question_type) { ?>
-                        <label for="question_type_id_<?php echo $current_question_type['question_type_id']?>"><?php echo $current_question_type['question_type_descr']?></label>
-                        <input type="radio" name="question_type_id" id="question_type_id_<?php echo $current_question_type['question_type_id']?>" value="<?php echo $current_question_type['question_type_id']?>"/>
+                    <?php foreach($question_types AS $current_question_type) {
+                        $selected = $current_question_type['question_type_id'] == "1" ? "checked='checked'" : "";//select the first type by default
+                        ?>
+                        <input type="radio" <?php echo $selected;?> name="question_type_id" id="question_type_id_<?php echo $current_question_type['question_type_id']?>" value="<?php echo $current_question_type['question_type_id']?>"/>
+                        <label for="question_type_id_<?php echo $current_question_type['question_type_id']?>"><?php echo $current_question_type['question_type_descr']?></label><br/>
                     <?php } ?>
                     </p>
                     <input type='hidden' name='test_id' id='test_id' value='<?php echo $test_id;?>'/>
@@ -100,16 +102,13 @@
             <?php } ?>
 
         </div>
-        <div id="tab-materials">
-            Materials here
-        </div>
         <div id="tab-assign">
             <form method='POST' id='frmAssign' action='/tests/p_assign/<?php echo $test_id?>' >
                 <table>
                     <thead class="table-header">
                     <td><input type="checkbox" id="chkCheckAll" /></td>
                     <td>Name</td>
-                    <td>Due Date (<a id="cmdAddMonth" href="#" title="Plus One month">M+</a> | <a href="#" id="cmdEOY" title="End of year">EOY</a>)</td>
+                    <td>Due Date (<a id="cmdAddMonth" href="#" title="Plus 30 days">+30</a> | <a href="#" id="cmdEOY" title="End of year">EOY</a>)</td>
                     <td>Assigned Date</td>
                     </thead>
                     <tbody>

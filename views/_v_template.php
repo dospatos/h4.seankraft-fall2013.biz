@@ -21,28 +21,34 @@
 
 <body>
 
-<div id='menu'>
+<div id='menu' style="width:100%;border:1px solid black">
 
-    <a href='/'>Home</a> |
+    <div id="spanUsername" style="clear: both">
+    <a href='/'>Our Online Tests</a>
 
-    <!-- Menu for users who are logged in -->
-    <?php if($user): ?>
-        <a href='/users/profileedit/<?php echo $user->user_id?>'>My Account</a> |
-        <?php if ($user->is_admin) {?>
-            <a href="/tests">Tests |
-            <a href="/testtakers">Test Takers |
-        <?php }?>
-        <a href='/tests/viewhistory'>My Tests History</a> |
-        <a href='/users/logout'>Logout</a>
+    <?php if($user) { //menu items for logged in users?>
+        (<a href='/users/profileedit/<?php echo $user->user_id?>'><?php echo $user->first_name." ".$user->last_name ?></a>)
+    <?php }?>
+    </div>
 
-        <!-- Menu options for users who are not logged in -->
-    <?php else: ?>
-        <a href='/users/signup'>Sign up</a> |
-        <a href='/users/login'>Log in</a>
-    <?php endif; ?>
+    <div id="spanMenu" style="text-align: right;border:1px solid red;clear: none;">
+        <?php if($user) { ?>
+            <?php if ($user->is_admin) {//menu items for admins?>
+                <a href="/tests">Tests |
+                <a href="/testtakers">Test Takers |
+            <?php }?>
+            <a href='/tests/viewhistory'>My Tests History</a> |
+            <a href='/users/logout'>Logout</a>
 
+        <?php } else { //non-loged-in user's menu?>
+            <a href='/users/signup'>Sign up</a> |
+            <a href='/users/login'>Log in</a>
+        <?php } ?>
+    </div>
+    <div style="clear:both"></div>
+    <hr style="border-top:1px dotted #aaa;">
 </div>
-<br/>
+
 <?php if (isset($content->errors)) { ?>
     <?php foreach($content->errors AS $current_error) { ?>
         <div class='alerttext'>
@@ -51,7 +57,9 @@
     <?php } ?>
 <?php }?>
 
+<div id="maincontent">
 <?php if(isset($content)) echo $content; ?>
+</div>
 
 </body>
 </html>

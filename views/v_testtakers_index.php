@@ -22,5 +22,9 @@
                 <?php echo $current_user['first_name']." ".$current_user['last_name']?>
             </a>
             - <?php echo $current_user['email']?>
+            -
+            <a href="/tests/viewhistory/<?php echo $current_user['user_id'] ?>">
+                View Test History
+            </a>
         </div>
 <?php }} else {echo ("<h3>No test takers yet created</h3>");} ?>
