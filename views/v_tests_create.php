@@ -15,26 +15,21 @@
     <?php } ?>
 <?php }?>
 
-<form method='POST' action='p_create'>
+<form method='POST' action='p_create' id="frmMain">
     <fieldset>
         <legend>Create a Test</legend>
-        <p>
+        <p class="form-row">
             <label for="test_name">Test Name:</label>
             <input type='text' name='test_name' id='test_name' value='<?php echo $test_name;?>'/>
         </p>
-        <p>
+        <p class="form-row">
             <label for='test_descr'>Description:</label>
             <input type='text' name='test_descr' id='test_descr' value='<?php echo $test_descr; ?>'/>
         </p>
-        <p>
+        <p class="form-row">
             <label for='test_category'>Category:</label>
             <input type='text' name='test_category' value='<?php echo $test_category;?>'/>
         </p>
-
-
-        <!-- `test_id`, `account_id`, `copied_from_test_id`, `test_name`, `test_descr`, `public`,
-        `test_year`, `created_by_user_id`, `created_on_dt`, `last_updated_dt`, `minutes_to_complete`
-        , `passing_grade`, `deleted`, `deleted_date`, `test_category`-->
     </fieldset>
     <input type='submit' value='Create Test'>
 
@@ -42,15 +37,16 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#form1").validate({
+        $("#frmMain").validate({
             rules: {
-                test_name: "required",    // simple rule, converted to {required: true}
-                test_descr: {
-                    required: true
-                },
-                test_category: {
-                    required: true
-                }
+                    test_name: {required: true, min: 5},
+                    test_descr: {required: true, min: 5},
+                    test_category: {required: true, min: 5}
+            },
+            messages: {
+                test_name: "Please enter a test name of at least 5 characters",
+                test_descr: "Please enter a description of at least 5 characters",
+                test_category: "Please enter a category of at least 5 characters"
             }
         });
     });

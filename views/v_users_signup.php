@@ -20,14 +20,6 @@ add new "test takers" and "test admins".</p>
     <?php } ?>
 <?php }?>
 
-<style type="text/css">
-    .submit { margin-left: 125px; margin-top: 10px;}
-    .form-row { padding: 5px 0; clear: both; width: 700px; }
-    label { display: block; float: left; width: 120px; text-align: right; margin-right: 5px; }
-    label.error { width: 250px; display: block; float: left; color: red; padding-left: 10px; }
-    input[type=text], textarea { width: 250px; float: left; }
-    textarea { height: 50px; }
-</style>
 
 <form method='POST' action='/users/p_signup' id="frmMain">
     <fieldset>

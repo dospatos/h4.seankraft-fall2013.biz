@@ -18,7 +18,7 @@ if (count($test_list) > 0) {?>
         $assigned_on_dt = $current_test["assigned_on_dt"];
         if ($assigned_on_dt != ""){$assigned_on_dt = date("m/d/Y", $assigned_on_dt);
         $taken_on_dt = $current_test["start_dt"];
-        if ($taken_on_dt != ""){$taken_on_dt = date("m/d/Y", $taken_on_dt);
+        if ($taken_on_dt != "" && $taken_on_dt != null && isset($taken_on_dt)){$taken_on_dt = date("m/d/Y", $taken_on_dt);
         }
         ?>
 

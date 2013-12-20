@@ -57,9 +57,14 @@
     <?php } ?>
 <?php }?>
 
-<div id="maincontent">
-<?php if(isset($content)) echo $content; ?>
-</div>
+    <div id="maincontent">
+    <?php if(isset($content)) echo $content; ?>
+    </div>
+
+    <footer>
+        <hr style="border-top:1px dotted #aaa;">
+        © 2013 - Sean Kraft - Contact information: <a href="mailto:sean@seankraft.com">sean@seankraft.com</a>
+    </footer>
 </div>
 </body>
 </html>

@@ -33,29 +33,29 @@
             <form method='POST' id='frmTest' action='/tests/p_edit/<?php echo $test_id;?>'>
                 <fieldset>
                     <legend>Test Details</legend>
-                    <p>
+                    <p class="form-row">
                         <label for="test_name">Test Name:</label>
                         <input type='text' name='test_name' id='test_name' value='<?php echo $test_name;?>'/>
                     </p>
-                    <p>
+                    <p class="form-row">
                         <label for='test_descr'>Description:</label>
                         <input type='text' name='test_descr' id='test_descr' value='<?php echo $test_descr; ?>'/>
                     </p>
-                    <p>
+                    <p class="form-row">
                         <label for='test_category'>Category:</label>
                         <input type='text' name='test_category' value='<?php echo $test_category;?>'/>
                     </p>
-                    <p>
+                    <p class="form-row">
                         <label for='test_year'>Test Year:</label>
                         <input type='text' name='test_year' value='<?php echo $test_year;?>'/>
                     </p>
-                    <p>
+                    <p class="form-row">
                         <label for='passing_grade'>Passing Grade:</label>
                         <input type='text' name='passing_grade' value='<?php echo $passing_grade;?>'/>
                     </p>
-                    <p>
-                        <label for='minutes_to_complete'>Minutes to complete (0 for no timer):</label>
-                        <input type='text' name='minutes_to_complete' value='<?php echo $minutes_to_complete;?>'/>
+                    <p class="form-row">
+                        <label for='minutes_to_complete'>Minutes to complete:</label>
+                        <input type='text' name='minutes_to_complete' value='<?php echo $minutes_to_complete;?>'/>(0 for no timer)
                     </p>
                 </fieldset>
                 <input type='hidden' name='test_id' id='test_id' value='<?php echo $test_id;?>'/>
@@ -67,19 +67,18 @@
             <div>
                 <fieldset>
                     <legend>Add Question</legend>
-                    <p>
+                    <p class="form-row">
                         <label for="question_text">Question Text:</label>
                         <input type='text' name='question_text' id='question_text' style="width:450px"/>
                     </p>
-                    <p>
-                    <div>Question Type:</div>
                     <?php foreach($question_types AS $current_question_type) {
                         $selected = $current_question_type['question_type_id'] == "1" ? "checked='checked'" : "";//select the first type by default
                         ?>
-                        <input type="radio" <?php echo $selected;?> name="question_type_id" id="question_type_id_<?php echo $current_question_type['question_type_id']?>" value="<?php echo $current_question_type['question_type_id']?>"/>
-                        <label for="question_type_id_<?php echo $current_question_type['question_type_id']?>"><?php echo $current_question_type['question_type_descr']?></label><br/>
+                        <p class="form-row" style="width:400px">
+                            <label style="white-space:nowrap;text-align: left;" for="question_type_id_<?php echo $current_question_type['question_type_id']?>"><?php echo $current_question_type['question_type_descr']?></label>
+                            <input type="radio" style="float:right;width:200px" <?php echo $selected;?> name="question_type_id" id="question_type_id_<?php echo $current_question_type['question_type_id']?>" value="<?php echo $current_question_type['question_type_id']?>"/>
+                        </p>
                     <?php } ?>
-                    </p>
                     <input type='hidden' name='test_id' id='test_id' value='<?php echo $test_id;?>'/>
                     <input type='button' value='Add Question' id='cmdAddQuestion'>
                 </fieldset>

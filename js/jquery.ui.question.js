@@ -45,7 +45,7 @@
                 //All questions have display text
                 var display_text = "<div id='" + display_text_id + "'>" + this.options.question_text + "</div>";
                 if (this.options.display_mode == "edit"){
-                    display_text = "<textarea rows='4' cols='50' id='" + display_text_id + "' name='" + display_text_id + "'>" + this.options.question_text + "</textarea><br/>";
+                    display_text = "<div class='form-row' style='float: left;'><label style='float:left;clear:both;text-align: left;' for='" + display_text_id + "'>Question Text</label><br/><textarea rows='4' cols='50' id='" + display_text_id + "' name='" + display_text_id + "'>" + this.options.question_text + "</textarea></div>";
 
                     //On display text lost focus or when the enter key is pressed - update the question text
                     this.element.append(display_text);
@@ -53,6 +53,7 @@
                         if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
                         $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
                     }));
+                    this.element.append("<div>Answers:</div>");
                 } else {
                     if (this.options.display_mode != "review"){this.element.append(display_text);}
                 }
@@ -63,7 +64,7 @@
                         if (this.options.display_mode == "edit"){
                             //Write out a textbox so the user can enter the next answer
                             var new_answer_id = "txt_new_answer_" + this.options.question_id;
-                            this.element.append("<input type='text' id='" + new_answer_id +  "' value=''/><br/>");
+                            this.element.append("<div style='float:left;clear:both'><input type='text' id='" + new_answer_id +  "' value=''/></div>");
 
                             //Bind the keyup events to add a new answer
                             $("#" + new_answer_id).bind("keyup", (function(e) {
@@ -96,13 +97,13 @@
                         }
                         break;
                     }
-                    case 4: {
+                    case 4: {//4 - essay
                         for(i=0;i<answers.length;i++) {
                             var answer_text = answers[i].answer_text;
                             var answer_id = answers[i].answer_id;
                             this._addAnswerDisplay(question_id, question_type_id, answer_id, answer_text, answers[i].correct);//correct here means that the queestion is filled out
                         }
-                    }//4 - essay
+                    }
                 }
             },
             //Append the proper elements to the DOM to enable the editing of answers
@@ -120,16 +121,16 @@
                     case 1://A check box list, a textbox, and a delete control for edit and a DIV for take
                         switch (this.options.display_mode) {
                             case "edit":
-                                this.element.append("<span id='" + answer_span_id + "'>"
-                                 + "<input type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "'/> "
+                                this.element.append("<span style='float:left' class='form-row' class='form-row' id='" + answer_span_id + "'>"
+                                 + "<input style='float:left' type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "'/> "
                                  + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "'/>"
                                  + " - <a href='#' class='alerttext' id='" + delete_control_id + "' answer_id='" + answer_id + "'>delete</a><br/>"
                                  + "</span>");
                                 break;
                             case "take":
-                                this.element.append("<span id='" + answer_span_id + "'>"
-                                + "<input type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + "answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "'/> "
-                                + "<label for='" + select_control_id + "'>" + answer_text + "</label><br/>"
+                                this.element.append("<span class='form-row' id='" + answer_span_id + "'>"
+                                + "<input style='float:left' type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + "answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "'/> "
+                                + "<label style='float:right' for='" + select_control_id + "'>" + answer_text + "</label><br/>"
                                 + "</span>");
                                 break;
                             case "review":
@@ -142,16 +143,16 @@
                     case 2://a radio button list
                         switch (this.options.display_mode){
                             case "edit":
-                                this.element.append("<span id='" + answer_span_id + "'>"
-                                + "<input type='radio' id='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' name='" + rdo_control_name + "' value='" + answer_id + "'/> "
+                                this.element.append("<span class='form-row' style='float:left' id='" + answer_span_id + "'>"
+                                + "<input style='float:left'  type='radio' id='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' name='" + rdo_control_name + "' value='" + answer_id + "'/> "
                                 + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "'/>"
                                 + " - <a href='#' class='alerttext' id='" + delete_control_id + "' answer_id='" + answer_id + "'>delete</a><br/>"
                                 + "</span>");
                                 break;
                             case "take":
                                 //TODO: find out if the answer is selected by the user
-                                this.element.append("<span id='" + answer_span_id + "'>"
-                                + "<input type='radio' id='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' name='" + rdo_control_name + "' value='" + answer_id + "'/> "
+                                this.element.append("<span class='form-row' id='" + answer_span_id + "'>"
+                                + "<input style='float:left'  type='radio' id='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' name='" + rdo_control_name + "' value='" + answer_id + "'/> "
                                 + "<label for='" + select_control_id + "'>" + answer_text + "</label><br/>"
                                 + "</span>");
                                 break;
@@ -166,9 +167,9 @@
                         switch (this.options.display_mode){
                             case "edit":
                             case "take":
-                                this.element.append("<span id='" + answer_span_id + "'>"
-                                    + "<label for='" + select_control_id + "'>" + answer_text + "</label>"
-                                    + "<input type='radio' id='" + select_control_id + "' name='" + rdo_control_name + "' " + answer_select + " answer_id='" + answer_id + "' value='" + answer_id + "' />"
+                                this.element.append("<span style='float:left; width: 200px;clear:both' id='" + answer_span_id + "'>"
+                                    + "<label style='float:left; text-align: left;width:50px' for='" + select_control_id + "'>" + answer_text + "</label>"
+                                    + "<input style='float:left' type='radio' id='" + select_control_id + "' name='" + rdo_control_name + "' " + answer_select + " answer_id='" + answer_id + "' value='" + answer_id + "' />"
                                     + "</span>");
                                 break;
                             case "review":
@@ -180,11 +181,11 @@
 
                         break;
                     case 4://Show a text area with prompting text as a watermark
-                        var display_text_area = "<br/><span id='" + answer_span_id + "'>";
+                        var display_text_area = "<br/><span class='form-row' style='float:left;clear:both' id='" + answer_span_id + "'>";
                         switch (this.options.display_mode) {
                             case "edit":
-                                display_text_area+= "<label for='" + textbox_control_id + "'>The test taker will see the following text as a prompt</label><br/>"
-                                + "<textarea rows='4' cols='50' id='" + textbox_control_id + "' name='" + textbox_control_id + "'></textarea>"
+                                display_text_area+= "<label style='float:right;clear:both;width:100%; text-align: left' for='" + textbox_control_id + "'>The test taker will see the following text as a prompt</label>"
+                                + "<textarea style='float:left;clear:both' rows='4' cols='50' id='" + textbox_control_id + "' name='" + textbox_control_id + "'></textarea>"
                                     + "</span>";
 
                                 this.element.append(display_text_area);
