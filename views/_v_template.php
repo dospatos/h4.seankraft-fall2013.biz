@@ -16,7 +16,7 @@
     <script type="text/javascript" src="/js/jquery.ui.timer.js"></script>
     <script type="text/javascript" src="/js/jquery.ui.question.js"></script>
     <script type="text/javascript" src="/js/jquery.watermark.js"></script>
-
+    <script type="text/javascript" src="/js/jquery.validate.js"></script>
 </head>
 
 <body>

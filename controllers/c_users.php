@@ -172,9 +172,11 @@ class users_controller extends base_controller {
     public function p_signup() {
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
         $errors = array();
-        $data = ob_get_clean();
+
         //Find out if the email is already taken because this is the username
         $email = str_replace(" ","", $_POST["email"]);
+        //TODO: Is this a valid email?
+
         $q = "SELECT user_id FROM users WHERE email = '".$email."'";
         $existing_user_id = DB::instance(DB_NAME)->select_field($q);
 
@@ -188,15 +190,18 @@ class users_controller extends base_controller {
         }
 
         //we must have a unique company name
-        $company = $_POST["company"];
-        $q = "SELECT account_id FROM accounts WHERE account_name = '".$_POST["company"]."'";
+        $company = trim($_POST["company"]);
+        $q = "SELECT account_id FROM accounts WHERE account_name = '".$company."'";
         $existing_account_id = DB::instance(DB_NAME)->select_field($q);
         if ($existing_account_id) {$errors[] = "The company/account, ".$_POST["company"].", already exists - please use another name";}
+
+        //We need at least 3 chars for first and last name
+
 
         if (count($errors)==0) {//no errors - go ahead
             //first add the account
             $account_data = array();
-            $account_data["account_name"] = $_POST["company"];
+            $account_data["account_name"] = $company;
             $account_id = DB::instance(DB_NAME)->insert('accounts', $account_data);
 
             //then add a default job for the user
@@ -217,7 +222,7 @@ class users_controller extends base_controller {
             $newuser = new User();
             $newuser->authenticate();
 
-            Router::redirect("/users");
+            Router::redirect("/");
 
         } else {//there were errors
             $this->template->content = View::instance('v_users_signup');

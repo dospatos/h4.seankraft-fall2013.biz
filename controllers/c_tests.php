@@ -311,7 +311,7 @@ class tests_controller extends secure_controller {
                     break;
             }
         }
-        if ($next_question_id != null){
+        if ($next_question_id != null){//redirect to the next question
             Router::redirect("/tests/take/".$test_assign_id."/".$test_instance_id."/".$next_question_id);
         } else {//go to the test summary
             Router::redirect("/tests/takesummary/".$test_assign_id."/".$test_instance_id);
@@ -463,9 +463,15 @@ class tests_controller extends secure_controller {
         $template_instance->content->question_types = questions_controller::getQuestionTypes();
     }
 
+    /*Checks the following
+    1. test_assign_id and test_instance_id are numeric
+    2. The test_assign_id is in the database
+    3. The user assigned ot the test is the logged in user
+    4. Is the test in a status greater than what is required (ex: if test is complete and we are looking for assinged)
+    */
     private function checkQuestionInput($test_assign_id, $test_instance_id = null, $question_id = null, $min_status_id = null) {
         $errors = array();
-        //Is out input legit at all?
+        //Is our input legit at all?
         $test_assign_id =  DB::instance(DB_NAME)->sanitize($test_assign_id);
         $test_instance_id = DB::instance(DB_NAME)->sanitize($test_instance_id);
         $question_id = DB::instance(DB_NAME)->sanitize($question_id);
@@ -473,13 +479,15 @@ class tests_controller extends secure_controller {
         if ($test_instance_id != null && !is_numeric($test_instance_id)) {$errors[] = "Invalid test";}
         if ($question_id != null && !is_numeric($question_id)) {$errors[] = "Invalid question";}
 
-        //Does our legit input exist in our DB for this user?
         if (count($errors) == 0) {
             $test_assign = DB::instance(DB_NAME)->select_row("SELECT test_assign_id, user_id, test_assign_status_id FROM test_assign_user WHERE test_assign_id=".$test_assign_id);
+            //Does our legit input exist in our DB for this user?
             if (count($test_assign) > 0) {
+                //Is this test assigned to the logged in user
                 $check_user_id = $test_assign["user_id"];
                 if ($check_user_id != $this->user->user_id) {$errors[] = "Invalid user";}
 
+                //Check the test_assign is not in a greater status then what we're looking for
                 if ($min_status_id != null) {
                     $current_status_id = $test_assign["test_assign_status_id"];
                     if ($current_status_id > $min_status_id) {$errors[] = "Cannot complete test at this time";}
