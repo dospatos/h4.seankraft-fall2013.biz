@@ -58,17 +58,14 @@ add new "test takers" and "test admins".</p>
     $(document).ready(function() {
         $("#frmMain").validate({
             rules: {
-                first_name: {required: true,min: 2},    // simple rule, converted to {required: true}
-                last_name: {required: true,min: 2},
-                company: {required: true, min: 3},
-                email: {             // compound rule
+                first_name: {required: true,minlength: 2},
+                last_name: {required: true,minlength: 2},
+                company: {required: true, minlength: 3},
+                email: {
                     required: true,
                     email: true
                 },
-                password01: {required: true, min: 6},
-                url: {
-                    url: true
-                },
+                password01: {required: true, minlength: 6},
                 password02: {required: true, equalTo: password01}
             },
             messages: {

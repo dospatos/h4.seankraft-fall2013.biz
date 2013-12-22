@@ -15,16 +15,24 @@
 </p>
 
 <?php if($user) { ?>
-        <tbody>
+
             <?php
             if (count($assigned_tests) > 0) {?>
             <h3>Your current tests</h3>
-            <table>
+            <table id="rounded-corner">
                 <thead class="table-header">
-                <td>Test Name</td>
-                <td>Due On</td>
-                <td>Assigned On</td>
+                <th scope="col" class="rounded-q1">Test Name</th>
+                <th scope="col" class="rounded">Due On</th>
+                <th scope="col" class="rounded">Assigned On</th>
+                <th scope="col" class="rounded-q4">&nbsp;</th>
                 </thead>
+                <tfoot>
+                <tr>
+                    <td colspan="3" class="rounded-foot-left"><em>* See test history for taken tests</em></td>
+                    <td class="rounded-foot-right">&nbsp;</td>
+                </tr>
+                <tfoot>
+                <tbody>
                 <?php
                 foreach($assigned_tests AS $current_test_assign) {
                     $due_on_dt = $current_test_assign["due_on_dt"];
@@ -41,8 +49,8 @@
                             <td><a href="/tests/assignment/<?php echo $current_test_assign["test_assign_id"]?>">Details</a> | <a href="/tests/take/<?php echo $current_test_assign["test_assign_id"]?>">Take</a></td>
                         </tr>
             <?php } ?>
-        </tbody>
-        </table>
+            </tbody>
+                </table>
     <?php } else {echo ("<h3>No test currently assigned</h3>");} ?>
 <?php } else { ?>
     <p>Please take a look at this demo showing how the application works</p>

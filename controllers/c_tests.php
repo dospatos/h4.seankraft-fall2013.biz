@@ -352,6 +352,7 @@ class tests_controller extends secure_controller {
         $this->template->content = View::instance('v_test_display_user_history');
         $this->template->title   = "Test History";
         $this->template->content->test_list = $test_list;
+        $this->template->content->test_taker_name = DB::instance(DB_NAME)->select_field("SELECT CONCAT(first_name,' ',last_name) AS person_name FROM users WHERE user_id =".$user_id);
 
         echo $this->template;
     }

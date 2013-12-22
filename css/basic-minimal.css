@@ -62,5 +62,53 @@ footer
 .alerttext {color: #ff0000; font-weight: bold;}
 .postframe {color: black;border: 1px ;border-style: solid;border-color: #000000; width: 300px;padding: 5px ;margin: 3px}
 .question_text {color:black; font-weight: bold}
-.table-header {font-weight: bold}
+.table-header td {font-weight: bold;padding: 1px;}
+.table-row td {border:1px solid #C0C0C0}
 .form-row { padding: 5px 0; clear: both; width: 700px;}
+
+/** thanks to http://coding.smashingmagazine.com/2008/08/13/top-10-css-table-designs/ for the following styles **/
+#rounded-corner
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    margin: 45px;
+    width: 480px;
+    text-align: left;
+    border-collapse: collapse;
+}
+#rounded-corner thead th.rounded-q1
+{
+    background: #b9c9fe url('/images/left.png') left -1px no-repeat;
+}
+#rounded-corner thead th.rounded-q4
+{
+    background: #b9c9fe url('/images/right.png') right -1px no-repeat;
+}
+#rounded-corner th
+{
+    padding: 8px;
+    font-weight: normal;
+    font-size: 13px;
+    color: #039;
+    background: #b9c9fe;
+}
+#rounded-corner td
+{
+    padding: 8px;
+    background: #e8edff;
+    border-top: 1px solid #fff;
+    color: #669;
+}
+#rounded-corner tfoot td.rounded-foot-left
+{
+    background: #e8edff url('/images/botleft.png') left bottom no-repeat;
+}
+#rounded-corner tfoot td.rounded-foot-right
+{
+    background: #e8edff url('/images/botright.png') right bottom no-repeat;
+}
+#rounded-corner tbody tr:hover td
+{
+    background: #d0dafd;
+}
+

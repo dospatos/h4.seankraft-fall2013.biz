@@ -37,7 +37,7 @@
                 <a href="/tests">Tests |
                 <a href="/testtakers">Test Takers |
             <?php }?>
-            <a href='/tests/viewhistory'>My Tests History</a> |
+            <a href='/tests/viewhistory'>My Test History</a> |
             <a href='/users/logout'>Logout</a>
 
         <?php } else { //non-loged-in user's menu?>

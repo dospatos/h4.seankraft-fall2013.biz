@@ -30,7 +30,7 @@
             <li><a href="#tab-assign">Assign</a></li>
         </ul>
         <div id="tab-test">
-            <form method='POST' id='frmTest' action='/tests/p_edit/<?php echo $test_id;?>'>
+            <form method='POST' id='frmTest' name="frmTest" action='/tests/p_edit/<?php echo $test_id;?>'>
                 <fieldset>
                     <legend>Test Details</legend>
                     <p class="form-row">
@@ -295,9 +295,30 @@
         }
         ?>
         }
+
+        $("#frmTest").validate({
+            rules: {
+                test_name: {required: true, minlength: 5},
+                test_descr: {required: true, minlength: 5},
+                test_category: {required: true, minlength: 5},
+                test_year:{required: true,number: true},
+                minutes_to_complete:{required: true,number: true,range: [0,1000]},
+                passing_grade:{required: true,number: true,range: [0,100]}
+
+            },
+            messages: {
+                test_name: "Please enter a name of at least 5 characters",
+                test_descr: "Please enter a description of at least 5 characters",
+                test_category: "Please enter a category of at least 5 characters",
+                test_year: "Enter a 4 digit year",
+                minutes_to_complete: "Should be 0 for not timed or the number of minutes the test taker has to complete",
+                passing_grade: "Enter a number between 1 and 100"
+            }
+        });
+
         window.setTimeout(linkTestQuestions(), 1000);//wait a second to load the questions
 
     });
 
-
 </script>
+

@@ -43,37 +43,43 @@ class users_controller extends base_controller {
      */
     public function p_profileedit($id) {
         siteutils::redirectnonloggedinuser($this->user);
-        if (!$this->user->user_id == $id) { //users can only edit their own profile
-            $id = DB::instance(DB_NAME)->sanitize($id);
-        } else {
-            $id = $this->user->user_id;
-        }
-
-        //see if there is an image to update
-        $avatar_file_name = null;
-        if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['size'] > 0) {
-            //use the upload library to save the file and resize it
-            $upload_dir = "/uploads/avatars/";
-            $avatar_file_name = Upload::upload($_FILES, $upload_dir, array("jpg", "jpeg", "gif", "png"), $id);
-            if ($avatar_file_name) {
-                $img = new Image();
-                $img->open_image($avatar_file_name);
-                $img->resize(600, 600, "crop");
-                $img->save_image($avatar_file_name);
-                $_POST["avatar"] = $avatar_file_name;
-            }
-        }
+        $id = siteutils::getLegitUserId($id, $this->user);
+        $errors = array();
 
         # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
         $_POST = siteutils::clean_html(DB::instance(DB_NAME)->sanitize($_POST));
 
-        # update the database
-        $_POST['modified'] = Time::now();
-        $returned_id = DB::instance(DB_NAME)->update('users', $_POST, 'where user_id ='.$id);
+        //Check if the passed in data is good
+        $email = $_POST["email"];
+        $first_name = $_POST["first_name"];
+        $last_name = $_POST["last_name"];
+        $errors = siteutils::validateUserData($email, $first_name, $last_name, $id);
 
-        if ($returned_id) {
+
+        //Get the ID for the entered title
+        $job_title = trim($_POST["title"]);
+        $job_title = $job_title != "" ? $job_title : "Test Taker";
+        $job_id = siteutils::getJobId($job_title, $this->user->account_id);
+
+
+        if (count($errors) == 0) {
+            $user_fields = array("first_name" => $first_name, "last_name" => $last_name, "job_id" => $job_id, "email" => $email);
+
+            # update the database
+            $_POST['modified'] = Time::now();
+            $returned_id = DB::instance(DB_NAME)->update('users', $user_fields, 'where user_id ='.$id);
+
             Router::redirect("/users/profileedit/".$id."?updated=true");
-        } else {}
+
+        } else {
+            $currentuser = siteutils::getuserprofile($id);
+
+            $this->template->content = View::instance('v_users_profile');
+            $this->template->content->currentuser = $currentuser;
+            $this->template->content->errors = $errors;
+
+            echo $this->template;
+        }
 
     }
 
@@ -173,14 +179,9 @@ class users_controller extends base_controller {
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
         $errors = array();
 
-        //Find out if the email is already taken because this is the username
-        $email = str_replace(" ","", $_POST["email"]);
-        //TODO: Is this a valid email?
+        //Check if the passed in data is good
+        $errors = siteutils::validateUserData($_POST["email"], $_POST["first_name"], $_POST["last_name"]);
 
-        $q = "SELECT user_id FROM users WHERE email = '".$email."'";
-        $existing_user_id = DB::instance(DB_NAME)->select_field($q);
-
-        if ($existing_user_id) {$errors[] = "The username, ".$_POST["email"].", already exists";}
         //validate the passwords
         $password_match = strlen($_POST['password01']) >= 6;
         if (!$password_match) {$errors[] = "Password must be at least 6 characters";}

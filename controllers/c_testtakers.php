@@ -127,6 +127,7 @@ class testtakers_controller extends secure_controller {
                 ));
                 if (($handle = fopen($_FILES["file"]["tmp_name"], "r")) !== FALSE) {
                     while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                        $issue_text = "";
                         $num = count($data);
                         $testtaker_staging_row = array("testtaker_staging_id"=> $testtaker_staging_id, "first_name" => null
                         ,"last_name" => null, "email" => null, "job_title" => null, "person_id" => null);
@@ -141,7 +142,12 @@ class testtakers_controller extends secure_controller {
                                             $testtaker_staging_row["last_name"] = $data[$c];
                                             break;
                                         case 2:
-                                            $testtaker_staging_row["email"] = $data[$c];
+                                            $current_email = $data[$c];
+                                            $existing_user_id = siteutils::getExisitingUser_Id($current_email);
+                                            if ($existing_user_id > 0) {
+                                                $issue_text = $issue_text." - This email already exists in the system, please use another";
+                                            }
+                                            $testtaker_staging_row["email"] = $current_email;
                                             break;
                                         case 3:
                                             $testtaker_staging_row["job_title"] = $data[$c];
@@ -156,6 +162,8 @@ class testtakers_controller extends secure_controller {
                         if ($testtaker_staging_row["first_name"] != "FirstName" && $testtaker_staging_row["first_name"] != "LastName"
                             && $testtaker_staging_row["first_name"] != "Email" && $testtaker_staging_row["first_name"] != "JobTitle"
                             && $testtaker_staging_row["first_name"] != "Person_Id") {
+
+                            if ($issue_text != "") {$testtaker_staging_row["issue_text"] = $issue_text;}
                             DB::instance(DB_NAME)->insert("testtaker_staging_rows", $testtaker_staging_row);
                             $added_count++;
                         }
@@ -165,9 +173,6 @@ class testtakers_controller extends secure_controller {
                         $errors[] = "No records in file";
                     }
 
-                    //TODO: fix this query to actually flag issues
-                    //$q="UPDATE testtaker_staging_row R SET issue_text = 'Duplicate User' WHERE EXIST (SELECT 'X' FROM testtaker_staging_row R2 WHERE R2.testtaker_staging_row_id <> R.testtaker_staging_row AND R2.email = R.email)";
-                    //DB::instance(DB_NAME)->query($q);
                 }
             }
         }

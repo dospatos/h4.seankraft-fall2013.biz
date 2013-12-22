@@ -319,6 +319,36 @@ class siteutils {
         return $user_id;
     }
 
+    //Validate that the data entered for a user complies with site business rules
+    public static function validateUserData($email, $first_name, $last_name, $user_id = null) {
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $errors[] = "Email address is invalid, please submit name@domainname.com format only";
+        } else {//check that the user_id sent in matches any existing user_id for the email
+
+            $existing_user_id = siteutils::getExisitingUser_Id($email);
+            if ($existing_user_id) {
+                if ($user_id != $existing_user_id) {
+                    $errors[] = "The username, ".$_POST["email"].", already exists";
+                }
+            }
+        }
+
+        $first_name = trim($_POST["first_name"]);
+        $last_name = trim($_POST["last_name"]);
+        if ($first_name == "" || $last_name == "") {
+            $errors[] = "Please provide a first and last name";
+        }
+
+        return $errors;
+    }
+
+    public static function getExisitingUser_Id($email) {
+        $q = "SELECT user_id FROM users WHERE email = '".$email."'";
+
+        return DB::instance(DB_NAME)->select_field($q);
+    }
+
 }
 
 ?>

@@ -39,12 +39,12 @@
     $(document).ready(function() {
         $("#frmMain").validate({
             rules: {
-                    test_name: {required: true, min: 5},
-                    test_descr: {required: true, min: 5},
-                    test_category: {required: true, min: 5}
+                    test_name: {required: true, minlength: 5},
+                    test_descr: {required: true, minlength: 5},
+                    test_category: {required: true, minlength: 5}
             },
             messages: {
-                test_name: "Please enter a test name of at least 5 characters",
+                test_name: "Please enter a name of at least 5 characters",
                 test_descr: "Please enter a description of at least 5 characters",
                 test_category: "Please enter a category of at least 5 characters"
             }

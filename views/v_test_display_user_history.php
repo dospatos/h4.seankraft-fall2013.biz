@@ -1,16 +1,23 @@
 <?php
 if (count($test_list) > 0) {?>
-    <h3>Your Test History</h3>
-    <table>
+    <h3>Test History: <?php echo $test_taker_name?></h3>
+    <table id="rounded-corner" >
     <thead class="table-header">
-    <td>Category</td>
-    <td>Test Name</td>
-    <td>Due On</td>
-    <td>Assigned On</td>
-    <td>Taken On</td>
-    <td>Grade</td>
+    <th scope="col" class="rounded-q1">Category</th>
+    <th scope="col" class="rounded" style="width:200px">Name</th>
+    <th scope="col" class="rounded">Due On</th>
+    <th scope="col" class="rounded">Assigned</th>
+    <th scope="col" class="rounded">Taken</th>
+    <th scope="col" class="rounded-q4">Grade</th>
     </thead>
-    <tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="rounded-foot-left"><em>&nbsp;</em></td>
+            <td class="rounded-foot-right">&nbsp;</td>
+        </tr>
+        </tfoot>
+
+        <tbody>
     <?php
     foreach($test_list AS $current_test) {
         $due_on_dt = $current_test["due_on_dt"];
@@ -23,10 +30,10 @@ if (count($test_list) > 0) {?>
         ?>
 
         <tr>
-            <td>
+            <td nowrap>
             <?php echo $current_test["test_category"];?>
             </td>
-            <td>
+            <td style="width:200px;" nowrap>
                 <?php echo $current_test["test_name"];?>
             </td>
             <td><?php echo $due_on_dt;?></td>
