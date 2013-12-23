@@ -13,8 +13,8 @@ if (isset($question_details)) {
     <section>
         <div>
             <?php if($minutes_to_complete > 0) {?>
-                <div style="vertical-align: middle">You have <?php echo $minutes_to_complete ?> minutes to complete the test:</div>
-                    <canvas id="canTimerDisplay" width="75" height="50"></canvas>
+                <span style="vertical-align: middle">You have <?php echo $minutes_to_complete ?> minutes to complete the test:</span>
+                <canvas id="canTimerDisplay" width="75" height="50"></canvas>
 
                 <script type="text/javascript">
                     $( document ).ready(function() {
