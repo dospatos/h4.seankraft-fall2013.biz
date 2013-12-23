@@ -13,6 +13,7 @@ if (isset($question_details)) {
     <section>
         <div>
             <?php if($minutes_to_complete > 0) {?>
+                You have <?php echo $minutes_to_complete ?> minutes to complete the test:
                 <canvas id="canTimerDisplay" width="75" height="50"></canvas>
                 <script type="text/javascript">
                     $( document ).ready(function() {
