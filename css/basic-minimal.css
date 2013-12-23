@@ -111,3 +111,10 @@ footer
     background: #d0dafd;
 }
 
+#loading {
+    background:url("/images/ajax_loading.gif") no-repeat center;
+    height: 100px; width: 100px;
+    position: fixed; left: 50%; top: 25%; z-index: 1;
+    margin: -25px 0 0 -25px;
+}
+

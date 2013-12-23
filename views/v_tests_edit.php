@@ -20,6 +20,10 @@
     .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: right; width: 40em;}
 </style>
 
+
+<div id="loading"> </div>
+
+<div id="test_details" style="display:none">
 <h3>Edit Test: <?php echo $test_name;?></h3>
 
 <section>
@@ -143,7 +147,7 @@
         </div>
     </div>
 </section>
-
+</div>
 
 
 <script type="text/javascript">
@@ -226,6 +230,7 @@
                 s_ = useWordBoundary && toLong ? s_.substr(0,s_.lastIndexOf(' ')) : s_;
                 return  toLong ? s_ + '&hellip;' : s_;
             };
+
 
         $("#chkCheckAll").change(function () {
             $(".checkbox").prop('checked', this.checked);
@@ -320,5 +325,13 @@
 
     });
 
+</script>
+
+<script src='js/jquery.min.js' type='text/javascript'></script>
+<script>
+    $(window).bind("load", function() {
+        $("#loading").fadeOut("slow");
+        $("#test_details").fadeIn("slow");
+    });
 </script>
 
