@@ -13,6 +13,7 @@ class index_controller extends base_controller {
 	Accessed via http://localhost/index/index/
 	-------------------------------------------------------------------------------------------------*/
 	public function index() {
+        echo Time::now();
 		
 		# Any method that loads a view will commonly start with this
 		# First, set the content of the template with a view file
