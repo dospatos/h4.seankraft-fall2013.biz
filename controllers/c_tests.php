@@ -220,7 +220,9 @@ class tests_controller extends secure_controller {
             $secondsEt = 0;
             if ($timer_id != null) {
                 $secondsEt = DB::instance(DB_NAME)->select_field("select elapsed_seconds FROM timers WHERE timer_id=".$timer_id);
+                if ($secondsEt == null) {$secondsEt = 0;}
             } else {$timer_id = "null";}//this will render for javascript correctly now
+
             $this->template->content->question_details = $question_details;
             $this->template->content->question_text = $question_details[0]['question_text'];
             $this->template->content->question_type_id = $question_details[0]['question_type_id'];

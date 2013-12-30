@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title><?php if(isset($title)) echo $title; ?></title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
 					
@@ -24,11 +25,12 @@
 <div id='menu' style="width:100%;">
 
     <div id="spanUsername" style="float:left;width:300px;margin-top: 2px">
-    <a href='/'>Our Online Tests</a>
+        <img src="/images/test_check.png" border="0"/>
+        <a href='/'>Our Online Tests</a>
 
-    <?php if($user) { //menu items for logged in users?>
-        (<a href='/users/profileedit/<?php echo $user->user_id?>'><?php echo $user->first_name." ".$user->last_name ?></a>)
-    <?php }?>
+        <?php if($user) { //menu items for logged in users?>
+            (<a href='/users/profileedit/<?php echo $user->user_id?>'><?php echo $user->first_name." ".$user->last_name ?></a>)
+        <?php }?>
     </div>
 
     <div id="spanMenu" style="text-align: right;float: right;margin-top: 2px;">
