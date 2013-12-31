@@ -27,7 +27,7 @@
 <h3>Edit Test: "<?php echo $test_name;?>"</h3>
 
 <?php if (!$editable) {?>
-    <div class="alerttext">This test has already been taken, it is therefor read-only.</div>
+    <div class="alerttext">This test has already been taken, it is therefore read-only.</div>
 <?php } ?>
 
 <section>
@@ -97,7 +97,7 @@
             <ul>
                 <?php foreach($question_list AS $current_question) { ?>
                     <li><a href="#tab-question-<?php echo $current_question["question_id"]; ?>">
-                            <?php echo siteutils::Truncate($current_question['question_text'], 20,true);?>
+                            <?php echo siteutils::Truncate($current_question['question_text'], 20,true);//truncate so the text fits in the tab?>
                         </a>
                     </li>
                 <?php } ?>
@@ -154,25 +154,6 @@
     </div>
 </section>
 </div>
-
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        /*
-        $("#form1").validate({
-            rules: {
-                test_name: "required",    // simple rule, converted to {required: true}
-                test_descr: {
-                    required: true
-                },
-                test_category: {
-                    required: true
-                }
-            }
-        });
-        */
-    });
-</script>
 
 <script>
     $(function() {
@@ -302,7 +283,8 @@
         //can't use a class selector for these because it always picks the top one and then $(this) does not work like it should
         //so we are forced to loop here in the PHP
         foreach($question_list AS $current_question) {
-            echo "$('#tab-question-".$current_question["question_id"]."').question({question_text: '".$current_question["question_text"]."', question_type_id:".$current_question["question_type_id"]."});";
+            $disabled_text = $editable ? "false" : "true";
+            echo "$('#tab-question-".$current_question["question_id"]."').question({question_text: '".$current_question["question_text"]."', question_type_id:".$current_question["question_type_id"].",disabled:".$disabled_text."});";
         }
         ?>
         }
@@ -333,8 +315,8 @@
 
 </script>
 
-<script src='js/jquery.min.js' type='text/javascript'></script>
 <script>
+    //show a loading image to give the screen time to draw itself
     $(window).bind("load", function() {
         $("#loading").fadeOut("slow");
         $("#test_details").fadeIn("slow");

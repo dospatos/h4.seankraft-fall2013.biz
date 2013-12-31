@@ -43,16 +43,19 @@
                     , display_text_id = "txt_" + question_id + "_question_text";
 
                 //All questions have display text
+                this.disabled_option = this.options.disabled ?  "disabled='true'" : "";
                 var display_text = "<div id='" + display_text_id + "'>" + this.options.question_text + "</div>";
                 if (this.options.display_mode == "edit"){
-                    display_text = "<div class='form-row' style='float: left;'><label style='float:left;clear:both;text-align: left;' for='" + display_text_id + "'>Question Text</label><br/><textarea rows='4' cols='50' id='" + display_text_id + "' name='" + display_text_id + "'>" + this.options.question_text + "</textarea></div>";
+                    display_text = "<div class='form-row' style='float: left;'><label style='float:left;clear:both;text-align: left;' for='" + display_text_id + "'>Question Text</label><br/><textarea rows='4' " + this.disabled_option + " cols='50' id='" + display_text_id + "' name='" + display_text_id + "'>" + this.options.question_text + "</textarea></div>";
 
                     //On display text lost focus or when the enter key is pressed - update the question text
                     this.element.append(display_text);
-                    $("#" + display_text_id).bind("blur keyup", (function(e) {
-                        if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
-                        $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
-                    }));
+                    if (!this.options.disabled) {
+                        $("#" + display_text_id).bind("blur keyup", (function(e) {
+                            if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
+                            $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
+                        }));
+                    }
                     this.element.append("<div>Answers:</div>");
                 } else {
                     if (this.options.display_mode != "review"){this.element.append(display_text);}
@@ -62,19 +65,20 @@
                     case 2: {//2 - choose single correct
 
                         if (this.options.display_mode == "edit"){
-                            //Write out a textbox so the user can enter the next answer
-                            var new_answer_id = "txt_new_answer_" + this.options.question_id;
-                            this.element.append("<div style='float:left;clear:both'><input type='text' id='" + new_answer_id +  "' value=''/></div>");
+                            if (!this.options.disabled) {
+                                //Write out a textbox so the user can enter the next answer
+                                var new_answer_id = "txt_new_answer_" + this.options.question_id;
+                                this.element.append("<div style='float:left;clear:both'><input type='text' id='" + new_answer_id +  "' value=''/></div>");
 
-                            //Bind the keyup events to add a new answer
-                            $("#" + new_answer_id).bind("keyup", (function(e) {
-                                if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
-                                $('#' + this.id).closest(".question").question("addAnswer", $(this).val());
-                            }));
-
-                            $("#" + new_answer_id).watermark('Enter a new answer', {
-                                className: 'lightText'
-                            });
+                                //Bind the keyup events to add a new answer
+                                $("#" + new_answer_id).bind("keyup", (function(e) {
+                                    if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
+                                    $('#' + this.id).closest(".question").question("addAnswer", $(this).val());
+                                }));
+                                $("#" + new_answer_id).watermark('Enter a new answer', {
+                                    className: 'lightText'
+                                });
+                            }
 
                             //display all the answers in edit mode
                             for(i=0;i<answers.length;i++) {
@@ -121,15 +125,17 @@
                     case 1://A check box list, a textbox, and a delete control for edit and a DIV for take
                         switch (this.options.display_mode) {
                             case "edit":
+                                var delete_control = this.options.disabled ? "" : " - <a href='#' class='alerttext' id='" + delete_control_id + "' answer_id='" + answer_id + "' " + this.disabled_option + ">delete</a><br/>";
                                 this.element.append("<span style='float:left' class='form-row' class='form-row' id='" + answer_span_id + "'>"
-                                 + "<input style='float:left' type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "'/> "
-                                 + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "'/>"
-                                 + " - <a href='#' class='alerttext' id='" + delete_control_id + "' answer_id='" + answer_id + "'>delete</a><br/>"
+                                 + "<input style='float:left' type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' " + this.disabled_option + "/> "
+                                 + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "' " + this.disabled_option + "/>"
+                                 + delete_control
                                  + "</span>");
                                 break;
                             case "take":
                                 this.element.append("<span class='form-row' id='" + answer_span_id + "'>"
-                                + "<input style='float:left' type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + "answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "'/> "
+                                + "<input style='float:left' type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' "
+                                + answer_select + "answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "'/> "
                                 + "<label style='float:left' for='" + select_control_id + "'>" + answer_text + "</label><br/>"
                                 + "</span>");
                                 break;
@@ -143,10 +149,11 @@
                     case 2://a radio button list
                         switch (this.options.display_mode){
                             case "edit":
+                                var delete_control = this.options.disabled ? "" : " - <a href='#' class='alerttext' id='" + delete_control_id + "' answer_id='" + answer_id + "' " + this.disabled_option + ">delete</a><br/>";
                                 this.element.append("<span class='form-row' style='float:left' id='" + answer_span_id + "'>"
-                                + "<input style='float:left'  type='radio' id='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' name='" + rdo_control_name + "' value='" + answer_id + "'/> "
-                                + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "'/>"
-                                + " - <a href='#' class='alerttext' id='" + delete_control_id + "' answer_id='" + answer_id + "'>delete</a><br/>"
+                                + "<input style='float:left'  type='radio' id='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' name='" + rdo_control_name + "' value='" + answer_id + "' " + this.disabled_option + "/> "
+                                + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "' " + this.disabled_option + "/>"
+                                + delete_control
                                 + "</span>");
                                 break;
                             case "take":
@@ -166,6 +173,11 @@
                     case 3://just radio buttons for true/false - same for edit and take
                         switch (this.options.display_mode){
                             case "edit":
+                                this.element.append("<span style='float:left; width: 200px;clear:both' id='" + answer_span_id + "'>"
+                                    + "<label style='float:left; text-align: left;width:50px' for='" + select_control_id + "'>" + answer_text + "</label>"
+                                    + "<input style='float:left' type='radio' id='" + select_control_id + "' name='" + rdo_control_name + "' " + answer_select + " answer_id='" + answer_id + "' value='" + answer_id + "' " + this.disabled_option + "/>"
+                                    + "</span>");
+                                break;
                             case "take":
                                 this.element.append("<span style='float:left; width: 200px;clear:both' id='" + answer_span_id + "'>"
                                     + "<label style='float:left; text-align: left;width:50px' for='" + select_control_id + "'>" + answer_text + "</label>"
@@ -185,7 +197,7 @@
                         switch (this.options.display_mode) {
                             case "edit":
                                 display_text_area+= "<label style='float:right;clear:both;width:100%; text-align: left' for='" + textbox_control_id + "'>The test taker will see the following text as a prompt</label>"
-                                + "<textarea style='float:left;clear:both' rows='4' cols='50' id='" + textbox_control_id + "' name='" + textbox_control_id + "'></textarea>"
+                                + "<textarea style='float:left;clear:both' rows='4' cols='50' id='" + textbox_control_id + "' name='" + textbox_control_id + "' " + this.disabled_option + "></textarea>"
                                     + "</span>";
 
                                 this.element.append(display_text_area);
