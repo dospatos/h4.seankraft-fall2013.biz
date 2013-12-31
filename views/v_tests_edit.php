@@ -24,7 +24,11 @@
 <div id="loading"> </div>
 
 <div id="test_details" style="display:none">
-<h3>Edit Test: <?php echo $test_name;?></h3>
+<h3>Edit Test: "<?php echo $test_name;?>"</h3>
+
+<?php if (!$editable) {?>
+    <div class="alerttext">This test has already been taken, it is therefor read-only.</div>
+<?php } ?>
 
 <section>
     <div id="tabs">
@@ -39,41 +43,42 @@
                     <legend>Test Details</legend>
                     <p class="form-row">
                         <label for="test_name">Test Name:</label>
-                        <input type='text' name='test_name' id='test_name' value='<?php echo $test_name;?>'/>
+                        <input type='text' name='test_name' id='test_name' value='<?php echo $test_name;?>' <?php echo $disable_control?> />
                     </p>
                     <p class="form-row">
                         <label for='test_descr'>Description:</label>
-                        <input type='text' name='test_descr' id='test_descr' value='<?php echo $test_descr; ?>'/>
+                        <input type='text' name='test_descr' id='test_descr' value='<?php echo $test_descr; ?>' <?php echo $disable_control?>/>
                     </p>
                     <p class="form-row">
                         <label for='test_category'>Category:</label>
-                        <input type='text' name='test_category' value='<?php echo $test_category;?>'/>
+                        <input type='text' name='test_category' value='<?php echo $test_category;?>' <?php echo $disable_control?>/>
                     </p>
                     <p class="form-row">
                         <label for='test_year'>Test Year:</label>
-                        <input type='text' name='test_year' value='<?php echo $test_year;?>'/>
+                        <input type='text' name='test_year' value='<?php echo $test_year;?>' <?php echo $disable_control?>/>
                     </p>
                     <p class="form-row">
                         <label for='passing_grade'>Passing Grade:</label>
-                        <input type='text' name='passing_grade' value='<?php echo $passing_grade;?>'/>
+                        <input type='text' name='passing_grade' value='<?php echo $passing_grade;?>' <?php echo $disable_control?>/>
                     </p>
                     <p class="form-row">
                         <label for='minutes_to_complete'>Minutes to complete:</label>
-                        <input type='text' name='minutes_to_complete' value='<?php echo $minutes_to_complete;?>'/>(0 for no timer)
+                        <input type='text' name='minutes_to_complete' value='<?php echo $minutes_to_complete;?>' <?php echo $disable_control?>/>(0 for no timer)
                     </p>
                 </fieldset>
                 <input type='hidden' name='test_id' id='test_id' value='<?php echo $test_id;?>'/>
-                <input type='submit' value='Save Test'>
+                <input type='submit' value='Save Test' <?php echo $disable_control?>>
 
             </form>
         </div>
         <div id="tab-questions">
+            <?php if ($editable) {?>
             <div>
                 <fieldset>
                     <legend>Add Question</legend>
                     <p class="form-row">
                         <label for="question_text">Question Text:</label>
-                        <input type='text' name='question_text' id='question_text' style="width:450px"/>
+                        <input type='text' name='question_text' id='question_text' style="width:450px" />
                     </p>
                     <?php foreach($question_types AS $current_question_type) {
                         $selected = $current_question_type['question_type_id'] == "1" ? "checked='checked'" : "";//select the first type by default
@@ -87,6 +92,7 @@
                     <input type='button' value='Add Question' id='cmdAddQuestion'>
                 </fieldset>
             </div>
+            <?php }?>
             <!--List the questions-->
             <ul>
                 <?php foreach($question_list AS $current_question) { ?>
@@ -132,11 +138,11 @@
                             <tr>
                                 <td><input class="checkbox" <?php echo $check_setup." ".$disable_controls;?> type="checkbox" id="chk_<?php echo $current_test_assign_status['user_id']?>" name="chk_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $current_test_assign_status['user_id']?>"></td>
                                 <td>
-                                    <label for="txt_due_<?php echo $current_test_assign_status['user_id']?>">
+                                    <label for="txt_due_<?php echo $current_test_assign_status['user_id']?>" >
                                     <?php echo $current_test_assign_status['first_name']?>&nbsp;<?php echo $current_test_assign_status['last_name']?>
                                     </label>
                                 </td>
-                                <td><input class="due_date" type="text" id="txt_due_<?php echo $current_test_assign_status['user_id']?>" name="txt_due_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $due_on_dt?>"/></td>
+                                <td><input <?php echo $disable_controls ?> class="due_date" type="text" id="txt_due_<?php echo $current_test_assign_status['user_id']?>" name="txt_due_<?php echo $current_test_assign_status['user_id']?>" value="<?php echo $due_on_dt?>"/></td>
                                 <td><?php echo $assigned_on_dt;?></td>
                             </tr>
                         <?php }} else {echo ("<h3>No test takers exist to be assigned</h3>");} ?>

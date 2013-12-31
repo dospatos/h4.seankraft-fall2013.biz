@@ -130,7 +130,7 @@
                             case "take":
                                 this.element.append("<span class='form-row' id='" + answer_span_id + "'>"
                                 + "<input style='float:left' type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + "answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "'/> "
-                                + "<label style='float:right' for='" + select_control_id + "'>" + answer_text + "</label><br/>"
+                                + "<label style='float:left' for='" + select_control_id + "'>" + answer_text + "</label><br/>"
                                 + "</span>");
                                 break;
                             case "review":

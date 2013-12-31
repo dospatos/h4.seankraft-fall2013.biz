@@ -106,7 +106,17 @@ class tests_controller extends secure_controller {
             $this->setupTestQuestionsForDisplay($this->template, $test_id);
 
             //setup the assignments
-            $this->template->content->test_assign_status = siteutils::getTestAssignStatus($test_id);
+            $test_assign_status = siteutils::getTestAssignStatus($test_id);
+            $this->template->content->test_assign_status = $test_assign_status;
+            $this->template->content->disable_control = "";
+            $this->template->content->editable = true;
+            foreach ($test_assign_status as $current_test_assign_status) {
+                $status_id = $current_test_assign_status["test_assign_status_id"];
+                if ($status_id > 1) {//anything higher than assigned means we can't edit anymore
+                    $this->template->content->editable = false;
+                    $this->template->content->disable_control = "disabled='true'";
+                }
+            }
         } else {
             Router::redirect("/error/generic");
         }

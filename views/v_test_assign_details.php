@@ -29,7 +29,7 @@ if (isset($assign_details)) {
                 <p>Due Date: <?php echo $due_on_dt;?></p>
 
             </fieldset>
-            <?php if ($assign_details["test_assign_status_id"] == 1) {//allow the user to take the test?>
+            <?php if ($assign_details["test_assign_status_id"] <= 2) {//allow the user to take the test?>
                 <form action="/tests/take/<?php echo $assign_details['test_assign_id']?>" method="get">
                     <input type="submit" value="Take Test"/>
                 </form>
