@@ -1,8 +1,4 @@
-h4.seankraft-fall2013.biz
-=========================
-
-Project 4
-Application is called "Our Online Tests". It allows admins to create and manage tests online.
+PHP application for creating and taking tests online
 
 Features:
 - Login/Logout/Create account
@@ -18,10 +14,7 @@ Javascript and JQuery are being used in the following areas:
 - While taking tests to operate the timer and enforce timeouts
 - On all input pages for form validation
 
-Information for graders:
-- If you login using the account demo@admin.com with PWD = testit, you can see a few tests that I created and how the tests look when assigned.
-- If you create a new account the account user is an admin and all uploaded "test takers" are not admins. You will see a different menu depending on who you log in as
-- If you want to test the test taker upload , there is a file called test_emps.txt in the root you can upload to add two new users
+
 
 
 
