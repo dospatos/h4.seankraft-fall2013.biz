@@ -250,3 +250,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `person_id` varchar(100) NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+
+INSERT INTO `question_types` (`question_type_id`, `question_type_descr`) VALUES
+(1, 'Choose all correct answers'),
+(2, 'Choose single correct answer'),
+(3, 'True/False'),
+(4, 'Essay Question');
