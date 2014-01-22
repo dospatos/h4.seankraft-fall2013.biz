@@ -20,15 +20,15 @@
         <legend>Create a Test</legend>
         <p class="form-row">
             <label for="test_name">Test Name:</label>
-            <input type='text' name='test_name' id='test_name' value='<?php echo $test_name;?>'/>
+            <input type='text' name='test_name' id='test_name' placeholder = 'At least 5 characters' value='<?php echo $test_name;?>'/>
         </p>
         <p class="form-row">
             <label for='test_descr'>Description:</label>
-            <input type='text' name='test_descr' id='test_descr' value='<?php echo $test_descr; ?>'/>
+            <input type='text' name='test_descr' id='test_descr' placeholder = 'At least 5 characters' value='<?php echo $test_descr; ?>'/>
         </p>
         <p class="form-row">
             <label for='test_category'>Category:</label>
-            <input type='text' name='test_category' value='<?php echo $test_category;?>'/>
+            <input type='text' name='test_category' placeholder = 'At least 5 characters' value='<?php echo $test_category;?>'/>
         </p>
     </fieldset>
     <input type='submit' value='Create Test'>

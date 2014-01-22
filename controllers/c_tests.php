@@ -89,6 +89,16 @@ class tests_controller extends secure_controller {
         $this->template->content = View::instance('v_tests_edit');
         # Now set the <title> tag
         $this->template->title = "Edit Test";
+		# CSS/JS includes
+			/*
+			$client_files_head = Array("");
+	    	$this->template->client_files_head = Utils::load_client_files($client_files);
+	    	*/
+			#Keep the JS in a separate file
+			
+	    	$client_files_body = Array("/js/tests-edit.js");
+	    	$this->template->client_files_body = Utils::load_client_files($client_files_body);   
+			
 
         $return_row = $this->getExistingTest($test_id);
 

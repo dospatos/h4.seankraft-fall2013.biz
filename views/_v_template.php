@@ -68,5 +68,9 @@
         © 2013 - Sean Kraft - Contact information: <a href="mailto:sean@seankraft.com">sean@seankraft.com</a>
     </footer>
 </div>
+<?php if(isset($client_files_body)) echo $client_files_body; ?>
+<script>
+$( ".button" ).button();
+</script>
 </body>
 </html>

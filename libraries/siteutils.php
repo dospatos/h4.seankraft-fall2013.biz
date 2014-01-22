@@ -321,7 +321,7 @@ class siteutils {
 
     //Validate that the data entered for a user complies with site business rules
     public static function validateUserData($email, $first_name, $last_name, $user_id = null) {
-
+		
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
             $errors[] = "Email address is invalid, please submit name@domainname.com format only";
         } else {//check that the user_id sent in matches any existing user_id for the email
