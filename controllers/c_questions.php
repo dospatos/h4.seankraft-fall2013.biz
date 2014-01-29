@@ -222,6 +222,23 @@ class questions_controller extends secure_controller {
         $q = "SELECT MAX(answer_order) + 1 FROM answers WHERE question_id=".$question_id;
         return DB::instance(DB_NAME)->select_field($q);
     }
+	
+	public static function updateQuestionOrder($start_value, $end_value, $test_id, $start_question_id)
+	{
+		if ($start_value < $end_value) {
+			$q="UPDATE questions SET question_order = question_order-1 WHERE test_id = ".$test_id.
+					" AND question_order <= ".$end_value.
+					" AND question_order > ".$start_value;
+		} elseif ($start_value > $end_value) {
+			$q="UPDATE questions SET question_order = question_order+1 WHERE test_id = ".$test_id.
+					" AND question_order >= ".$end_value.
+					" AND question_order < ".$start_value;
+		}
+		if (!empty($q)) {
+			 DB::instance(DB_NAME)->query($q);
+			 DB::instance(DB_NAME)->query("UPDATE questions set question_order = ".$end_value." WHERE question_id=".$start_question_id);
+		}		
+	}
 
 
 } # End of class

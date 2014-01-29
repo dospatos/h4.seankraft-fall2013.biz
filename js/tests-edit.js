@@ -8,8 +8,24 @@
 		 tabs.find( ".ui-tabs-nav" ).sortable({
 			 items: "li:not(#new_question_tab)",  // Adding a new question should always be on top
 			 axis: "y",
-			 stop: function() {
+			 stop: function( event, ui) {
+				 console.log( ui.item.index() );
+				 console.log( ui.item.find("span.question-order").text() );
+
 				// Add a call to refile the order of all the questions
+				/*
+				 $.ajax({
+				                type: "POST",
+				                url: "/questions/p_reorder/" + test_id,
+				                dataType: "json",
+				                data: { question_text: question_text, question_type_id: question_type_id},
+				                async: false,
+				                success : function(data) {
+				                    question_id = Number(data[0]);
+				                    question_order = Number(data[1]);
+				                }
+            	});
+            */
 			 	tabs.tabs( "refresh" );
 			 }
 		 });
