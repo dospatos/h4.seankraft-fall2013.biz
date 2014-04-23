@@ -14,15 +14,24 @@
 <style>
     
     .ui-tabs-vertical { width: 55em; }
-    .ui-tabs-vertical .ui-tabs-nav { padding: 0em .3em 0em 0em; float: right;
+	.ui-tabs-vertical {background-color:#EBFFD6; } 
+	
+    .ui-tabs-vertical .ui-tabs-nav { padding: 0em .8em .4em 0em;
+									float: right;
 									 margin-right: 0em;
-									 width: 16em; }
+									 margin-bottom: 0em;
+									 background-image: none;
+									 border-width: 0px;
+									 background-color: #EBFFD6;
+									 width: 16em; 
+									 border: 2px dashed purple;
+									 }
     .ui-tabs-vertical .ui-tabs-nav li { clear: right; 
 										width: 100%;
 										font-size: 90%;
-										border: ridge grey;
-										border-width: 2px 4px 2px 0px !important ;
-										border-width-left: 0px !important;
+										border: ridge #BCCCAB	;
+										border-width: 3px 5px 5px 3px !important ;
+										
 										padding-left: 0px; 
 										margin: 2px 0px 2px .1em; }
     .ui-tabs-vertical .ui-tabs-nav li a { display:block; }
@@ -31,15 +40,21 @@
 													   background-image:  none;
 													   margin: 2px 0px 2px -.1em;
 													   padding-right: .1em; 
-													   border-width: 1px;
-													   border-left-width: 0px; 								   
-													   border: groove grey;}
+													   border-width: 5px 5px 3px 0px;
+													   border-left-width: 0px !important; 								   
+													   border: groove #BCCCAB;}
     .ui-tabs-vertical .ui-tabs-panel { padding: 1em; 
 									   background-color: #EBFFD6;
-									   float: left; 
+									   /* changed from float left */
+									   float: right;
+										position: relative;
+										right : -1px;
+										/****/
 									   width: 40em; 
+									   height: 100%;
 									   border: 1px solid red;}
-	.ui-tabs-vertical {background-color:#EBFFD6;} 
+	
+	
 	section {border : 1px solid orange; padding: 0px;}
 	#tab-questions .ui-tabs-nav li.ui-tabs-active, 
 	#tab-questions .ui-tabs-nav li.ui-tabs-active * {background-color: #EBFFD6 !important}
@@ -47,6 +62,8 @@
 	span.question-order {float: left;  margin-top: .5em; margin-left: .3em; color: green; font-weight: bold; }
 	#tab-question-edit {border: 2px dotted cyan; 
 						padding-left: 0px; padding-right: 0px;
+						padding-top: 2px; padding-bottom: 2px;
+						margin-top: 15px; margin-bottom: 15px; margin-left: 3px; margin-right: 3px;
 						background-color: #EBFFD6;}
 	div[id^="tab-"] form { border: 1px solid green; }
 	#tab-questions { margin-left: 0px; margin-right: 0px; 
@@ -54,14 +71,28 @@
 					padding-left: 0px;
 					margin-right: 0px;
 					padding-right: 0px;
+					margin-top: 0px;
 					width: 100%;
-					background-color: #EBFFD6 !important}
+					
+					background-color: #EBFFD6 !important
+					}
 	#tab-questions li .ui-icon-close { float: right; margin: 0.4em 0.2em 0 0; cursor: pointer; }
-	#new-question-tab { font-weight: bold; font-style: italic; }
+	#new-question-tab { font-weight: bold; font-style: italic; font-size: 100%; }
 	#tab-question-new fieldset { border-width: 0px;}
 	#tab-question-new fieldset legend{ font-weight: bold}
 	#cmdAddQuestion{ padding-top: .5em; padding-bottom: .5em;  margin-top: 1em; }
 	span.instructions { display: block; font-size: 90%; color: #CC0000;}
+	.form-row {border: 1px solid blue; width: 100% !important}
+	p.form-row {border: 1px solid red; margin: .3em }
+	input[type=radio] {
+		/*float:right;
+		width:200px;*/
+		margin-left: 5em;
+	}
+	input[type=text] { float: none;  }
+	input[type=file] {margin-left: 5em; background-color: yellow}
+	#tab-materials label {white-space:nowrap;}
+	
 </style>
 
 
@@ -121,13 +152,12 @@
 					<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Delete this question from the test?</p>
 				</div>
 				<div id="tab-questions">
-					<ul> <!-- Moved the list up here -->
-					<?php if ($editable) {?>
-					
-						<li id="new-question-tab"><a href="#tab-question-new">Add a new question</a></li>									
+					<ul> <!-- The add question tab -->
+					<?php if ($editable) {?>	
+						<li id="new-question-tab"><a href="#tab-question-new">Add a question</a></li>									
 					<?php }?>
-					<!--List the questions
-					<ul > took out ul tag -->
+					
+					<!--List the questions. Most of the display is handled via javascript -->
 						<?php foreach($question_list AS $current_question) { ?>
 							<li id="q-<?php echo $current_question["question_id"]; ?>">
 								<!-- question_order field starts from 0 so need to add 1 -->
@@ -141,19 +171,24 @@
 					</ul>
 					<?php if ($editable) {?>
 						<div id="tab-question-new" >
+							<!--
 							<fieldset>
-								<legend>Add a new Question</legend>
-								<p class="form-row">
-									<label for="question_text">Question Text:</label>
-									<input type='text' name='question_text' id='question_text' style="width:450px" />
-								</p>
+								
+								<legend>Create a new Question</legend>
+							-->
+							<div class="form-row">
+								<label for="question_text">Question Text:</label>
+								<input type='text' name='question_text' id='question_text' style="width:450px" />
+							</div>
+							<fieldset>
+								<legend>Question type:</legend>
 								<?php foreach($question_types AS $current_question_type) {
 									$selected = $current_question_type['question_type_id'] == "1" ? "checked='checked'" : "";//select the first type by default
 									?>
-									<p class="form-row" style="width:400px">
-										<label style="white-space:nowrap;text-align: left;" for="question_type_id_<?php echo $current_question_type['question_type_id']?>"><?php echo $current_question_type['question_type_descr']?></label>
-										<input type="radio" style="float:right;width:200px" <?php echo $selected;?> name="question_type_id" id="question_type_id_<?php echo $current_question_type['question_type_id']?>" value="<?php echo $current_question_type['question_type_id']?>"/>
-									</p>
+									<div class="form-row" style="width:400px">
+										<label style="white-space:nowrap;text-align: left; border:2px solid orange; width:16em;" for="question_type_id_<?php echo $current_question_type['question_type_id']?>"><?php echo $current_question_type['question_type_descr']?></label>
+										<input type="radio"  <?php echo $selected;?> name="question_type_id" id="question_type_id_<?php echo $current_question_type['question_type_id']?>" value="<?php echo $current_question_type['question_type_id']?>"/>
+									</div>
 								<?php } ?>
 								<input type='hidden' name='test_id' id='test_id' value='<?php echo $test_id;?>'/>
 								<input type='button' value='Add New Question' id='cmdAddQuestion'>
@@ -237,7 +272,7 @@ $(document).ready(function() {
 		/*
 		$(".question").each( function (index, el) {
 			var questionText = $(this)
-			$(this).question
+			$(this).question();
 		}
 		*/
         <?php
@@ -248,8 +283,7 @@ $(document).ready(function() {
             echo "$('#tab-question-".$current_question["question_id"]."').question({question_text: '".$current_question["question_text"]."', question_type_id:".$current_question["question_type_id"].",disabled:".$disabled_text."});";
         }
         ?>
-    }
-	
+    }	
 	window.setTimeout(linkTestQuestions, 1000);//wait a second to load the questions
 });
 </script>	
