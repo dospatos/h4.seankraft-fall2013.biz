@@ -177,6 +177,8 @@ class questions_controller extends secure_controller {
         //Set the question to whatever was sent in
         $q = "UPDATE questions SET question_text = '".$question_text."' WHERE question_id = ".$question_id;
         DB::instance(DB_NAME)->query($q);
+		// Return text for updating tab display
+		echo $question_text;
     }
 
     //update the text of a question

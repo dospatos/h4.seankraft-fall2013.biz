@@ -36,7 +36,7 @@
 
 
             },
-            displayQuestion: function(data){//displays on a div
+            displayQuestion: function(data) { //displays on a div
                 var question_type_id = parseInt(data['question_type_id'])
                     , question_id = this.options.question_id
                     , answers = data.answers
@@ -45,18 +45,33 @@
                 //All questions have display text
                 this.disabled_option = this.options.disabled ?  "disabled='true'" : "";
                 var display_text = "<div id='" + display_text_id + "'>" + this.options.question_text + "</div>";
-                if (this.options.display_mode == "edit"){
-                    display_text = "<div class='form-row' style='float: left;'><label style='float:left;clear:both;text-align: left;' for='" + display_text_id + "'>Question Text</label><br/><textarea rows='4' " + this.disabled_option + " cols='50' id='" + display_text_id + "' name='" + display_text_id + "'>" + this.options.question_text + "</textarea></div>";
+
+                if (this.options.display_mode == "edit") {
+                    display_text = "<div class='form-row' style='float: left;'>" +
+                                    "<label style='float:left;clear:both;text-align: left;' for='" + display_text_id + "'>Question Text</label>" +
+                                    "<br/>" +
+                                    "<textarea rows='4' " + this.disabled_option + " cols='50' id='" + display_text_id + "' name='" + display_text_id + "'>" + 
+                                        this.options.question_text + 
+                                    "</textarea>" +
+                                    "</div>";
+                    
+                    this.element.append(display_text);
+                    this.element.append("<div>Answers: </div>");
 
                     //On display text lost focus or when the enter key is pressed - update the question text
-                    this.element.append(display_text);
+                    
                     if (!this.options.disabled) {
-                        $("#" + display_text_id).bind("blur keyup", (function(e) {
-                            if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
-                            $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
-                        }));
+                        $("#" + display_text_id).on( 
+                            {"blur keyup": function(e) {
+                                console.log("Event: " + e.type);
+                                if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
+                                $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
+                            },
+                            "change" : function(e) {
+                                console.log("Event: CHANGE");
+                            }
+                            });                      
                     }
-                    this.element.append("<div>Answers:</div>");
                 } else {
                     if (this.options.display_mode != "review"){this.element.append(display_text);}
                 }
@@ -67,8 +82,11 @@
                         if (this.options.display_mode == "edit"){
                             if (!this.options.disabled) {
                                 //Write out a textbox so the user can enter the next answer
+
                                 var new_answer_id = "txt_new_answer_" + this.options.question_id;
-                                this.element.append("<div style='float:left;clear:both'><input type='text' id='" + new_answer_id +  "' value=''/></div>");
+                                this.element.append("<div style='float:left;clear:both'>" +
+                                                        "<input type='text' id='" + new_answer_id +  "' value=''/>" +
+                                                    "</div>");
 
                                 //Bind the keyup events to add a new answer
                                 $("#" + new_answer_id).bind("keyup", (function(e) {
@@ -125,7 +143,8 @@
                     case 1://A check box list, a textbox, and a delete control for edit and a DIV for take
                         switch (this.options.display_mode) {
                             case "edit":
-                                var delete_control = this.options.disabled ? "" : " - <a href='#' class='alerttext button' id='" + delete_control_id + "' answer_id='" + answer_id + "' " + this.disabled_option + ">delete</a><br/>";
+                                var delete_control = this.options.disabled ? "" : 
+                                " - <a href='#' class='alerttext button' id='" + delete_control_id + "' answer_id='" + answer_id + "' " + this.disabled_option + ">delete</a><br/>";
                                 this.element.append("<span style='float:left' class='form-row' class='form-row' id='" + answer_span_id + "'>"
                                  + "<input style='float:left' type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' " + this.disabled_option + "/> "
                                  + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "' " + this.disabled_option + "/>"
@@ -267,7 +286,11 @@
                     type: "POST",
                     url: "/questions/p_set_question_text/" + this.options.question_id,
                     data: { question_text: question_text},
-                    async: true
+                    dataType: "text", // The updated text that was saved in the DB
+                    async: true,
+                    success : function(data) {
+                        console.log("Qestion text: " +data);
+                    }
                 });
             },
             changeAnswerText: function(answer_text){

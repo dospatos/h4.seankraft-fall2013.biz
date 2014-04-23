@@ -10,7 +10,7 @@ $(document).ready(function()   {
 	Create horizontal tab widgets for editing the test
 	Create vertical tabs for editing the questions
 	*********************************************/
-	$( "#tabs" ).tabs();
+	$( "#tabs" ).tabs( );
 	var tabs = $( "#tab-questions" ).tabs();
 	// Classes added to create vertical widgets
 	tabs.addClass( "ui-tabs-vertical ui-helper-clearfix" );
@@ -22,6 +22,8 @@ $(document).ready(function()   {
 	tabs.find( ".ui-tabs-nav" ).sortable({
 		 items: "li:not(#new-question-tab)",  // Adding a new question should always be on top
 		 axis: "y",
+		 udpate: function(event, ui) { console.log("Element changed position")}, // This doesn't work
+		 start: function(event, ui) {console.log("index of sortable item:" + $("li[id^=q-]").index(ui.item))},
 		 stop: function( event, ui) {
 			 // Determine where the question ended by looking at it's index in the context of all question
 			 // tabs
@@ -32,7 +34,7 @@ $(document).ready(function()   {
 			 var test_id = $('#test_id').val();
 			 var question_id = ui.item.attr("id").substr(2);
 			 var error;
-
+			 console.log("ui.item.index()="+ui.item.index());
 			 console.log( "End="+end_position );
 			 console.log( "Start="+start_position );
 			 console.log("testid="+test_id);
@@ -117,6 +119,8 @@ $(document).ready(function()   {
 				alert("Please provide a question of 10 characters or more");
 				return;
 			}
+			//blank out the question so doesn't get readded by mistake
+			$('#question_text').val("");
 
 			// TODO:? See If question text not unique
 
@@ -133,7 +137,7 @@ $(document).ready(function()   {
 			});  // end $.ajax
 
 			if (question_id != null) {
-				 $('#question_text').val("");//blank out the question so doesn't get readded by mistake
+				 
 				//Add the question to the local page
 
 				/*
@@ -154,6 +158,8 @@ $(document).ready(function()   {
 				tabs.tabs( "option","active", -1 );
 			}
 			else {
+				// add the question back to the input form
+				$('#question_text').val(question_text);
 				// Give an error message indicating question was not added
 				alert ("Unable to add question.");
 			}
@@ -215,6 +221,7 @@ $(document).ready(function()   {
 						// This value should reflect the current database order
 						// The data is sent back as an array where question_id is the key and
 						// question_order is the value
+						console.log("updatedRows = " + updatedRows);
 						$.each(updatedRows, function(qid,qorder) {
 
 							// If there was an error we are getting the values in the database,
