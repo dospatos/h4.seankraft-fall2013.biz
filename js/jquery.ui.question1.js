@@ -45,7 +45,7 @@
                 //All questions have display text
                 this.disabled_option = this.options.disabled ?  "disabled='true'" : "";
                 var display_text = "<div id='" + display_text_id + "'>" + this.options.question_text + "</div>";
-                console.log( "q"+question_id+":"+this.options.question_text);
+
                 if (this.options.display_mode == "edit") {
                     display_text = "<div class='form-row' style='float: left;'>" +
                                     "<label style='float:left;clear:both;text-align: left;' for='" + display_text_id + "'>Question Text</label>" +
@@ -56,22 +56,20 @@
                                     "</div>";
                     
                     this.element.append(display_text);
-                    this.element.append("<div>Answers: </div>");
+                    this.element.append("<div>Answers: " + " </div>");
 
                     //On display text lost focus or when the enter key is pressed - update the question text
                     
                     if (!this.options.disabled) {
                         $("#" + display_text_id).on( 
-                           
-                            {   /*"blur keyup": function(e) {
-                                    console.log("Event: " + e.type);
-                                    if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
-                                    $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
-                                }, */
-                                "change" : function(e) {
-                                    console.log("Event: CHANGE");
-                                    $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
-                                }
+                            {"blur keyup": function(e) {
+                                console.log("Event: " + e.type);
+                                if(e.type === 'keyup' && e.keyCode !== 10 && e.keyCode !== 13) return;
+                                $('#' + this.id).closest(".question").question("changeQuestionText", $(this).val());
+                            },
+                            "change" : function(e) {
+                                console.log("Event: CHANGE");
+                            }
                             });                      
                     }
                 } else {
@@ -132,7 +130,7 @@
             },
             //Append the proper elements to the DOM to enable the editing of answers
             _addAnswerDisplay: function(question_id, question_type_id, answer_id, answer_text, answer_correct) {
-                console.log("answer_id: " + answer_id + ", question_type_id:" + question_type_id);
+                //console.log("answer_id: " + answer_id + ", question_type_id:" + question_type_id);
                 var select_control_prefix = "select_";
                 var answer_select= answer_correct == "1" ? "checked='checked'" : "";
                 var select_control_id = select_control_prefix + question_id + "_" + answer_id;
@@ -141,23 +139,15 @@
                 var rdo_control_name = "question_answer_" + question_id;
                 var answer_span_id = "answer_span_" + answer_id;
 
-                // Convert apostrophes in the answer text to the html entity &apos; so it can be used as a value. Double quotes are OK.
-                // This only needs to be done for the first 2 question types
-                if (question_type_id < 3){
-                    // Depending on where the call is being made, apostrophes might be escaped with a backslash. If the answer was just entered, it won't be
-                    answer_text = answer_text.replace(/\\'/g,"&apos;").replace(/'/,"&apos;");
-                }
-
                 switch (question_type_id) {
                     case 1://A check box list, a textbox, and a delete control for edit and a DIV for take
                         switch (this.options.display_mode) {
                             case "edit":
                                 var delete_control = this.options.disabled ? "" : 
                                 " - <a href='#' class='alerttext button' id='" + delete_control_id + "' answer_id='" + answer_id + "' " + this.disabled_option + ">delete</a><br/>";
-                                
                                 this.element.append("<span style='float:left' class='form-row' class='form-row' id='" + answer_span_id + "'>"
                                  + "<input style='float:left' type='checkbox' id='" + select_control_id + "' name='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' " + this.disabled_option + "/> "
-                                 + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text+ "' " + this.disabled_option + "/>"
+                                 + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "' " + this.disabled_option + "/>"
                                  + delete_control
                                  + "</span>");
                                 break;
@@ -181,7 +171,7 @@
                                 var delete_control = this.options.disabled ? "" : " - <a href='#' class='alerttext button' id='" + delete_control_id + "' answer_id='" + answer_id + "' " + this.disabled_option + ">delete</a><br/>";
                                 this.element.append("<span class='form-row' style='float:left' id='" + answer_span_id + "'>"
                                 + "<input style='float:left'  type='radio' id='" + select_control_id + "' " + answer_select + " answer_id='" + answer_id + "' textbox_control_id='" + textbox_control_id + "' name='" + rdo_control_name + "' value='" + answer_id + "' " + this.disabled_option + "/> "
-                                + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text+ "' " + this.disabled_option + "/>"
+                                + "<input type='text' id='" + textbox_control_id + "' value='" + answer_text + "' " + this.disabled_option + "/>"
                                 + delete_control
                                 + "</span>");
                                 break;
@@ -291,22 +281,17 @@
             },
             changeQuestionText: function(question_text){
                 //alert("question_id: " + this.options.question_id + ", question_text: " + question_text);
-                new_question_text = question_text.replace(/[\n\r]/g, ' ');
-                question_id = this.options.question_id;
+                question_text = question_text.replace(/[\n\r]/g, ' ');
                 $.ajax({
                     type: "POST",
-                    url: "/questions/p_set_question_text/" + question_id,
-                    data: { question_text: new_question_text},
-                    dataType: "json", // The updated text that was saved in the DB
+                    url: "/questions/p_set_question_text/" + this.options.question_id,
+                    data: { question_text: question_text},
+                    dataType: "text", // The updated text that was saved in the DB
                     async: true,
                     success : function(data) {
-                        question_id = Number(data[0]);
-                        new_question_text = data[1];
-                       
-                        console.log("Question text: " + new_question_text);
+                        console.log("Qestion text: " +data);
                     }
                 });
-                this._trigger("textedit",null,{question_text: new_question_text,question_id: question_id});
             },
             changeAnswerText: function(answer_text){
                 //alert("question_id: " + this.options.question_id + ", answer_text: " + answer_text);

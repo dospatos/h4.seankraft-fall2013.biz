@@ -174,11 +174,13 @@ class questions_controller extends secure_controller {
     public function p_set_question_text($question_id) {
         $_POST = DB::instance(DB_NAME)->sanitize($_POST);
         $question_text = trim($_POST["question_text"]);
+		// Sanitize it again here (because the query function doesn't do it)
+		$resanitized_question_text =  DB::instance(DB_NAME)->sanitize($question_text);
         //Set the question to whatever was sent in
-        $q = "UPDATE questions SET question_text = '".$question_text."' WHERE question_id = ".$question_id;
+        $q = "UPDATE questions SET question_text = '".$resanitized_question_text."' WHERE question_id = ".$question_id;
         DB::instance(DB_NAME)->query($q);
 		// Return text for updating tab display
-		echo $question_text;
+		echo json_encode(array($question_id,array($question_text)));
     }
 
     //update the text of a question
@@ -345,8 +347,8 @@ class questions_controller extends secure_controller {
 				else {
 					// We don't know what happened, so reselect the rows (using $q and return)
 					$affected_questions = DB::instance(DB_NAME)->select_kv($q, 'question_id', 'question_order');
-					echo json_encode( array('ERROR'=>array( "Attempt to delete question ".$deleted_question_order." did not complete successfully. Please refresh",
-					'ROWS'=>$affected_questions	)));
+					echo json_encode( array('ERROR'=>array( "Attempt to delete question ".$deleted_question_order." did not complete successfully. Please refresh"),
+					'ROWS'=>$affected_questions	));
 				}
 			}
 		}

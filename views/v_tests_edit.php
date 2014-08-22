@@ -163,7 +163,7 @@
 								<!-- question_order field starts from 0 so need to add 1 -->
 								<span class="question-order"><?php echo $current_question["question_order"]+1?>.</span>
 								<a href="#tab-question-<?php echo $current_question["question_id"]; ?>">
-									<?php echo siteutils::Truncate($current_question['question_text'], 20,true);//truncate so the text fits in the tab?>
+									<?php echo siteutils::Truncate(stripslashes($current_question['question_text']), 20,true);//truncate so the text fits in the tab?>
 								</a>
 								<span class="ui-icon ui-icon-close" role="presentation">Remove Tab</span>
 							</li>

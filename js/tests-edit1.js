@@ -3,14 +3,6 @@ $(window).bind("load", function() {
 	$("#loading").fadeOut("slow");
 	$("#test_details").fadeIn("slow");
 });
-(function() {
-  // log all calls to setArray
-  var proxied = jQuery.fn.setArray;
-  jQuery.fn.setArray = function() {
-    console.log( this, arguments );
-    return proxied.apply( this, arguments );
-  };
-})();
 
 $(document).ready(function()   {
 
@@ -23,14 +15,7 @@ $(document).ready(function()   {
 	// Classes added to create vertical widgets
 	tabs.addClass( "ui-tabs-vertical ui-helper-clearfix" );
 	tabs.find("[role=tab]").removeClass( "ui-corner-top" ).addClass( "ui-corner-right" );
-	// Refresh the tab label when the question text gets edited
-	tabs.on("questiontextedit",function(event, data) {
-									var question_text = data.question_text.trunc(20,true).replace(/&hellip;/,"...");
-									console.log("Text Edit event CAUGHT: "+ data.question_text + " truncated to "+  question_text +"for question_id: "+ data.question_id);
-									$("li#q-"+data.question_id+" a").text(question_text);
-									tabs.tabs("refresh");
 
-								});
 	/***************************************
 	Code for creating sortable questions
 	****************************************/
@@ -49,7 +34,7 @@ $(document).ready(function()   {
 			 var test_id = $('#test_id').val();
 			 var question_id = ui.item.attr("id").substr(2);
 			 var error;
-			 console.log("ui.item.index()="+ui.item.index());
+			 console.log("ui.item.index()="+hufui.item.index());
 			 console.log( "End="+end_position );
 			 console.log( "Start="+start_position );
 			 console.log("testid="+test_id);
